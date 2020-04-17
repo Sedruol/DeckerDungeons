@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Enemy
+  - Player
+  - HUD
   - 
   - 
   - 
@@ -40,4 +40,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 244707789
+    locked: 0
+  - name: Enemy
+    uniqueID: 1552544227
+    locked: 0
+  - name: Player
+    uniqueID: 2101017479
+    locked: 0
+  - name: HUD
+    uniqueID: 2091627987
+    locked: 0
+  - name: Cards
+    uniqueID: 929422513
     locked: 0

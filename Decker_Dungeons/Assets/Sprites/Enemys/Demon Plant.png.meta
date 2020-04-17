@@ -1,0 +1,656 @@
+fileFormatVersion: 2
+guid: abf271649c3f6b2498389bd2f1490297
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2085399536858323886
+    second: Demon Plant_0
+  - first:
+      213: -7890446806507932643
+    second: Demon Plant_1
+  - first:
+      213: -5038654457411490191
+    second: Demon Plant_2
+  - first:
+      213: 3189307081259258862
+    second: Demon Plant_3
+  - first:
+      213: 5136499731343019890
+    second: Demon Plant_4
+  - first:
+      213: -6038999191140122901
+    second: Demon Plant_5
+  - first:
+      213: -3691236071655527345
+    second: Demon Plant_6
+  - first:
+      213: 8323630077011326684
+    second: Demon Plant_7
+  - first:
+      213: -7734172416115053014
+    second: Demon Plant_8
+  - first:
+      213: -6398114269786179982
+    second: Demon Plant_9
+  - first:
+      213: -4482161783504398405
+    second: Demon Plant_10
+  - first:
+      213: 1672907982574890825
+    second: Demon Plant_11
+  - first:
+      213: -853016208280941418
+    second: Demon Plant_12
+  - first:
+      213: -3785962113237081162
+    second: Demon Plant_13
+  - first:
+      213: -6697077023980198239
+    second: Demon Plant_14
+  - first:
+      213: 2467281058521853158
+    second: Demon Plant_15
+  - first:
+      213: -68015240620552803
+    second: Demon Plant_16
+  - first:
+      213: -8350259896730901394
+    second: Demon Plant_17
+  - first:
+      213: 1849278553969719945
+    second: Demon Plant_18
+  - first:
+      213: 6017873704686744891
+    second: Demon Plant_19
+  - first:
+      213: 8870909763084101543
+    second: Demon Plant_20
+  - first:
+      213: -5228392805119366947
+    second: Demon Plant_21
+  - first:
+      213: 6750774228211267234
+    second: Demon Plant_22
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Demon Plant_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1008
+        width: 100
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eab543174d3d0fc10800000000000000
+      internalID: 2085399536858323886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_1
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 1008
+        width: 103
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d14baf25f608f7290800000000000000
+      internalID: -7890446806507932643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_2
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 1008
+        width: 105
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17eac08877a131ab0800000000000000
+      internalID: -5038654457411490191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_3
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 1008
+        width: 108
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee3981a84e1b24c20800000000000000
+      internalID: 3189307081259258862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_4
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 864
+        width: 110
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27f07939a43884740800000000000000
+      internalID: 5136499731343019890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_5
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 864
+        width: 108
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beeb83d4b3a213ca0800000000000000
+      internalID: -6038999191140122901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_6
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 864
+        width: 105
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4c2dde895816ccc0800000000000000
+      internalID: -3691236071655527345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_7
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 864
+        width: 103
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd6740e5479738370800000000000000
+      internalID: 8323630077011326684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_8
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 720
+        width: 100
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2e66d93a23baa490800000000000000
+      internalID: -7734172416115053014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_9
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 720
+        width: 99
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 276790568f45537a0800000000000000
+      internalID: -6398114269786179982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_10
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 720
+        width: 96
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb7936cfa992cc1c0800000000000000
+      internalID: -4482161783504398405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_11
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 720
+        width: 99
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94faa4b52fc573710800000000000000
+      internalID: 1672907982574890825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_12
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 576
+        width: 100
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c83cd274a7924f0800000000000000
+      internalID: -853016208280941418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_13
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 576
+        width: 100
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3aa63548f857bc0800000000000000
+      internalID: -3785962113237081162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_14
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 576
+        width: 106
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a6ea38ede33f03a0800000000000000
+      internalID: -6697077023980198239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_15
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 576
+        width: 159
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ecae3eec0b8d3220800000000000000
+      internalID: 2467281058521853158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_16
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 432
+        width: 156
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9dcf7fbf7c5e0ff0800000000000000
+      internalID: -68015240620552803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_17
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 432
+        width: 154
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e642a219ddaed1c80800000000000000
+      internalID: -8350259896730901394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_18
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 432
+        width: 141
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98afc140c05f9a910800000000000000
+      internalID: 1849278553969719945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_19
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 432
+        width: 122
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3574071048c38350800000000000000
+      internalID: 6017873704686744891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_20
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 288
+        width: 108
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a72c2fed6dcb1b70800000000000000
+      internalID: 8870909763084101543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_21
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 144
+        width: 155
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8e6a8e1740177b0800000000000000
+      internalID: -5228392805119366947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Demon Plant_22
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 160
+        width: 118
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a6f467b4619fad50800000000000000
+      internalID: 6750774228211267234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

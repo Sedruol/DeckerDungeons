@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject enemyAttack;
+    private bool attack;
     private void OnMouseOver()
     {
         Globals.p1Stats = false;
@@ -17,12 +19,21 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        attack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Globals.e1CanAttack && attack && Globals.menuResult == false)
+        {
+            GameObject newAttack = Instantiate(enemyAttack, new Vector3(transform.position.x - 1.5f, transform.position.y,
+                    transform.position.z), Quaternion.identity, this.transform);
+            attack = false;
+        }
+        if (transform.childCount == 0)
+        {
+            attack = true;
+        }
     }
 }

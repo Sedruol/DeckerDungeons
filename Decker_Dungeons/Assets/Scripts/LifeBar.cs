@@ -7,6 +7,11 @@ public class LifeBar : MonoBehaviour
 {
     public Image fullLifeBar;
     private float maxLife;
+    private void Awake()
+    {
+        Globals.p1Life = 100f;
+        Globals.e1Life = 100f;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +39,11 @@ public class LifeBar : MonoBehaviour
         {
             if (Globals.e1Life > 100f)
                 Globals.e1Life = 100f;
-            else if (Globals.p1Life <= 0f)
+            else if (Globals.e1Life <= 0f)
             {
                 Globals.p1Win = true;
+                Globals.p1CanAttack = true;
+                Globals.e1CanAttack = false;
                 Globals.menuResult = true;
             }
             fullLifeBar.fillAmount = Globals.e1Life / maxLife;

@@ -2,6 +2,7 @@
 using UnityEngine;
 public class Globals
 {
+    public static float volume = 1f;
     [Header("Player 1")]
     public static bool p1Stats = true;
     public static float p1Life; //script: life bar-> function: start

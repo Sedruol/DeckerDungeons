@@ -12,10 +12,11 @@ public class CardScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private float posY;
     private float scaleX;
     private float scaleY;
-    private int cant;
+    private int mana;
     void Start()
     {
-        cant = Globals.p1Mana;
+        //mana = Globals.p1Mana;
+        Globals.p1CantMana = Globals.p1Mana;
         btn = GetComponent<Button>();
         posX = transform.position.x;
         posY = transform.position.y;
@@ -36,33 +37,47 @@ public class CardScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (Globals.p1CanAttack)
         {
-            if (cant == 0)
+            if (Globals.p1CantMana == 0)
             {
                 Globals.p1NoMana = true;
                 Debug.Log("Usted no tiene mana");
             }
-            else if (cant > 0)
+            else if (Globals.p1CantMana > 0)
             {
                 switch (btn.image.sprite.name)
                 {
-                    case "cards_0":
-                        Globals.p1Mana -= 1;
-                        Globals.p1Agility += 10;
-                        Globals.p1ManaPosX -= 1;//1 de pos * 1 (cantidad de mana perdido)
-                        Debug.Log(Globals.p1ManaPosX);
+                    case "beta3":
+                        Globals.p1CantMana = Globals.p1Mana;
+                        if (Globals.p1Mana < 4) Globals.p1NoMana = true;
+                        else
+                        {
+                            Globals.p1Mana -= 4;
+                            Globals.e1Life -= 30;
+                            Globals.p1ManaPosX -= 4;//1 de pos * 2 (cantidad de mana perdido)
+                            Debug.Log(Globals.p1ManaPosX);
+                        }
                         break;
-                    case "cards_1":
-                        Debug.Log("uno");
-                        Globals.p1Mana -= 2;
-                        Globals.p1Life += 20;
-                        Globals.p1ManaPosX -= 2;//1 de pos * 2 (cantidad de mana perdido)
-                        Debug.Log(Globals.p1ManaPosX);
+                    case "beta2":
+                        if (Globals.p1Mana < 3) Globals.p1NoMana = true;
+                        else
+                        {
+                            Globals.p1CantMana = Globals.p1Mana;
+                            Globals.p1Mana -= 3;
+                            Globals.p1Life += 20;
+                            Globals.p1ManaPosX -= 3;//1 de pos * 2 (cantidad de mana perdido)
+                            Debug.Log(Globals.p1ManaPosX);
+                        }
                         break;
-                    case "cards_2":
-                        Globals.e1Life -= 20;
-                        Globals.p1Mana -= 2;
-                        Globals.p1ManaPosX -= 2;//1 de pos * 2 (cantidad de mana perdido)
-                        Debug.Log(Globals.p1ManaPosX);
+                    case "beta1":
+                        if (Globals.p1Mana < 2) Globals.p1NoMana = true;
+                        else
+                        {
+                            Globals.p1CantMana = Globals.p1Mana;
+                            Globals.e1Life -= 20;
+                            Globals.p1Mana -= 2;
+                            Globals.p1ManaPosX -= 2;//1 de pos * 1 (cantidad de mana perdido)
+                            Debug.Log(Globals.p1ManaPosX);
+                        }
                         break;
                 }
             }
@@ -74,6 +89,11 @@ public class CardScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             Debug.Log("you can attack, it's enemy's turn");
         }
+        else if (Globals.p1NoMana)
+        {
+            Debug.Log("you need more mana");
+            Globals.p1NoMana = false;
+        }
         else if (Globals.p1NoMana == false && Globals.p1CanAttack)
         {
             btn.gameObject.SetActive(false);
@@ -83,11 +103,11 @@ public class CardScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
     private void Update()
     {
-        while (Globals.p1Mana < cant)
+        while (Globals.p1Mana < Globals.p1CantMana)
         {
-            Destroy(manaGroup.transform.GetChild(cant - 1).gameObject);
-            cant--;
-            Debug.Log(cant);
+            Destroy(manaGroup.transform.GetChild(Globals.p1CantMana - 1).gameObject);
+            Globals.p1CantMana--;
+            Debug.Log(Globals.p1CantMana);
         }
     }
 }

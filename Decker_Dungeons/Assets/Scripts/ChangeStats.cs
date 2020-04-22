@@ -21,7 +21,7 @@ public class ChangeStats : MonoBehaviour
     {
         if (Globals.p1Stats)
         {
-            name.text = "Name : Hercules";
+            name.text = "Name : Knight";
             strength.text = "Strength : " + Globals.p1Strength;
             intelligence.text = "Intelligence : " + Globals.p1Intelligence;
             bloodlust.text = "Bloodlust : " + Globals.p1Bloodlust;

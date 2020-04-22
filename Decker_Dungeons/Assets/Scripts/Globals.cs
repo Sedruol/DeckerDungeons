@@ -7,6 +7,7 @@ public class Globals
     public static bool p1Stats = true;
     public static float p1Life; //script: life bar-> function: start
     public static int p1Mana = 5;
+    public static int p1CantMana;
     public static bool p1NoMana = false;
     public static float p1ManaPosX; //script: create mana-> function: start
     public static float p1ManaPosY = 2.5f;
@@ -34,4 +35,6 @@ public class Globals
     [Header("Result Menu")]
     public static bool p1Win = false;
     public static bool menuResult = false;
+
+    public static bool newTurn = false;
 }

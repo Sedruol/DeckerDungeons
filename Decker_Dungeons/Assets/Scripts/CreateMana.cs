@@ -23,5 +23,15 @@ public class CreateMana : MonoBehaviour
     void Update()
     {
 
+        if (Globals.newTurn)
+        {
+            Globals.newTurn = false;
+            GameObject n;
+            n = Instantiate(mana, new Vector3(Globals.p1ManaPosX, Globals.p1ManaPosY, 0), Quaternion.identity, this.gameObject.transform);
+            n.transform.localScale = new Vector3(72f, 72f, 72f);
+            Globals.p1ManaPosX += 1f;
+            Globals.p1Mana += 1;
+            Globals.p1CantMana += 1;
+        }
     }
 }

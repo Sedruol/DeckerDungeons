@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
             Globals.p1Life -= 10f;
             Globals.p1CanAttack = true;
             Globals.e1CanAttack = false;
+            Globals.newTurn = true;
             Destroy(collision.gameObject);
         }
     }

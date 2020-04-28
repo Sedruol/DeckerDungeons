@@ -19,9 +19,11 @@ public class MainMenu : MonoBehaviour
     public Button btnBack;
     [Header("Menus")]
     public Button btnBackOptions;
-    public GameObject imageMusic;
-    public GameObject imageNoMusic;
+    public Button btnMusic;
+    public Button btnNoMusic;
     public Button btnBackCredits;
+
+    private float tempVolume;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,18 @@ public class MainMenu : MonoBehaviour
         btnCredits.onClick.AddListener(()=> Credits());
         btnBackCredits.onClick.AddListener(() => Credits());
         btnBack.onClick.AddListener(() => Back());
+        btnMusic.onClick.AddListener(() => DesactivateMusic());
+        btnNoMusic.onClick.AddListener(() => ActivateMusic());
+    }
+    public void DesactivateMusic()
+    {
+        tempVolume = slider.value;
+        slider.value = 0;
+    }
+
+    public void ActivateMusic()
+    {
+        slider.value = tempVolume;
     }
     public void NewAdventure()
     {
@@ -63,13 +77,13 @@ public class MainMenu : MonoBehaviour
         audioSource.volume = Globals.volume;
         if (audioSource.volume > 0f && audioSource.volume <= 1f)
         {
-            imageMusic.SetActive(true);
-            imageNoMusic.SetActive(false);
+            btnMusic.gameObject.SetActive(true);
+            btnNoMusic.gameObject.SetActive(false);
         }
         else if (audioSource.volume == 0f)
         {
-            imageMusic.SetActive(false);
-            imageNoMusic.SetActive(true);
+            btnMusic.gameObject.SetActive(false);
+            btnNoMusic.gameObject.SetActive(true);
         }
     }
 }

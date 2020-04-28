@@ -23,7 +23,7 @@ public class CreateMana : MonoBehaviour
     void Update()
     {
 
-        if (Globals.newTurn)
+        if (Globals.newTurn && Globals.p1Mana < 5)
         {
             Globals.newTurn = false;
             GameObject n;

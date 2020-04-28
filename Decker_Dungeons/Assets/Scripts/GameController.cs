@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    [Header("Buttons")]
     public Button btnHit;
     public Button btnOptions;
     public Button btnBackOptions;
+    public Button btnMusic;
+    public Button btnNoMusic;
+    [Header("GameObjects")]
     public GameObject menuResult;
     public GameObject menuOptions;
     public Slider slider;
-    public GameObject imageMusic;
-    public GameObject imageNoMusic;
+
+    private float tempVolume;
     private int temp;
     private bool vOptions;
     private AudioSource audioSource;
@@ -26,10 +30,21 @@ public class GameController : MonoBehaviour
         btnHit.onClick.AddListener(() => OnHit());
         btnOptions.onClick.AddListener(() => GoOptions());
         btnBackOptions.onClick.AddListener(() => GoOptions());
+        btnMusic.onClick.AddListener(() => DesactivateMusic());
+        btnNoMusic.onClick.AddListener(() => ActivateMusic());
         menuResult.SetActive(false);
-        imageMusic.SetActive(true);
-        imageNoMusic.SetActive(false);
         menuOptions.SetActive(vOptions);
+    }
+
+    public void DesactivateMusic()
+    {
+        tempVolume = slider.value;
+        slider.value = 0;
+    }
+
+    public void ActivateMusic()
+    {
+        slider.value = tempVolume;
     }
 
     public void OnHit()
@@ -50,6 +65,7 @@ public class GameController : MonoBehaviour
     {
         vOptions = !vOptions;
         menuOptions.SetActive(vOptions);
+        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
     }
     // Update is called once per frame
     void Update()
@@ -64,13 +80,13 @@ public class GameController : MonoBehaviour
         audioSource.volume = Globals.volume;
         if (audioSource.volume > 0f && audioSource.volume <= 1f)
         {
-            imageMusic.SetActive(true);
-            imageNoMusic.SetActive(false);
+            btnMusic.gameObject.SetActive(true);
+            btnNoMusic.gameObject.SetActive(false);
         }
         else if (audioSource.volume == 0f)
         {
-            imageMusic.SetActive(false);
-            imageNoMusic.SetActive(true);
+            btnMusic.gameObject.SetActive(false);
+            btnNoMusic.gameObject.SetActive(true);
         }
     }
 }

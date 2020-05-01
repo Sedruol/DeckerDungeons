@@ -5,22 +5,33 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    public Card card;
+    //public Card card;
     public Text nameText;
     public Text descriptionText;
     public Image artworkImage;
     public Text manaText;
     public GameObject manaGroup;
 
+    private Card card;
     [Header("POS AND SCALE")]
     private float posX;
     private float posY;
     private float scaleX;
     private float scaleY;
     private BoxCollider2D boxCollider2D;
+
+    private int posibleCritic;
+    //private int cont;
+    private bool changeCard;
     // Start is called before the first frame update
     void Start()
     {
+        if (gameObject.name == "Card 1")
+            card = Globals.decklist[0];
+        else if (gameObject.name == "Card 2")
+            card = Globals.decklist[1];
+        else if (gameObject.name == "Card 3")
+            card = Globals.decklist[2];
         nameText.text = card.name;
         descriptionText.text = card.description;
         artworkImage.sprite = card.artWork;
@@ -33,6 +44,11 @@ public class CardDisplay : MonoBehaviour
         posY = transform.position.y;
         scaleX = transform.localScale.x;
         scaleY = transform.localScale.y;
+
+        posibleCritic = 0;
+        //cont = 2;
+        Debug.Log("decklist: " + Globals.decklist.Count);
+        changeCard = false;
     }
     private void OnMouseEnter()
     {
@@ -55,6 +71,10 @@ public class CardDisplay : MonoBehaviour
             }
             else if (Globals.p1CantMana > 0)
             {
+                posibleCritic = Random.Range(1, 100);
+                Debug.Log("Critico: " + posibleCritic);
+                if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
+                    Globals.critico = true;
                 switch (card.name)
                 {
                     case "Fire Nova":
@@ -63,9 +83,15 @@ public class CardDisplay : MonoBehaviour
                         else
                         {
                             Globals.p1Mana -= 4;
-                            Globals.e1Life -= 30;
-                            Globals.p1ManaPosX -= 4;//1 de pos * 2 (cantidad de mana perdido)
-                            Debug.Log(Globals.p1ManaPosX);
+                            if (Globals.critico)
+                            {
+                                Globals.e1Life -= (20 * 1.5f);
+                                Globals.critico = false;
+                            }
+                            else if(!Globals.critico)
+                                Globals.e1Life -= 20;
+                            Globals.p1ManaPosX -= 4;//1 de pos * 4 (cantidad de mana perdido)
+                            //Debug.Log(Globals.p1ManaPosX);
                         }
                         break;
                     case "Dropplet of Life":
@@ -74,9 +100,10 @@ public class CardDisplay : MonoBehaviour
                         {
                             Globals.p1CantMana = Globals.p1Mana;
                             Globals.p1Mana -= 3;
-                            Globals.p1Life += 20;
-                            Globals.p1ManaPosX -= 3;//1 de pos * 2 (cantidad de mana perdido)
-                            Debug.Log(Globals.p1ManaPosX);
+                            Globals.p1Life += 10;
+                            //Globals.p1MaxLife += 20;
+                            Globals.p1ManaPosX -= 3;//1 de pos * 3 (cantidad de mana perdido)
+                            //Debug.Log(Globals.p1ManaPosX);
                         }
                         break;
                     case "Fireball":
@@ -84,10 +111,16 @@ public class CardDisplay : MonoBehaviour
                         else
                         {
                             Globals.p1CantMana = Globals.p1Mana;
-                            Globals.e1Life -= 20;
+                            if (Globals.critico)
+                            {
+                                Globals.e1Life -= (10 * 1.5f);
+                                Globals.critico = false;
+                            }
+                            else if (!Globals.critico)
+                                Globals.e1Life -= 10;
                             Globals.p1Mana -= 2;
                             Globals.p1ManaPosX -= 2;//1 de pos * 1 (cantidad de mana perdido)
-                            Debug.Log(Globals.p1ManaPosX);
+                            //Debug.Log(Globals.p1ManaPosX);
                         }
                         break;
                 }
@@ -107,6 +140,10 @@ public class CardDisplay : MonoBehaviour
         }
         else if (Globals.p1NoMana == false && Globals.p1CanAttack)
         {
+            Globals.cont++;
+            transform.position = new Vector3(posX, posY, 1f);
+            transform.localScale = new Vector3(scaleX, scaleY, 1f);
+            changeCard = true;
             this.gameObject.SetActive(false);
             Globals.p1CanAttack = false;
             Globals.e1CanAttack = true;
@@ -122,7 +159,17 @@ public class CardDisplay : MonoBehaviour
         {
             Destroy(manaGroup.transform.GetChild(Globals.p1CantMana - 1).gameObject);
             Globals.p1CantMana--;
-            Debug.Log(Globals.p1CantMana);
+            //Debug.Log(Globals.p1CantMana);
+        }
+        if (changeCard)
+        {
+            changeCard = false;
+            card = Globals.decklist[Globals.cont];
+            Debug.Log("contador: " + Globals.cont);
+            nameText.text = card.name;
+            descriptionText.text = card.description;
+            artworkImage.sprite = card.artWork;
+            manaText.text = card.manaCost.ToString();
         }
     }
 }

@@ -22,10 +22,10 @@ public class ChangeStats : MonoBehaviour
         if (Globals.p1Stats)
         {
             name.text = "Name : Knight";
-            strength.text = "Strength : " + Globals.p1Strength;
-            intelligence.text = "Intelligence : " + Globals.p1Intelligence;
-            bloodlust.text = "Bloodlust : " + Globals.p1Bloodlust;
-            agility.text = "Agility : " + Globals.p1Agility;
+            strength.text = "Strength : " + Globals.p1Strength.ToString();
+            intelligence.text = "Intelligence : " + Globals.p1Intelligence.ToString();
+            bloodlust.text = "Bloodlust : " + Globals.p1Bloodlust.ToString();
+            agility.text = "Agility : " + Globals.p1Agility.ToString();
         }
         else if (Globals.p2Stats)
         {
@@ -38,10 +38,10 @@ public class ChangeStats : MonoBehaviour
         else if (Globals.e1Stats)
         {
             name.text = "Name : Demon";
-            strength.text = "Strength : " + Globals.e1Strength;
-            intelligence.text = "Intelligence : " + Globals.e1Intelligence;
-            bloodlust.text = "Bloodlust : " + Globals.e1Bloodlust;
-            agility.text = "Agility : " + Globals.e1Agility;
+            strength.text = "Strength : " + Globals.e1Strength.ToString();
+            intelligence.text = "Intelligence : " + Globals.e1Intelligence.ToString();
+            bloodlust.text = "Bloodlust : " + Globals.e1Bloodlust.ToString();
+            agility.text = "Agility : " + Globals.e1Agility.ToString();
         }
         else if (Globals.e2Stats)
         {

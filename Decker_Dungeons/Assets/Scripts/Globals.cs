@@ -3,19 +3,23 @@ using UnityEngine;
 public class Globals
 {
     public static float volume = 1f;
-    [Header("Player 1")]
+    [Header("Player 1 - Knight")]
     public static bool p1Stats = true;
-    public static float p1Life; //script: life bar-> function: start
+    public static float p1Life; //script: life bar-> function: awake
     public static int p1Mana = 5;
     public static int p1CantMana;
     public static bool p1NoMana = false;
-    public static float p1ManaPosX; //script: create mana-> function: start
+    public static float p1ManaPosX; //script: create mana-> function: awake
     public static float p1ManaPosY = 2.5f;
     public static bool p1CanAttack = true;
-    public static float p1Strength = 50f;
-    public static float p1Intelligence = 50f;
-    public static float p1Bloodlust = 50f;
-    public static float p1Agility = 50f;
+    public static bool p1BasicAttack = false;
+    public static float p1Strength = 15f;
+    public static float p1Intelligence = 5f;
+    public static float p1Bloodlust = 10f;
+    public static float p1Agility = 10f;
+    public static float p1MaxLife = 75f;
+    public static bool evade = false;
+    public static bool critico = true;
 
     public static bool p2Stats = false;
     public static bool p3Stats = false;
@@ -37,4 +41,7 @@ public class Globals
     public static bool menuResult = false;
 
     public static bool newTurn = false;
+    public static List<Card> decklist = new List<Card>();
+    public static bool changeCards = false;
+    public static int cont = 2;
 }

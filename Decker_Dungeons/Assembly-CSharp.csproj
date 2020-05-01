@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\CardsEffects.cs" />
     <Compile Include="Assets\Scripts\ChangeStats.cs" />
     <Compile Include="Assets\Scripts\CreateMana.cs" />
+    <Compile Include="Assets\Scripts\Deck.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Globals.cs" />

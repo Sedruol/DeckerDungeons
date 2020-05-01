@@ -51,9 +51,8 @@ public class GameController : MonoBehaviour
     {
         if (Globals.p1CanAttack)
         {
-            Globals.e1Life -= 10;
+            Globals.p1BasicAttack = true;
             Globals.p1CanAttack = false;
-            Globals.e1CanAttack = true;
             Debug.Log(Globals.e1Life);
         }
         else if (!Globals.p1CanAttack)

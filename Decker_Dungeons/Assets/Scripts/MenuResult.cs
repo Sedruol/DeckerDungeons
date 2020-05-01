@@ -21,7 +21,7 @@ public class MenuResult : MonoBehaviour
     {
         Time.timeScale = 1f;
         Globals.menuResult = false;
-        Globals.p1Life = 100;
+        Globals.p1Life = Globals.p1MaxLife;
         Globals.e1Life = 100;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

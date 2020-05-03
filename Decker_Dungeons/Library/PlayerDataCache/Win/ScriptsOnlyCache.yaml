@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - CardScaler
     - ChangeStats
     - CreateMana
+    - CreatePosibleDeck
     - Deck
     - Enemy
     - GameController
@@ -17,6 +18,7 @@ ScriptsOnlyBuild:
     - MoveEnemyAttack
     - Navigation
     - Player
+    - ScaleCard
     - TouchEffect
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
@@ -121,9 +123,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13952}
     - Class: 114
-      Script: {instanceID: 14260}
+      Script: {instanceID: 14262}
     - Class: 114
-      Script: {instanceID: 14302}
+      Script: {instanceID: 14304}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -186,13 +188,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13644}
     - Class: 114
-      Script: {instanceID: 14134}
+      Script: {instanceID: 14136}
     - Class: 114
-      Script: {instanceID: 14144}
+      Script: {instanceID: 14146}
     - Class: 114
-      Script: {instanceID: 14260}
+      Script: {instanceID: 14262}
     - Class: 114
-      Script: {instanceID: 14302}
+      Script: {instanceID: 14304}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -230,6 +232,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 82
@@ -245,6 +249,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11510}
     - Class: 114
+      Script: {instanceID: 11628}
+    - Class: 114
       Script: {instanceID: 12176}
     - Class: 114
       Script: {instanceID: 12470}
@@ -253,11 +259,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13644}
     - Class: 114
-      Script: {instanceID: 14260}
+      Script: {instanceID: 14068}
     - Class: 114
-      Script: {instanceID: 14302}
+      Script: {instanceID: 14262}
     - Class: 114
-      Script: {instanceID: 27418}
+      Script: {instanceID: 14304}
+    - Class: 114
+      Script: {instanceID: 17034}
+    - Class: 114
+      Script: {instanceID: 37122}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -320,9 +330,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13644}
     - Class: 114
-      Script: {instanceID: 14260}
+      Script: {instanceID: 14262}
     - Class: 114
-      Script: {instanceID: 14332}
+      Script: {instanceID: 14334}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -812,6 +822,12 @@ ScriptsOnlyBuild:
     className: Player
   - hash:
       serializedVersion: 2
+      Hash: e4dbd5bf39ddc429f1fcd248c8d36dd2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HUDController
+  - hash:
+      serializedVersion: 2
       Hash: df434544c9f7b33d1cc7e635b180d279
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -920,10 +936,16 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 05ae1eb2fd81fa752d12c44e0f7c7add
+      Hash: e1fc6364ffbda7c4d8b85fcfb095951f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: HUDController
+    className: CreatePosibleDeck
+  - hash:
+      serializedVersion: 2
+      Hash: 43ffd05373527312b3677a7bc095aa48
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ScaleCard
   platform: 5
   scenePathNames:
   - Assets/Scenes/Splash Screen.unity

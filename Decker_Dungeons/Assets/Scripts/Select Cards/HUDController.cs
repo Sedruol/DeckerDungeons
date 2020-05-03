@@ -12,6 +12,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Button btnStart;
     [SerializeField] private Button btnOptions;
     [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject cards;
     [Header("Menus")]
     [SerializeField] private Button btnBackOptions;
     [SerializeField] private Button btnMusic;
@@ -54,7 +55,31 @@ public class HUDController : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("Level 1");
+        int cantCards = 0;
+        for (int i = 0; i < cards.transform.childCount; i++)
+        {
+            if (cards.transform.GetChild(i).GetComponent<ScaleCard>().selected)
+                cantCards++;
+        }
+        Debug.Log(cantCards);
+        if (cantCards >= 6 && cantCards <= 10)
+        {
+            for (int i = 0; i < cards.transform.childCount; i++)
+            {
+                if (cards.transform.GetChild(i).GetComponent<ScaleCard>().selected)
+                    Globals.decklist.Add(Globals.PosibleDeckList[i]);
+            }
+            Debug.Log("Puedo pelear");
+            SceneManager.LoadScene("Level 1");
+        }
+        else if (cantCards < 6)
+        {
+            Debug.Log("faltan cartas");
+        }
+        else if (cantCards > 10)
+        {
+            Debug.Log("Exediste el maximo de cartas");
+        }
     }
 
     // Update is called once per frame

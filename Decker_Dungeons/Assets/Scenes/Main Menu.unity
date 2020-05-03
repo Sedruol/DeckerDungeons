@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 261655546}
   - component: {fileID: 261655545}
   m_Layer: 5
-  m_Name: txtUnknown
+  m_Name: txtSebastian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -558,7 +558,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Unknown
+  m_Text: Sebastian Tena
 --- !u!222 &261655546
 CanvasRenderer:
   m_ObjectHideFlags: 0

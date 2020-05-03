@@ -41,6 +41,7 @@ public class Globals
     public static bool menuResult = false;
 
     public static bool newTurn = false;
+    public static List<Card> PosibleDeckList = new List<Card>();
     public static List<Card> decklist = new List<Card>();
     public static bool changeCards = false;
     public static int cont = 2;

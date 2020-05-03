@@ -13,7 +13,7 @@ public class Deck : MonoBehaviour
     private Card temp;
     private void Awake()
     {
-        Globals.decklist.Add(card1);
+        /*Globals.decklist.Add(card1);
         Globals.decklist.Add(card2);
         Globals.decklist.Add(card3);
         Globals.decklist.Add(card1);
@@ -21,7 +21,7 @@ public class Deck : MonoBehaviour
         Globals.decklist.Add(card3);
         Globals.decklist.Add(card1);
         Globals.decklist.Add(card2);
-        Globals.decklist.Add(card3);
+        Globals.decklist.Add(card3);*/
         count = Globals.decklist.Count;
         last = count - 1;
 

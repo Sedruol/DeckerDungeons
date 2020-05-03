@@ -73,8 +73,6 @@ public class CardDisplay : MonoBehaviour
             {
                 posibleCritic = Random.Range(1, 100);
                 Debug.Log("Critico: " + posibleCritic);
-                if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
-                    Globals.critico = true;
                 switch (card.name)
                 {
                     case "Fire Nova":
@@ -82,11 +80,13 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < 4) Globals.p1NoMana = true;
                         else
                         {
+                            if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
+                                Globals.critico = true;
                             Globals.p1Mana -= 4;
                             if (Globals.critico)
                             {
                                 Globals.e1Life -= (20 * 1.5f);
-                                Globals.critico = false;
+                                //Globals.critico = false;
                             }
                             else if(!Globals.critico)
                                 Globals.e1Life -= 20;
@@ -110,11 +110,13 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < 2) Globals.p1NoMana = true;
                         else
                         {
+                            if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
+                                Globals.critico = true;
                             Globals.p1CantMana = Globals.p1Mana;
                             if (Globals.critico)
                             {
                                 Globals.e1Life -= (10 * 1.5f);
-                                Globals.critico = false;
+                                //Globals.critico = false;
                             }
                             else if (!Globals.critico)
                                 Globals.e1Life -= 10;

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   name: Fireball
-  description: You throw a fireball  to your enemy (20 damage)
+  description: You throw a fireball  to your enemy (10 damage)
   artWork: {fileID: 21300000, guid: 91fb4d47f1613da4fa38c4a2c4da9c68, type: 3}
   manaCost: 2

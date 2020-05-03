@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DroppletOfLife
   m_EditorClassIdentifier: 
   name: Dropplet of Life
-  description: You harness the  power of water (20 heal)
+  description: You harness the  power of water (10 heal)
   artWork: {fileID: 21300000, guid: 5d1626a59212340419f50fc957989157, type: 3}
   manaCost: 3

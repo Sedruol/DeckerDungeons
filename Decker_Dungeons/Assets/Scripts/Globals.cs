@@ -19,7 +19,7 @@ public class Globals
     public static float p1Agility = 10f;
     public static float p1MaxLife = 75f;
     public static bool evade = false;
-    public static bool critico = true;
+    public static bool critico = false;
 
     public static bool p2Stats = false;
     public static bool p3Stats = false;

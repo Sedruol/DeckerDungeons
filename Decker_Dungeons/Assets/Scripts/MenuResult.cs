@@ -6,16 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class MenuResult : MonoBehaviour
 {
-    public Text result;
-    public Button btnTryAgain;
+    [SerializeField] private Text txtResult;
+    [SerializeField] private Button btnChangeDeck;
+    [SerializeField] private Button btnTryAgain;
+    [SerializeField] private Button btnExit;
     // Start is called before the first frame update
     void Start()
     {
+        btnChangeDeck.onClick.AddListener(() => ChangeDeck());
         btnTryAgain.onClick.AddListener(() => TryAgain());
+        btnExit.onClick.AddListener(() => Exit());
         if (Globals.p1Win)
-            result.text = "You Win";
+            txtResult.text = "You Win";
         else if (!Globals.p1Win)
-            result.text = "You Lose";
+            txtResult.text = "You Lose";
+    }
+    public void ChangeDeck()
+    {
+        Time.timeScale = 1f;
+        Globals.menuResult = false;
+        Globals.p1Life = Globals.p1MaxLife;
+        Globals.e1Life = 100;
+        SceneManager.LoadScene("Select Cards");
     }
     public void TryAgain()
     {
@@ -25,10 +37,8 @@ public class MenuResult : MonoBehaviour
         Globals.e1Life = 100;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Exit()
     {
-        
+        Application.Quit();
     }
 }

@@ -54,7 +54,7 @@ public class MainMenu : MonoBehaviour
     }
     public void NewAdventure()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Select Cards");
     }
     public void Options()
     {

@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\MenuResult.cs" />
     <Compile Include="Assets\Scripts\MoveEnemyAttack.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Select Cards\HUDController.cs" />
     <Compile Include="Assets\Scripts\Splash Screen\TouchEffect.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/oscar/Desktop/DeckerDungeons/Decker_Dungeons/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

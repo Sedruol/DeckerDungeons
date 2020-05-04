@@ -45,4 +45,5 @@ public class Globals
     public static List<Card> decklist = new List<Card>();
     public static bool changeCards = false;
     public static int cont = 2;
+    public static bool saveDeck = false;
 }

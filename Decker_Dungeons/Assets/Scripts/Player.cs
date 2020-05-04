@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rigidbody2D;
     [SerializeField] private float velocity;
-    [SerializeField] private Text txtCritico;
-    [SerializeField] private Text txtEvade;
+    [SerializeField] private Text txtEnemy;
+    [SerializeField] private Text txtPlayer;
     private Vector2 velocityVector;
     private Vector3 pos;
     private int enemyLayer;
@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private int posibleCritic;
     private float timeVisibleCritic;
     private float timeVisibleEvade;
+    private bool visibleCritic;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,8 @@ public class Player : MonoBehaviour
         posibleCritic = 0;
         timeVisibleEvade = 0;
         timeVisibleCritic = 0;
-        txtCritico.gameObject.SetActive(false);
+        txtEnemy.gameObject.SetActive(false);
+        txtPlayer.gameObject.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -45,18 +47,14 @@ public class Player : MonoBehaviour
             gameObject.transform.position = new Vector3(pos.x, gameObject.transform.position.y, gameObject.transform.position.z);
             Globals.e1CanAttack = true;
         }
-        if (Globals.critico)
-        {
-            txtCritico.gameObject.SetActive(true);
-            Globals.critico = false;
-        }
-        if (txtCritico.IsActive())
+        if (txtEnemy.IsActive())// && visibleCritic)
         {
             timeVisibleCritic += Time.deltaTime;
             if (timeVisibleCritic >= 1f)
             {
                 //Debug.Log("se activo el critico");
-                txtCritico.gameObject.SetActive(false);
+                visibleCritic = false;
+                txtEnemy.gameObject.SetActive(false);
                 timeVisibleCritic = 0;
             }
         }
@@ -64,16 +62,17 @@ public class Player : MonoBehaviour
         {
             Debug.Log("evadí");
             //aqui debo poner algo visual que lo demuestre
-            txtEvade.gameObject.SetActive(true);
+            txtPlayer.text = "Evaded!!!";
+            txtPlayer.gameObject.SetActive(true);
             Globals.evade = false;
         }
-        if (txtEvade.IsActive())
+        if (txtPlayer.IsActive())
         {
             timeVisibleEvade += Time.deltaTime;
             if (timeVisibleEvade >= 1f)
             {
-                Debug.Log("se activo la evasion");
-                txtEvade.gameObject.SetActive(false);
+                //Debug.Log("se activo la evasion");
+                txtPlayer.gameObject.SetActive(false);
                 timeVisibleEvade = 0;
             }
         }
@@ -96,16 +95,17 @@ public class Player : MonoBehaviour
                         posibleCritic = Random.Range(1, 100);
                         Debug.Log("critico: " + posibleCritic);
                         if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
-                            Globals.critico = true;
+                            visibleCritic = true;
                         //calculo de daño
-                        if (Globals.critico)
+                        if (visibleCritic)
                         {
-                            Debug.Log("criticaso");
-                            txtCritico.gameObject.SetActive(true);
+                            //Debug.Log("criticaso");
+                            txtEnemy.text = "Critic!!!";
+                            txtEnemy.gameObject.SetActive(true);
                             Globals.e1Life -= (Globals.p1Strength * 1.5f);
-                            //Globals.critico = false;
+                            //visibleCritic = false;
                         }
-                        else if (!Globals.critico)
+                        else if (!visibleCritic)
                             Globals.e1Life -= Globals.p1Strength;
                     }
                 }

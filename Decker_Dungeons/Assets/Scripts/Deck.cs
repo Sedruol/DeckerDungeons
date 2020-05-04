@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Deck : MonoBehaviour
 {
-    public Card card1;
-    public Card card2;
-    public Card card3;
+    [SerializeField] private Text txtTitle;
+    /*[SerializeField] private Card card1;
+    [SerializeField] private Card card2;
+    [SerializeField] private Card card3;*/
     //public List<Card> decklist;
     private int count;
     private int last;
@@ -57,16 +58,25 @@ public class Deck : MonoBehaviour
         if (Globals.changeCards)
         {
             Globals.changeCards = false;
-            for (int i = 0; i < transform.childCount; i++)
+            if (Globals.cont < Globals.decklist.Count)
             {
-                if(transform.GetChild(i).gameObject.name == "Card 1" || transform.GetChild(i).gameObject.name == "Card 2" ||
-                    transform.GetChild(i).gameObject.name == "Card 3")
+                for (int i = 0; i < transform.childCount; i++)
                 {
-                    if (transform.GetChild(i).gameObject.activeSelf == false)
+                    if (transform.GetChild(i).gameObject.name == "Card 1" || transform.GetChild(i).gameObject.name == "Card 2" ||
+                        transform.GetChild(i).gameObject.name == "Card 3")
                     {
-                        transform.GetChild(i).gameObject.SetActive(true);
+                        if (transform.GetChild(i).gameObject.activeSelf == false)
+                        {
+                            transform.GetChild(i).gameObject.SetActive(true);
+                        }
                     }
                 }
+            }
+            else if (Globals.cont >= Globals.decklist.Count)
+            {
+                txtTitle.text = "You don't have more cards";
+                txtTitle.gameObject.SetActive(true);
+                //Debug.Log("You don't have more cards");
             }
         }
     }

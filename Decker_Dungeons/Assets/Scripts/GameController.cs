@@ -6,20 +6,21 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [Header("Buttons")]
-    public Button btnHit;
-    public Button btnOptions;
-    public Button btnBackOptions;
-    public Button btnMusic;
-    public Button btnNoMusic;
+    [SerializeField] private Button btnHit;
+    [SerializeField] private Button btnOptions;
+    [SerializeField] private Button btnBackOptions;
+    [SerializeField] private Button btnMusic;
+    [SerializeField] private Button btnNoMusic;
     [Header("GameObjects")]
-    public GameObject menuResult;
-    public GameObject menuOptions;
-    public Slider slider;
-
+    [SerializeField] private GameObject menuResult;
+    [SerializeField] private GameObject menuOptions;
+    [SerializeField] private Slider slider;
+    [SerializeField] private Text txtTitle;
     private float tempVolume;
     private int temp;
     private bool vOptions;
     private AudioSource audioSource;
+    private float timeVisibleTitle;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,7 @@ public class GameController : MonoBehaviour
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
         menuResult.SetActive(false);
         menuOptions.SetActive(vOptions);
+        timeVisibleTitle = 0f;
     }
 
     public void DesactivateMusic()
@@ -57,7 +59,9 @@ public class GameController : MonoBehaviour
         }
         else if (!Globals.p1CanAttack)
         {
-            Debug.Log("You can attack, it's enemy's turn");
+            txtTitle.text = "You can attack, it's enemy's turn";
+            txtTitle.gameObject.SetActive(true);
+            //Debug.Log("You can attack, it's enemy's turn");
         }
     }
     public void GoOptions()
@@ -86,6 +90,16 @@ public class GameController : MonoBehaviour
         {
             btnMusic.gameObject.SetActive(false);
             btnNoMusic.gameObject.SetActive(true);
+        }
+        if (txtTitle.IsActive())
+        {
+            timeVisibleTitle += Time.deltaTime;
+            if (timeVisibleTitle >= 1f)
+            {
+                //Debug.Log("se activo la evasion");
+                txtTitle.gameObject.SetActive(false);
+                timeVisibleTitle = 0;
+            }
         }
     }
 }

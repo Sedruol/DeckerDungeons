@@ -12,6 +12,8 @@ public class CardDisplay : MonoBehaviour
     public Text manaText;
     public GameObject manaGroup;
 
+    [SerializeField] private Text txtEnemy;
+    [SerializeField] private Text txtTitle;
     private Card card;
     [Header("POS AND SCALE")]
     private float posX;
@@ -23,6 +25,7 @@ public class CardDisplay : MonoBehaviour
     private int posibleCritic;
     //private int cont;
     private bool changeCard;
+    private bool visibleCritic;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,8 @@ public class CardDisplay : MonoBehaviour
         //cont = 2;
         Debug.Log("decklist: " + Globals.decklist.Count);
         changeCard = false;
+        visibleCritic = false;
+        txtEnemy.gameObject.SetActive(false);
     }
     private void OnMouseEnter()
     {
@@ -67,7 +72,9 @@ public class CardDisplay : MonoBehaviour
             if (Globals.p1CantMana == 0)
             {
                 Globals.p1NoMana = true;
-                Debug.Log("Usted no tiene mana");
+                txtTitle.text = "You don't have mana";
+                txtTitle.gameObject.SetActive(true);
+                //Debug.Log("Usted no tiene mana");
             }
             else if (Globals.p1CantMana > 0)
             {
@@ -81,14 +88,16 @@ public class CardDisplay : MonoBehaviour
                         else
                         {
                             if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
-                                Globals.critico = true;
+                                visibleCritic = true;
                             Globals.p1Mana -= 4;
-                            if (Globals.critico)
+                            if (visibleCritic)
                             {
+                                txtEnemy.text = "Critic!!!";
+                                txtEnemy.gameObject.SetActive(true);
                                 Globals.e1Life -= (20 * 1.5f);
-                                //Globals.critico = false;
+                                visibleCritic = false;
                             }
-                            else if(!Globals.critico)
+                            else if(!visibleCritic)
                                 Globals.e1Life -= 20;
                             Globals.p1ManaPosX -= 4;//1 de pos * 4 (cantidad de mana perdido)
                             //Debug.Log(Globals.p1ManaPosX);
@@ -111,14 +120,16 @@ public class CardDisplay : MonoBehaviour
                         else
                         {
                             if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
-                                Globals.critico = true;
+                                visibleCritic = true;
                             Globals.p1CantMana = Globals.p1Mana;
-                            if (Globals.critico)
+                            if (visibleCritic)
                             {
+                                txtEnemy.text = "Critic!!!";
+                                txtEnemy.gameObject.SetActive(true);
                                 Globals.e1Life -= (10 * 1.5f);
-                                //Globals.critico = false;
+                                visibleCritic = false;
                             }
-                            else if (!Globals.critico)
+                            else if (!visibleCritic)
                                 Globals.e1Life -= 10;
                             Globals.p1Mana -= 2;
                             Globals.p1ManaPosX -= 2;//1 de pos * 1 (cantidad de mana perdido)
@@ -133,11 +144,15 @@ public class CardDisplay : MonoBehaviour
     {
         if (Globals.p1CanAttack == false)
         {
-            Debug.Log("you can attack, it's enemy's turn");
+            txtTitle.text = "You can attack, it's enemy's turn";
+            txtTitle.gameObject.SetActive(true);
+            //Debug.Log("you can attack, it's enemy's turn");
         }
         else if (Globals.p1NoMana)
         {
-            Debug.Log("you need more mana");
+            txtTitle.text = "You need more mana";
+            txtTitle.gameObject.SetActive(true);
+            //Debug.Log("you need more mana");
             Globals.p1NoMana = false;
         }
         else if (Globals.p1NoMana == false && Globals.p1CanAttack)

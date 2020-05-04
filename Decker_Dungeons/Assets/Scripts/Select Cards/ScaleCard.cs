@@ -49,6 +49,7 @@ public class ScaleCard : MonoBehaviour
     private void OnMouseDown()
     {
         selected = !selected;
+        Globals.saveDeck = false;
     }
     private void OnMouseUp()
     {

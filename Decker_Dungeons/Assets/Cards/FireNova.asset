@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FireNova
   m_EditorClassIdentifier: 
   name: Fire Nova
-  description: You explode the air around your enemies  (20 damage)
+  description: You explode the air around your enemies  (20 DMG)
   artWork: {fileID: 21300000, guid: db9c1fc9fbdd0f7479d1ae4b8bb09092, type: 3}
   manaCost: 4

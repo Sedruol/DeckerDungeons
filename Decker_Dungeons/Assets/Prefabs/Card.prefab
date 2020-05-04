@@ -85,6 +85,7 @@ MonoBehaviour:
   descriptionText: {fileID: 7416723148775404822}
   artworkImage: {fileID: 1619327964478993904}
   manaText: {fileID: 4953835079352428850}
+  selected: 0
 --- !u!1 &2864362656204723888
 GameObject:
   m_ObjectHideFlags: 0

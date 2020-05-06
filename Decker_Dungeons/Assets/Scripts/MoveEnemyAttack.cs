@@ -10,6 +10,7 @@ public class MoveEnemyAttack : MonoBehaviour
     //[SerializeField] private Text txtEvade;
     private Vector2 velocityVector;
     private int posibleEvade;
+    private int posibleEnemyCritic;
     private int knightLayer;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,8 @@ public class MoveEnemyAttack : MonoBehaviour
         velocityVector.x = -velocity;
         rigidbody2D.velocity = velocityVector;
         posibleEvade = Random.Range(1, 100);
-        Debug.Log("Evade: " + posibleEvade);
+        posibleEnemyCritic = Random.Range(1, 100);
+        Debug.Log("player evade: " + posibleEvade);
         knightLayer = LayerMask.NameToLayer("Knight");
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +32,16 @@ public class MoveEnemyAttack : MonoBehaviour
                 if (posibleEvade <= 3.5 * Globals.p1Agility)
                     Globals.evade = true;
                 if (!Globals.evade)
-                    Globals.p1Life -= 10f;
+                {
+                    Debug.Log("enemy critico: " + posibleEnemyCritic);
+                    if (posibleEnemyCritic <= 2.5 * Globals.e1Bloodlust)
+                    {
+                        Globals.p1Life -= (Globals.e1Strength * 1.5f);
+                        Globals.e1Critico = true;
+                    }
+                    else if (posibleEnemyCritic > 2.5 * Globals.e1Bloodlust)
+                        Globals.p1Life -= Globals.e1Strength;
+                }
                 Globals.p1CanAttack = true;
                 Globals.e1CanAttack = false;
                 Globals.newTurn = true;

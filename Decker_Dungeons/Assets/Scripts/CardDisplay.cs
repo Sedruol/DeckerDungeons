@@ -23,9 +23,9 @@ public class CardDisplay : MonoBehaviour
     private BoxCollider2D boxCollider2D;
 
     private int posibleCritic;
+    private int posibleEnemyEvaded;
     //private int cont;
     private bool changeCard;
-    private bool visibleCritic;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,10 +49,10 @@ public class CardDisplay : MonoBehaviour
         scaleY = transform.localScale.y;
 
         posibleCritic = 0;
+        posibleEnemyEvaded = 0;
         //cont = 2;
-        Debug.Log("decklist: " + Globals.decklist.Count);
+        //Debug.Log("decklist: " + Globals.decklist.Count);
         changeCard = false;
-        visibleCritic = false;
         txtEnemy.gameObject.SetActive(false);
     }
     private void OnMouseEnter()
@@ -79,26 +79,33 @@ public class CardDisplay : MonoBehaviour
             else if (Globals.p1CantMana > 0)
             {
                 posibleCritic = Random.Range(1, 100);
-                Debug.Log("Critico: " + posibleCritic);
+                posibleEnemyEvaded = Random.Range(1, 100);
+                Debug.Log("enemy evaded: " + posibleEnemyEvaded);
+                Debug.Log("player critico: " + posibleCritic);
                 switch (card.name)
                 {
                     case "Fire Nova":
-                        Globals.p1CantMana = Globals.p1Mana;
                         if (Globals.p1Mana < 4) Globals.p1NoMana = true;
                         else
                         {
-                            if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
-                                visibleCritic = true;
-                            Globals.p1Mana -= 4;
-                            if (visibleCritic)
+                            Globals.p1CantMana = Globals.p1Mana;
+                            if (posibleEnemyEvaded > 3.5 * Globals.e1Agility)
                             {
-                                txtEnemy.text = "Critic!!!";
-                                txtEnemy.gameObject.SetActive(true);
-                                Globals.e1Life -= (20 * 1.5f);
-                                visibleCritic = false;
+                                if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
+                                {
+                                    txtEnemy.text = "Critic!!!";
+                                    txtEnemy.gameObject.SetActive(true);
+                                    Globals.e1Life -= (20 * 1.5f);
+                                }
+                                else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
+                                    Globals.e1Life -= 20;
                             }
-                            else if(!visibleCritic)
-                                Globals.e1Life -= 20;
+                            else if(posibleEnemyEvaded <= 3.5 * Globals.e1Agility)
+                            {
+                                txtEnemy.text = "Evaded!!!";
+                                txtEnemy.gameObject.SetActive(true);
+                            }
+                            Globals.p1Mana -= 4;
                             Globals.p1ManaPosX -= 4;//1 de pos * 4 (cantidad de mana perdido)
                             //Debug.Log(Globals.p1ManaPosX);
                         }
@@ -119,20 +126,25 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < 2) Globals.p1NoMana = true;
                         else
                         {
-                            if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
-                                visibleCritic = true;
                             Globals.p1CantMana = Globals.p1Mana;
-                            if (visibleCritic)
+                            if (posibleEnemyEvaded > 3.5 * Globals.e1Agility)
                             {
-                                txtEnemy.text = "Critic!!!";
-                                txtEnemy.gameObject.SetActive(true);
-                                Globals.e1Life -= (10 * 1.5f);
-                                visibleCritic = false;
+                                if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
+                                {
+                                    txtEnemy.text = "Critic!!!";
+                                    txtEnemy.gameObject.SetActive(true);
+                                    Globals.e1Life -= (10 * 1.5f);
+                                }
+                                else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
+                                    Globals.e1Life -= 10;
                             }
-                            else if (!visibleCritic)
-                                Globals.e1Life -= 10;
+                            else if (posibleEnemyEvaded <= 3.5 * Globals.e1Agility)
+                            {
+                                txtEnemy.text = "Evaded!!!";
+                                txtEnemy.gameObject.SetActive(true);
+                            }
                             Globals.p1Mana -= 2;
-                            Globals.p1ManaPosX -= 2;//1 de pos * 1 (cantidad de mana perdido)
+                            Globals.p1ManaPosX -= 2;//1 de pos * 2 (cantidad de mana perdido)
                             //Debug.Log(Globals.p1ManaPosX);
                         }
                         break;

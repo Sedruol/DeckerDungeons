@@ -14,9 +14,9 @@ public class Player : MonoBehaviour
     private int enemyLayer;
     private bool moveAttack;
     private int posibleCritic;
+    private int posibleEnemyEvade;
     private float timeVisibleCritic;
     private float timeVisibleEvade;
-    private bool visibleCritic;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
         pos = gameObject.transform.position;
         moveAttack = false;
         posibleCritic = 0;
+        posibleEnemyEvade = 0;
         timeVisibleEvade = 0;
         timeVisibleCritic = 0;
         txtEnemy.gameObject.SetActive(false);
@@ -47,20 +48,25 @@ public class Player : MonoBehaviour
             gameObject.transform.position = new Vector3(pos.x, gameObject.transform.position.y, gameObject.transform.position.z);
             Globals.e1CanAttack = true;
         }
+        if (Globals.e1Critico)
+        {
+            txtPlayer.text = "Critic!!!";
+            txtPlayer.gameObject.SetActive(true);
+            Globals.e1Critico = false;
+        }
         if (txtEnemy.IsActive())// && visibleCritic)
         {
             timeVisibleCritic += Time.deltaTime;
             if (timeVisibleCritic >= 1f)
             {
                 //Debug.Log("se activo el critico");
-                visibleCritic = false;
                 txtEnemy.gameObject.SetActive(false);
                 timeVisibleCritic = 0;
             }
         }
         if (Globals.evade)
         {
-            Debug.Log("evadí");
+            //Debug.Log("evadí");
             //aqui debo poner algo visual que lo demuestre
             txtPlayer.text = "Evaded!!!";
             txtPlayer.gameObject.SetActive(true);
@@ -91,22 +97,28 @@ public class Player : MonoBehaviour
                         velocityVector.x = -velocity;
                         rigidbody2D.velocity = velocityVector;
                         moveAttack = false;
-                        //probabilidad de lanzar critico
-                        posibleCritic = Random.Range(1, 100);
-                        Debug.Log("critico: " + posibleCritic);
-                        if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
-                            visibleCritic = true;
-                        //calculo de daño
-                        if (visibleCritic)
+                        //probabilidad de que el enemigo evada
+                        posibleEnemyEvade = Random.Range(1, 100);
+                        Debug.Log("enemigo evade: " + posibleEnemyEvade);
+                        if (posibleEnemyEvade > 3.5 * Globals.e1Agility)
                         {
-                            //Debug.Log("criticaso");
-                            txtEnemy.text = "Critic!!!";
-                            txtEnemy.gameObject.SetActive(true);
-                            Globals.e1Life -= (Globals.p1Strength * 1.5f);
-                            //visibleCritic = false;
+                            //probabilidad de lanzar critico
+                            posibleCritic = Random.Range(1, 100);
+                            Debug.Log("player critico: " + posibleCritic);
+                            if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
+                            {
+                                txtEnemy.text = "Critic!!!";
+                                txtEnemy.gameObject.SetActive(true);
+                                Globals.e1Life -= (Globals.p1Strength * 1.5f);
+                            }
+                            else if(posibleCritic > 2.5 * Globals.p1Bloodlust)
+                                Globals.e1Life -= Globals.p1Strength;
                         }
-                        else if (!visibleCritic)
-                            Globals.e1Life -= Globals.p1Strength;
+                        else if (posibleEnemyEvade <= 3.5 * Globals.e1Agility)
+                        {
+                            txtEnemy.text = "Evaded!!!";
+                            txtEnemy.gameObject.SetActive(true);
+                        }
                     }
                 }
             }

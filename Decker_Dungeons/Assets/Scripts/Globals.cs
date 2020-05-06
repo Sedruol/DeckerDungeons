@@ -28,10 +28,12 @@ public class Globals
     public static bool e1Stats = false;
     public static float e1Life; //script: life bar-> function: start
     public static bool e1CanAttack = false;
-    public static float e1Strength = 40f;
+    public static float e1Strength = 10f;
     public static float e1Intelligence = 40f;
-    public static float e1Bloodlust = 40f;
-    public static float e1Agility = 40f;
+    public static float e1Bloodlust = 5f;
+    public static float e1Agility = 5f;//script: player -> OnTriggerEnter2D
+    public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
+    public static bool e1Critico = false;
 
     public static bool e2Stats = false;
     public static bool e3Stats = false;

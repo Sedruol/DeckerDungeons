@@ -58,7 +58,7 @@ public class HUDController : MonoBehaviour
         {
             Globals.decklist.Remove(Globals.decklist[i]);
         }
-        Debug.Log(cantCards);
+        //Debug.Log(cantCards);
         if (cantCards >= 6 && cantCards <= 10)
         {
             for (int i = 0; i < cards.transform.childCount; i++)

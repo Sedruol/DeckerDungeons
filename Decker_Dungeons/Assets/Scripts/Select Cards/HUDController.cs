@@ -44,7 +44,16 @@ public class HUDController : MonoBehaviour
     }
     public void Back()
     {
-        SceneManager.LoadScene("Main Menu");
+        /*if (!Globals.saveDeck)
+        {
+            timeVisibleText = 0f;
+            visibleText = true;
+            txtTitle.text = "Please, save the changes in your deck before go to the main menu";
+        }
+        else
+        {*/
+            SceneManager.LoadScene("Main Menu");
+        //}
     }
     public void Save()
     {

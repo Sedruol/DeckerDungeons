@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Cold Mist
   description: You channel a ray of frost to enemies (15 DMG + 5% frostbitten)
-  artWork: {fileID: 0}
+  artWork: {fileID: 2274553097845166390, guid: 07b327e5293425f47a86971e72d15d9b, type: 3}
   manaCost: 3

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ice Javeling
   description: You shoot a frozen solid javeling (15 DMG + 5% frostbitten)
-  artWork: {fileID: 0}
+  artWork: {fileID: 4220208137228424296, guid: 943afa8ee1b7c5440a89cfb6abe5bb6c, type: 3}
   manaCost: 2

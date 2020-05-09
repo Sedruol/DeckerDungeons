@@ -13,7 +13,7 @@ public class LifeBar : MonoBehaviour
     private void Awake()
     {
         Globals.p1Life = Globals.p1MaxLife;//max life in globals
-        Globals.e1Life = 100f;
+        Globals.e1Life = Globals.e1MaxLife;
     }
     // Start is called before the first frame update
     void Start()

@@ -40,7 +40,7 @@ public class ScaleCard : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
     }
     private void OnMouseExit()
     {

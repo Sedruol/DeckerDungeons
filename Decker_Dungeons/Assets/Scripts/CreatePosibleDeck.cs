@@ -10,6 +10,14 @@ public class CreatePosibleDeck : MonoBehaviour
     [SerializeField] private Card card1;
     [SerializeField] private Card card2;
     [SerializeField] private Card card3;
+    [SerializeField] private Card card4;
+    [SerializeField] private Card card5;
+    [SerializeField] private Card card6;
+    [SerializeField] private Card card7;
+    [SerializeField] private Card card8;
+    [SerializeField] private Card card9;
+    [SerializeField] private Card card10;
+
     private float initialX;
     private float posX;
     private float initialY;
@@ -21,18 +29,21 @@ public class CreatePosibleDeck : MonoBehaviour
         initialX = -6.945f;
         initialY = 2f;
         newRow = false;
-        Globals.PosibleDeckList.Add(card1);
-        Globals.PosibleDeckList.Add(card2);
-        Globals.PosibleDeckList.Add(card3);
-        Globals.PosibleDeckList.Add(card3);
-        Globals.PosibleDeckList.Add(card2);
-        Globals.PosibleDeckList.Add(card1);
-        Globals.PosibleDeckList.Add(card1);
-        Globals.PosibleDeckList.Add(card3);
-        Globals.PosibleDeckList.Add(card2);
-        Globals.PosibleDeckList.Add(card2);
-        Globals.PosibleDeckList.Add(card1);
-        Globals.PosibleDeckList.Add(card3);
+        if (Globals.PosibleDeckList.Count == 0)
+        {
+            Globals.PosibleDeckList.Add(card1);
+            Globals.PosibleDeckList.Add(card2);
+            Globals.PosibleDeckList.Add(card3);
+            Globals.PosibleDeckList.Add(card4);
+            Globals.PosibleDeckList.Add(card5);
+            Globals.PosibleDeckList.Add(card6);
+            Globals.PosibleDeckList.Add(card7);
+            Globals.PosibleDeckList.Add(card8);
+            Globals.PosibleDeckList.Add(card9);
+            Globals.PosibleDeckList.Add(card10);
+            Globals.PosibleDeckList.Add(card4);
+            Globals.PosibleDeckList.Add(card3);
+        }
     }
     // Start is called before the first frame update
     void Start()

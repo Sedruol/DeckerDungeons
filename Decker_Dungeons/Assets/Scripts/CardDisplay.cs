@@ -57,8 +57,8 @@ public class CardDisplay : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        transform.localScale = new Vector3(2.5f, 2.5f, 1f);
-        transform.position = new Vector3(posX, -0.75f, 0f);
+        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        transform.position = new Vector3(posX, posY+0.75f, 0f);
     }
     private void OnMouseExit()
     {

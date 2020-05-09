@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Net Arrow
   description: You throw an arrow  to your enemy (5 AG and 10 DMG)
-  artWork: {fileID: 0}
+  artWork: {fileID: 1663267892679347895, guid: 055576923e4ef4542a51a70103a12825, type: 3}
   manaCost: 3

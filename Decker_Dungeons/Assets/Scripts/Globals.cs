@@ -25,6 +25,7 @@ public class Globals
     public static bool p3Stats = false;
 
     [Header("Enemy 1")]
+    public static float e1MaxLife = 50f;
     public static bool e1Stats = false;
     public static float e1Life; //script: life bar-> function: start
     public static bool e1CanAttack = false;

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Arrow Barrage
   description: Shoots a barrage of arrows to all enemys (20 DMG)
-  artWork: {fileID: 0}
+  artWork: {fileID: 4994223422532424390, guid: 22d1e035e8036ad498e6efdfa716af6d, type: 3}
   manaCost: 4

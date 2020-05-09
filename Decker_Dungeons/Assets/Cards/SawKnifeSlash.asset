@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Saw Knife Slash
   description: Use a knife to rip through enemy flesh (10 DMG + bleeding)
-  artWork: {fileID: 0}
+  artWork: {fileID: 6256623332571658507, guid: 3b4c4d499f4c4fc46a389a632b1bbfc8, type: 3}
   manaCost: 3

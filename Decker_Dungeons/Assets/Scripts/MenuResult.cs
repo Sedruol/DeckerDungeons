@@ -26,7 +26,7 @@ public class MenuResult : MonoBehaviour
         Time.timeScale = 1f;
         Globals.menuResult = false;
         Globals.p1Life = Globals.p1MaxLife;
-        Globals.e1Life = 100;
+        Globals.e1Life = Globals.e1MaxLife;
         SceneManager.LoadScene("Select Cards");
     }
     public void TryAgain()
@@ -34,7 +34,7 @@ public class MenuResult : MonoBehaviour
         Time.timeScale = 1f;
         Globals.menuResult = false;
         Globals.p1Life = Globals.p1MaxLife;
-        Globals.e1Life = 100;
+        Globals.e1Life = Globals.e1MaxLife;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void Exit()

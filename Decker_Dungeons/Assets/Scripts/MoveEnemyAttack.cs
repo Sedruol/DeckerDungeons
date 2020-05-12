@@ -12,16 +12,37 @@ public class MoveEnemyAttack : MonoBehaviour
     private int posibleEvade;
     private int posibleEnemyCritic;
     private int knightLayer;
+    private float strMultiplier;
+    private int typeAttack;
+    private SpriteRenderer sr;
+    private float baseAttack;
+    private void Awake()
+    {
+        typeAttack = Random.Range(0, 2);
+    }
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         velocityVector.x = -velocity;
         rigidbody2D.velocity = velocityVector;
-        posibleEvade = Random.Range(1, 100);
-        posibleEnemyCritic = Random.Range(1, 100);
+        posibleEvade = Random.Range(0, 100);
+        posibleEnemyCritic = Random.Range(0, 100);
         Debug.Log("player evade: " + posibleEvade);
         knightLayer = LayerMask.NameToLayer("Knight");
+        strMultiplier = 0.2f;
+        if (typeAttack == 0)
+        {
+            baseAttack = 3;
+            transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+        }
+        else if (typeAttack == 1)
+        {
+            sr.color = new Color(255f, 0f, 0f);
+            baseAttack = 6;
+        }
+        //Debug.Log(typeAttack);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,22 +50,24 @@ public class MoveEnemyAttack : MonoBehaviour
         {
             if (collision.gameObject.layer == knightLayer)
             {
-                if (posibleEvade <= 3.5 * Globals.p1Agility)
+                if (posibleEvade <= 1.5 * Globals.p1Agility)
                     Globals.evade = true;
                 if (!Globals.evade)
                 {
                     Debug.Log("enemy critico: " + posibleEnemyCritic);
                     if (posibleEnemyCritic <= 2.5 * Globals.e1Bloodlust)
                     {
-                        Globals.p1Life -= (Globals.e1Strength * 1.5f);
+                        Globals.p1Life -= ((baseAttack + Globals.e1Strength * strMultiplier) * 1.5f);
                         Globals.e1Critico = true;
                     }
                     else if (posibleEnemyCritic > 2.5 * Globals.e1Bloodlust)
-                        Globals.p1Life -= Globals.e1Strength;
+                        Globals.p1Life -= (baseAttack + Globals.e1Strength * strMultiplier);
                 }
                 Globals.p1CanAttack = true;
                 Globals.e1CanAttack = false;
-                Globals.newTurn = true;
+                if(Globals.e1Initiative <= Globals.p1Initiative)
+                    Globals.newTurn = true;
+                Debug.Log("vida: " + Globals.p1Life);
             }
             Destroy(gameObject);
         }

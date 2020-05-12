@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: ColdMist
   m_EditorClassIdentifier: 
   name: Cold Mist
-  description: You channel a ray of frost to enemies (15 DMG + 5% frostbitten)
+  description: You conjure a helid mist (10 DMG and 15 INIT)
   artWork: {fileID: 2274553097845166390, guid: 07b327e5293425f47a86971e72d15d9b, type: 3}
-  manaCost: 3
+  manaCost: 2
+  dmg: 10
+  heal: 0
+  init: 0

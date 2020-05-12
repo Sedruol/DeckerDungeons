@@ -442,11 +442,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9c9e6a03a697afa46b1761fa4e383f4d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fbc1d16454c0abb43bd7e1653e97d57f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1013,16 +1013,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleCardPrefab: {fileID: 7418030310087987708, guid: 2bb9b9992556a504e8f538af330740c7,
     type: 3}
-  card1: {fileID: 11400000, guid: 3d7053edaf1b9a9469522a7c51a9d498, type: 2}
-  card2: {fileID: 11400000, guid: 9cac9238c29ad4f4cab61657be230994, type: 2}
-  card3: {fileID: 11400000, guid: 283714584ed152344bfd5f51eb4d69ce, type: 2}
-  card4: {fileID: 11400000, guid: 87ea0a996cbabf44a90fa0757cdc1d60, type: 2}
-  card5: {fileID: 11400000, guid: cbc44a06566d8ee48a857d0ae6ab9904, type: 2}
-  card6: {fileID: 11400000, guid: 0b03726b108855f4b8f396b6118fbb0d, type: 2}
-  card7: {fileID: 11400000, guid: 5e4a9eba6e1d8c0458df4f088263a84f, type: 2}
-  card8: {fileID: 11400000, guid: 3f7c5a27b09bcd4489c449be8de7e9e0, type: 2}
-  card9: {fileID: 11400000, guid: fc6ff097a05dc854d8e8bfe5db2f29e3, type: 2}
-  card10: {fileID: 11400000, guid: 2a64d88de6c3a514fae78af764abce82, type: 2}
+  card1: {fileID: 11400000, guid: ff78b0d271058ca41a9cd50cd9468989, type: 2}
+  card2: {fileID: 11400000, guid: 87ea0a996cbabf44a90fa0757cdc1d60, type: 2}
+  card3: {fileID: 11400000, guid: 87ea0a996cbabf44a90fa0757cdc1d60, type: 2}
+  card4: {fileID: 11400000, guid: 0b03726b108855f4b8f396b6118fbb0d, type: 2}
+  card5: {fileID: 11400000, guid: 9cac9238c29ad4f4cab61657be230994, type: 2}
+  card6: {fileID: 11400000, guid: 283714584ed152344bfd5f51eb4d69ce, type: 2}
+  card7: {fileID: 11400000, guid: cbc44a06566d8ee48a857d0ae6ab9904, type: 2}
+  card8: {fileID: 11400000, guid: fc6ff097a05dc854d8e8bfe5db2f29e3, type: 2}
+  card9: {fileID: 11400000, guid: cbc44a06566d8ee48a857d0ae6ab9904, type: 2}
+  card10: {fileID: 11400000, guid: 5e4a9eba6e1d8c0458df4f088263a84f, type: 2}
+  card11: {fileID: 11400000, guid: fc6ff097a05dc854d8e8bfe5db2f29e3, type: 2}
+  card12: {fileID: 11400000, guid: 0b03726b108855f4b8f396b6118fbb0d, type: 2}
 --- !u!114 &767447597
 MonoBehaviour:
   m_ObjectHideFlags: 0

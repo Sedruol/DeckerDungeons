@@ -9,4 +9,7 @@ public class Card : ScriptableObject
     public string description;
     public Sprite artWork;
     public int manaCost;
+    public int dmg;
+    public int heal;
+    public int init;
 }

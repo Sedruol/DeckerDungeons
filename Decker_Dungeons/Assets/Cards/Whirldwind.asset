@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Whirldwind
   m_EditorClassIdentifier: 
   name: Whirldwind
-  description: You spin yourself slashing everything in your way (30 DMG)
+  description: You spin yourself slashing everything in your way (16 DMG)
   artWork: {fileID: -2382127028351159496, guid: e3d65b8ff7cdb4345a3b72b02071d613,
     type: 3}
-  manaCost: 3
+  manaCost: 4
+  dmg: 16
+  heal: 0
+  init: 0

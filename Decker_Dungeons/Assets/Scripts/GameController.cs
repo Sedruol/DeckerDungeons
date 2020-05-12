@@ -21,7 +21,12 @@ public class GameController : MonoBehaviour
     private bool vOptions;
     private AudioSource audioSource;
     private float timeVisibleTitle;
+    private bool startDuel;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        startDuel = true;
+    }
     void Start()
     {
         temp = Globals.p1Mana;
@@ -36,6 +41,24 @@ public class GameController : MonoBehaviour
         menuResult.SetActive(false);
         menuOptions.SetActive(vOptions);
         timeVisibleTitle = 0f;
+        if (startDuel)
+        {
+            startDuel = false;
+            if (Globals.p1Initiative >= Globals.e1Initiative)
+            {
+                txtTitle.text = "You start the fight";
+                txtTitle.gameObject.SetActive(true);
+                Globals.p1CanAttack = true;
+                Globals.e1CanAttack = false;
+            }
+            else if(Globals.p1Initiative < Globals.e1Initiative)
+            {
+                txtTitle.text = "Enemy start the fight";
+                txtTitle.gameObject.SetActive(true);
+                Globals.p1CanAttack = false;
+                Globals.e1CanAttack = true;
+            }
+        }
     }
 
     public void DesactivateMusic()

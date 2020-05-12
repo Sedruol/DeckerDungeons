@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private int posibleEnemyEvade;
     private float timeVisibleCritic;
     private float timeVisibleEvade;
+    private float strMultiplier;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
         posibleEnemyEvade = 0;
         timeVisibleEvade = 0;
         timeVisibleCritic = 0;
+        strMultiplier = 0.2f;
         txtEnemy.gameObject.SetActive(false);
         txtPlayer.gameObject.SetActive(false);
     }
@@ -47,6 +49,8 @@ public class Player : MonoBehaviour
             rigidbody2D.velocity = new Vector2(0f, 0f);
             gameObject.transform.position = new Vector3(pos.x, gameObject.transform.position.y, gameObject.transform.position.z);
             Globals.e1CanAttack = true;
+            if (Globals.e1Initiative > Globals.p1Initiative)
+                Globals.newTurn = true;
         }
         if (Globals.e1Critico)
         {
@@ -98,21 +102,21 @@ public class Player : MonoBehaviour
                         rigidbody2D.velocity = velocityVector;
                         moveAttack = false;
                         //probabilidad de que el enemigo evada
-                        posibleEnemyEvade = Random.Range(1, 100);
+                        posibleEnemyEvade = Random.Range(0, 100);
                         Debug.Log("enemigo evade: " + posibleEnemyEvade);
-                        if (posibleEnemyEvade > 3.5 * Globals.e1Agility)
+                        if (posibleEnemyEvade > 1.5 * Globals.e1Agility)
                         {
                             //probabilidad de lanzar critico
-                            posibleCritic = Random.Range(1, 100);
+                            posibleCritic = Random.Range(0, 100);
                             Debug.Log("player critico: " + posibleCritic);
                             if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                             {
                                 txtEnemy.text = "Critic!!!";
                                 txtEnemy.gameObject.SetActive(true);
-                                Globals.e1Life -= (Globals.p1Strength * 1.5f);
+                                Globals.e1Life -= ((3 + Globals.p1Strength * strMultiplier) * 1.5f);
                             }
                             else if(posibleCritic > 2.5 * Globals.p1Bloodlust)
-                                Globals.e1Life -= Globals.p1Strength;
+                                Globals.e1Life -= (3 + Globals.p1Strength * strMultiplier);
                         }
                         else if (posibleEnemyEvade <= 3.5 * Globals.e1Agility)
                         {

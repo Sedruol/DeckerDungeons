@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: ShockingTouch
   m_EditorClassIdentifier: 
   name: Shocking Touch
-  description: You electrocute a enemy (10 DMG)
+  description: You electrocute a enemy (8-9 DMG)
   artWork: {fileID: 8638824916710335782, guid: 9d1c3117b8637fe429ff09f7b1606406, type: 3}
-  manaCost: 2
+  manaCost: 1
+  dmg: 8
+  heal: 0
+  init: 0

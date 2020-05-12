@@ -18,6 +18,7 @@ public class Globals
     public static float p1Bloodlust = 10f;
     public static float p1Agility = 10f;
     public static float p1MaxLife = 75f;
+    public static int p1Initiative = 10;
     public static bool evade = false;
     public static bool critico = false;
 
@@ -25,19 +26,33 @@ public class Globals
     public static bool p3Stats = false;
 
     [Header("Enemy 1")]
-    public static float e1MaxLife = 50f;
+    public static float e1MaxLife = 75f;
     public static bool e1Stats = false;
     public static float e1Life; //script: life bar-> function: start
     public static bool e1CanAttack = false;
     public static float e1Strength = 10f;
-    public static float e1Intelligence = 40f;
-    public static float e1Bloodlust = 5f;
-    public static float e1Agility = 5f;//script: player -> OnTriggerEnter2D
+    public static float e1Intelligence = 0f;
+    public static float e1Bloodlust = 10f;
+    public static int e1Initiative = 5;
+    public static float e1Agility = 10f;//script: player -> OnTriggerEnter2D
     public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
     public static bool e1Critico = false;
 
     public static bool e2Stats = false;
     public static bool e3Stats = false;
+
+    [Header("Cards Effects")]
+    public static int posibleDamage;
+    public static int posibleInit;
+    public static bool seeText = false;
+    public static bool cIceJaveling = false;
+    public static bool cFireBall = false;
+    public static bool cNetArrow = false;
+    public static bool cShockingTouch = false;
+    public static bool cEartquake = false;
+    public static bool cBlessingRestoration = false;
+    public static bool cFireNova = false;
+    public static bool cFrostNova = false;
 
     [Header("Result Menu")]
     public static bool p1Win = false;

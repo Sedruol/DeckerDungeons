@@ -24,6 +24,7 @@ public class Deck : MonoBehaviour
         Globals.decklist.Add(card2);
         Globals.decklist.Add(card3);*/
         count = Globals.decklist.Count;
+        //Debug.Log(count);
         last = count - 1;
 
         Shuffle();

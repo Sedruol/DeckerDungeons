@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d8bf62ae0198e43ace2698963f2458, type: 3}
+  m_Name: SuckerPunch
+  m_EditorClassIdentifier: 
+  name: Sucker Punch
+  description: You hit the enemy with punch (5 DMG)
+  artWork: {fileID: -5958153060811164181, guid: 3a811ebb0a03dfd4ebaadc1d5416979c,
+    type: 3}
+  manaCost: 1
+  dmg: 5
+  heal: 0
+  init: 0

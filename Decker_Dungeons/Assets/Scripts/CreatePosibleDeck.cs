@@ -17,6 +17,8 @@ public class CreatePosibleDeck : MonoBehaviour
     [SerializeField] private Card card8;
     [SerializeField] private Card card9;
     [SerializeField] private Card card10;
+    [SerializeField] private Card card11;
+    [SerializeField] private Card card12;
 
     private float initialX;
     private float posX;
@@ -41,8 +43,8 @@ public class CreatePosibleDeck : MonoBehaviour
             Globals.PosibleDeckList.Add(card8);
             Globals.PosibleDeckList.Add(card9);
             Globals.PosibleDeckList.Add(card10);
-            Globals.PosibleDeckList.Add(card4);
-            Globals.PosibleDeckList.Add(card3);
+            Globals.PosibleDeckList.Add(card11);
+            Globals.PosibleDeckList.Add(card12);
         }
     }
     // Start is called before the first frame update

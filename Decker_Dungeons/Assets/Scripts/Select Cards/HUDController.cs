@@ -44,6 +44,10 @@ public class HUDController : MonoBehaviour
     }
     public void Back()
     {
+        for (int i = 0; i < Globals.decklist.Count; i++)
+        {
+            Globals.decklist.Remove(Globals.decklist[i]);
+        }
         /*if (!Globals.saveDeck)
         {
             timeVisibleText = 0f;
@@ -52,7 +56,7 @@ public class HUDController : MonoBehaviour
         }
         else
         {*/
-            SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Main Menu");
         //}
     }
     public void Save()

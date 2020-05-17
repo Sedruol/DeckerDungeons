@@ -17,12 +17,16 @@ public class MenuResult : MonoBehaviour
         btnTryAgain.onClick.AddListener(() => TryAgain());
         btnExit.onClick.AddListener(() => Exit());
         if (Globals.p1Win)
-            txtResult.text = "You Win";
+            txtResult.text = "YOU WIN";
         else if (!Globals.p1Win)
-            txtResult.text = "You Lose";
+            txtResult.text = "YOU LOSE";
     }
     public void ChangeDeck()
     {
+        for (int i = 0; i < Globals.decklist.Count; i++)
+        {
+            Globals.decklist.Remove(Globals.decklist[i]);
+        }
         Time.timeScale = 1f;
         Globals.menuResult = false;
         Globals.p1Life = Globals.p1MaxLife;

@@ -83,7 +83,9 @@
     <Compile Include="Assets\Scripts\Main Menu\Navigation.cs" />
     <Compile Include="Assets\Scripts\MenuResult.cs" />
     <Compile Include="Assets\Scripts\MoveEnemyAttack.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\MoveMana.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Select Cards\HUDController.cs" />
     <Compile Include="Assets\Scripts\Select Cards\ScaleCard.cs" />
     <Compile Include="Assets\Scripts\Splash Screen\TouchEffect.cs" />

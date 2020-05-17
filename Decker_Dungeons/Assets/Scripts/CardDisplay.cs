@@ -338,7 +338,10 @@ public class CardDisplay : MonoBehaviour
     {
         if (Globals.p1CanAttack == false)
         {
-            txtTitle.text = "You can attack, it's enemy's turn";
+            if (Globals.e1CanAttack)
+                txtTitle.text = "You can attack, it's enemy's turn";
+            else if(!Globals.e1CanAttack)
+                txtTitle.text = "You only can attack one time during your turn";
             txtTitle.gameObject.SetActive(true);
             //Debug.Log("you can attack, it's enemy's turn");
         }

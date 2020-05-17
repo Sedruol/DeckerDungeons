@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class CreateMana : MonoBehaviour
 {
-    public GameObject mana;
+    [SerializeField] private GameObject mana;
+    [SerializeField] private GameObject life;
 
     // Start is called before the first frame update
     void Start()
     {
-        Globals.p1ManaPosX = -8.1f;
+        //Globals.p1ManaPosX = -8.1f;
+        Globals.p1ManaPosX = life.transform.position.x - 3f;
+        Globals.p1ManaPosY = life.transform.position.y - 0.75f;
         GameObject m;
         for (int i = 0; i < Globals.p1Mana; i++)
         {

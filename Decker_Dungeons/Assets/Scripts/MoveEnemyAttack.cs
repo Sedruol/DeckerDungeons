@@ -34,13 +34,13 @@ public class MoveEnemyAttack : MonoBehaviour
         strMultiplier = 0.2f;
         if (typeAttack == 0)
         {
-            baseAttack = 3;
+            baseAttack = 4f;
             transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
         }
         else if (typeAttack == 1)
         {
             sr.color = new Color(255f, 0f, 0f);
-            baseAttack = 6;
+            baseAttack = 8;
         }
         //Debug.Log(typeAttack);
     }

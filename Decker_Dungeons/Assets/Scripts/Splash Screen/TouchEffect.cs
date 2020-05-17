@@ -20,11 +20,11 @@ public class TouchEffect : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        txtPress.color = new Color(255f, 0f, 0f);
+        txtPress.color = new Color(1f, 0f, 0f);
     }
     private void OnMouseExit()
     {
-        txtPress.color = new Color(255f, 255f, 255f);
+        txtPress.color = new Color(188f/255f, 87f/255f, 21f/255f);
     }
     private void OnMouseDown()
     {

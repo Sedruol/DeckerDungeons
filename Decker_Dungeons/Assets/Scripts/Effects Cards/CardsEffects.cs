@@ -60,10 +60,21 @@ public class CardsEffects : MonoBehaviour
             Globals.cFrostNova = false;
             Instantiate(frostNovaPrefab, new Vector3(6.36f, 0.23f, 0f), Quaternion.identity);
         }
+        else if (Globals.cKnifeSlash)
+        {
+
+        }
+        /*
+        else if (Globals.cArrowBarrage)
+        {
+            Globals.cArrowBarrage = false;
+            Instantiate(arrowPrefab, new Vector3(-4.75f, 0.85f, 0f), Quaternion.identity);
+        }*/
 
         if (Globals.critico)
         {
             txtEnemy.text = "Critic!!!";
+            txtEnemy.color = new Color(1f, 0f, 0f);
             txtEnemy.gameObject.SetActive(true);
             Globals.critico = false;
         }
@@ -72,6 +83,7 @@ public class CardsEffects : MonoBehaviour
             //Debug.Log("evadí");
             //aqui debo poner algo visual que lo demuestre
             txtEnemy.text = "Evaded!!!";
+            txtEnemy.color = new Color(1f, 196f/255f, 0f);
             txtEnemy.gameObject.SetActive(true);
             Globals.e1Evade = false;
         }

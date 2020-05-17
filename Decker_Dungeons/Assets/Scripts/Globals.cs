@@ -6,7 +6,7 @@ public class Globals
     [Header("Player 1 - Knight")]
     public static bool p1Stats = true;
     public static float p1Life; //script: life bar-> function: awake
-    public static int p1Mana = 5;
+    public static int p1Mana = 3;
     public static int p1CantMana;
     public static bool p1NoMana = false;
     public static float p1ManaPosX; //script: create mana-> function: awake
@@ -26,7 +26,7 @@ public class Globals
     public static bool p3Stats = false;
 
     [Header("Enemy 1")]
-    public static float e1MaxLife = 75f;
+    public static float e1MaxLife = 100f;
     public static bool e1Stats = false;
     public static float e1Life; //script: life bar-> function: start
     public static bool e1CanAttack = false;
@@ -53,6 +53,9 @@ public class Globals
     public static bool cBlessingRestoration = false;
     public static bool cFireNova = false;
     public static bool cFrostNova = false;
+    public static bool cArrowBarrage = false;
+    public static bool cKnifeSlash = false;
+    public static bool cWhirldwind = false;
 
     [Header("Result Menu")]
     public static bool p1Win = false;

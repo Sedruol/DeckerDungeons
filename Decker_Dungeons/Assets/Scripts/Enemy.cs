@@ -37,26 +37,26 @@ public class Enemy : MonoBehaviour
 
     public void moveEarthquake()
     {
-        if (moveDuringEarthquake < 5)
+        if (moveDuringEarthquake < 7)
         {
             if (transform.position.x == 6)
             {
                 rigidbody2D.velocity = velocityVector;
             }
-            else if (transform.position.x >= 7)
+            else if (transform.position.x >= 6.5f)
             {
                 velocityVector.x = -velocity;
                 rigidbody2D.velocity = velocityVector;
                 moveDuringEarthquake++;
             }
-            else if (transform.position.x <= 5)
+            else if (transform.position.x <= 5.5f)
             {
                 velocityVector.x = velocity;
                 rigidbody2D.velocity = velocityVector;
                 moveDuringEarthquake++;
             }
         }
-        else if (moveDuringEarthquake == 5)
+        else if (moveDuringEarthquake == 7)
         {
             Globals.cEartquake = false;
             velocityVector.x = 0;
@@ -103,7 +103,7 @@ public class Enemy : MonoBehaviour
         {
             moveEarthquake();
         }
-        if (!Globals.cEartquake && moveDuringEarthquake == 6)
+        if (!Globals.cEartquake && moveDuringEarthquake == 8)
         {
             miniPause += Time.deltaTime;
             if (miniPause > 1f)

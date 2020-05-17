@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.88235295, b: 0.68235296, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -771,10 +771,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1020,11 +1020,11 @@ MonoBehaviour:
   card5: {fileID: 11400000, guid: 9cac9238c29ad4f4cab61657be230994, type: 2}
   card6: {fileID: 11400000, guid: 283714584ed152344bfd5f51eb4d69ce, type: 2}
   card7: {fileID: 11400000, guid: cbc44a06566d8ee48a857d0ae6ab9904, type: 2}
-  card8: {fileID: 11400000, guid: fc6ff097a05dc854d8e8bfe5db2f29e3, type: 2}
+  card8: {fileID: 11400000, guid: 9cac9238c29ad4f4cab61657be230994, type: 2}
   card9: {fileID: 11400000, guid: cbc44a06566d8ee48a857d0ae6ab9904, type: 2}
   card10: {fileID: 11400000, guid: 5e4a9eba6e1d8c0458df4f088263a84f, type: 2}
   card11: {fileID: 11400000, guid: fc6ff097a05dc854d8e8bfe5db2f29e3, type: 2}
-  card12: {fileID: 11400000, guid: 0b03726b108855f4b8f396b6118fbb0d, type: 2}
+  card12: {fileID: 11400000, guid: 5e4a9eba6e1d8c0458df4f088263a84f, type: 2}
 --- !u!114 &767447597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1298,8 +1298,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
-  m_SizeDelta: {x: 800, y: 120}
+  m_AnchoredPosition: {x: 0, y: -52.87}
+  m_SizeDelta: {x: 800, y: 115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &899013863
 MonoBehaviour:
@@ -1314,7 +1314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8044872, a: 1}
+  m_Color: {r: 1, g: 0.98039216, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1332,7 +1332,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choose cards for your deck
+  m_Text: Select between 6 and 10 cards
 --- !u!222 &899013864
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1660,7 +1660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.08817577, b: 1, a: 1}
+  m_Color: {r: 0.9529412, g: 0.6117647, b: 0.3764706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1909,7 +1909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 540, y: 264.99997}
+  m_AnchoredPosition: {x: 557.9, y: 277.9}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1662253320
@@ -2244,10 +2244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

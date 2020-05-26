@@ -67,4 +67,5 @@ public class Globals
     public static bool changeCards = false;
     public static int cont = 2;
     public static bool saveDeck = false;
+    public static string lastRoom = " ";
 }

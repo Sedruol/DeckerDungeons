@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float velocity;
     [SerializeField] private Text txtEnemy;
     [SerializeField] private Text txtPlayer;
+    [SerializeField] private Text txtLifeEnemy;
     private Vector2 velocityVector;
     private Vector3 pos;
     private int enemyLayer;
@@ -117,9 +118,17 @@ public class Player : MonoBehaviour
                                 txtEnemy.color = new Color(1f, 0f, 0f);
                                 txtEnemy.gameObject.SetActive(true);
                                 Globals.e1Life -= ((3 + Globals.p1Strength * strMultiplier) * 1.5f);
+                                txtLifeEnemy.text = "-" + ((3 + Globals.p1Strength * strMultiplier) * 1.5f);
+                                txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                                txtLifeEnemy.gameObject.SetActive(true);
                             }
-                            else if(posibleCritic > 2.5 * Globals.p1Bloodlust)
+                            else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
+                            {
                                 Globals.e1Life -= (3 + Globals.p1Strength * strMultiplier);
+                                txtLifeEnemy.text = "-" + (3 + Globals.p1Strength * strMultiplier);
+                                txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                                txtLifeEnemy.gameObject.SetActive(true);
+                            }
                         }
                         else if (posibleEnemyEvade <= 3.5 * Globals.e1Agility)
                         {

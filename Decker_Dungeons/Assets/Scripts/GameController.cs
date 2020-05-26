@@ -16,11 +16,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject menuOptions;
     [SerializeField] private Slider slider;
     [SerializeField] private Text txtTitle;
+    [SerializeField] private Text txtLifePlayer;
+    [SerializeField] private Text txtLifeEnemy;
     private float tempVolume;
     private int temp;
     private bool vOptions;
     private AudioSource audioSource;
     private float timeVisibleTitle;
+    private float timeVisibleLifeEnemy;
+    public float timeVisibleLifePlayer;
     private bool startDuel;
     // Start is called before the first frame update
     private void Awake()
@@ -41,6 +45,8 @@ public class GameController : MonoBehaviour
         menuResult.SetActive(false);
         menuOptions.SetActive(vOptions);
         timeVisibleTitle = 0f;
+        timeVisibleLifeEnemy = 0f;
+        timeVisibleLifePlayer = 0f;
         if (startDuel)
         {
             startDuel = false;
@@ -125,6 +131,24 @@ public class GameController : MonoBehaviour
                 //Debug.Log("se activo la evasion");
                 txtTitle.gameObject.SetActive(false);
                 timeVisibleTitle = 0;
+            }
+        }
+        if (txtLifeEnemy.IsActive())
+        {
+            timeVisibleLifeEnemy += Time.deltaTime;
+            if (timeVisibleLifeEnemy >= 1f)
+            {
+                txtLifeEnemy.gameObject.SetActive(false);
+                timeVisibleLifeEnemy = 0f;
+            }
+        }
+        if (txtLifePlayer.IsActive())
+        {
+            timeVisibleLifePlayer += Time.deltaTime;
+            if (timeVisibleLifePlayer >= 1f)
+            {
+                txtLifePlayer.gameObject.SetActive(false);
+                timeVisibleLifePlayer = 0f;
             }
         }
     }

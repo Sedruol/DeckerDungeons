@@ -10,9 +10,11 @@ public class MovePlayerAttack : MonoBehaviour
     private int enemyLayer;
     private int posibleCritic;
     private int posibleEnemyEvaded;
+    private Text txtLifeEnemy;
     // Start is called before the first frame update
     void Start()
     {
+        txtLifeEnemy = GameObject.Find("HUD/Texts Interaction/txtLifeEnemy").GetComponent<Text>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         velocityVector.x = velocity;
         rigidbody2D.velocity = velocityVector;
@@ -38,9 +40,17 @@ public class MovePlayerAttack : MonoBehaviour
                     {
                         Globals.critico = true;
                         Globals.e1Life -= (Globals.posibleDamage * 1.5f);
+                        txtLifeEnemy.text = "-" + (Globals.posibleDamage * 1.5f);
+                        txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                        txtLifeEnemy.gameObject.SetActive(true);
                     }
                     else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
+                    {
                         Globals.e1Life -= Globals.posibleDamage;
+                        txtLifeEnemy.text = "-" + Globals.posibleDamage;
+                        txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                        txtLifeEnemy.gameObject.SetActive(true);
+                    }
                     if (Globals.posibleInit > 0)
                         Globals.e1Initiative -= Globals.posibleInit;
                 }

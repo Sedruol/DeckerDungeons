@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
     private int posibleCritic;
     private int posibleEnemyEvaded;
     private float miniPause;
+    private Text txtLifeEnemy;
     private void OnMouseOver()
     {
         Globals.p1Stats = false;
@@ -26,6 +28,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        txtLifeEnemy = GameObject.Find("HUD/Texts Interaction/txtLifeEnemy").GetComponent<Text>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         velocityVector.x = velocity;
         attack = true;
@@ -73,9 +76,17 @@ public class Enemy : MonoBehaviour
                 {
                     Globals.critico = true;
                     Globals.e1Life -= (Globals.posibleDamage * 1.5f);
+                    txtLifeEnemy.text = "-" + (Globals.posibleDamage * 1.5f);
+                    txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                    txtLifeEnemy.gameObject.SetActive(true);
                 }
                 else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
+                {
                     Globals.e1Life -= Globals.posibleDamage;
+                    txtLifeEnemy.text = "-" + Globals.posibleDamage;
+                    txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                    txtLifeEnemy.gameObject.SetActive(true);
+                }
             }
             //el enemigo esquiva el ataque
             else if (posibleEnemyEvaded <= 1.5 * Globals.e1Agility)

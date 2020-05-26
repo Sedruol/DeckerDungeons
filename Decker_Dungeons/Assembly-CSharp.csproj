@@ -70,12 +70,14 @@
     <Compile Include="Assets\Scripts\CreateMana.cs" />
     <Compile Include="Assets\Scripts\CreatePosibleDeck.cs" />
     <Compile Include="Assets\Scripts\Deck.cs" />
+    <Compile Include="Assets\Scripts\DoorPortal.cs" />
     <Compile Include="Assets\Scripts\Effects Cards\CardsEffects.cs" />
     <Compile Include="Assets\Scripts\Effects Cards\FireNovaAttack.cs" />
     <Compile Include="Assets\Scripts\Effects Cards\FrostNovaAttack.cs" />
     <Compile Include="Assets\Scripts\Effects Cards\Healing.cs" />
     <Compile Include="Assets\Scripts\Effects Cards\MovePlayerAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\ExplorationController.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Globals.cs" />
     <Compile Include="Assets\Scripts\LifeBar.cs" />

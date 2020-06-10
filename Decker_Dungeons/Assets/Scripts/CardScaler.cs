@@ -52,7 +52,7 @@ public class CardScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                         else
                         {
                             Globals.p1Mana -= 4;
-                            Globals.e1Life -= 30;
+                            Globals.eTLife -= 30;
                             Globals.p1ManaPosX -= 4;//1 de pos * 2 (cantidad de mana perdido)
                             Debug.Log(Globals.p1ManaPosX);
                         }
@@ -73,7 +73,7 @@ public class CardScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                         else
                         {
                             Globals.p1CantMana = Globals.p1Mana;
-                            Globals.e1Life -= 20;
+                            Globals.eTLife -= 20;
                             Globals.p1Mana -= 2;
                             Globals.p1ManaPosX -= 2;//1 de pos * 1 (cantidad de mana perdido)
                             Debug.Log(Globals.p1ManaPosX);
@@ -98,7 +98,7 @@ public class CardScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             btn.gameObject.SetActive(false);
             Globals.p1CanAttack = false;
-            Globals.e1CanAttack = true;
+            Globals.eTCanAttack = true;
         }
     }
     private void Update()

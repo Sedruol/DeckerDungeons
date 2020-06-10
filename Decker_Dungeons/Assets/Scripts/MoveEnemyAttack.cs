@@ -37,7 +37,7 @@ public class MoveEnemyAttack : MonoBehaviour
         if (typeAttack == 0)
         {
             baseAttack = 4f;
-            transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            transform.localScale = new Vector3(-0.6f, 0.6f, 0.6f);
         }
         else if (typeAttack == 1)
         {
@@ -57,25 +57,25 @@ public class MoveEnemyAttack : MonoBehaviour
                 if (!Globals.evade)
                 {
                     Debug.Log("enemy critico: " + posibleEnemyCritic);
-                    if (posibleEnemyCritic <= 2.5 * Globals.e1Bloodlust)
+                    if (posibleEnemyCritic <= 2.5 * Globals.eTBloodlust)
                     {
-                        Globals.p1Life -= ((baseAttack + Globals.e1Strength * strMultiplier) * 1.5f);
-                        txtLifePlayer.text = "-" + ((baseAttack + Globals.e1Strength * strMultiplier) * 1.5f);
+                        Globals.p1Life -= ((baseAttack + Globals.eTStrength * strMultiplier) * 1.5f);
+                        txtLifePlayer.text = "-" + ((baseAttack + Globals.eTStrength * strMultiplier) * 1.5f);
                         txtLifePlayer.color = new Color(1f, 0f, 0f);
                         txtLifePlayer.gameObject.SetActive(true);
-                        Globals.e1Critico = true;
+                        Globals.eTCritico = true;
                     }
-                    else if (posibleEnemyCritic > 2.5 * Globals.e1Bloodlust)
+                    else if (posibleEnemyCritic > 2.5 * Globals.eTBloodlust)
                     {
-                        Globals.p1Life -= (baseAttack + Globals.e1Strength * strMultiplier);
-                        txtLifePlayer.text = "-" + (baseAttack + Globals.e1Strength * strMultiplier);
+                        Globals.p1Life -= (baseAttack + Globals.eTStrength * strMultiplier);
+                        txtLifePlayer.text = "-" + (baseAttack + Globals.eTStrength * strMultiplier);
                         txtLifePlayer.color = new Color(1f, 0f, 0f);
                         txtLifePlayer.gameObject.SetActive(true);
                     }
                 }
                 Globals.p1CanAttack = true;
-                Globals.e1CanAttack = false;
-                if(Globals.e1Initiative <= Globals.p1Initiative)
+                Globals.eTCanAttack = false;
+                if(Globals.eTInitiative <= Globals.p1Initiative)
                     Globals.newTurn = true;
                 Debug.Log("vida: " + Globals.p1Life);
             }

@@ -27,29 +27,29 @@ public class ChangeStats : MonoBehaviour
             bloodlust.text = "Bloodlust : " + Globals.p1Bloodlust.ToString();
             agility.text = "Agility : " + Globals.p1Agility.ToString();
         }
-        else if (Globals.p2Stats)
+        /*else if (Globals.p2Stats)
         {
 
         }
         else if (Globals.p3Stats)
         {
 
-        }
-        else if (Globals.e1Stats)
+        }*/
+        else if (Globals.eTStats)
         {
             name.text = "Name : Demon";
-            strength.text = "Strength : " + Globals.e1Strength.ToString();
-            intelligence.text = "Intelligence : " + Globals.e1Intelligence.ToString();
-            bloodlust.text = "Bloodlust : " + Globals.e1Bloodlust.ToString();
-            agility.text = "Agility : " + Globals.e1Agility.ToString();
+            strength.text = "Strength : " + Globals.eTStrength.ToString();
+            intelligence.text = "Intelligence : " + Globals.eTIntelligence.ToString();
+            bloodlust.text = "Bloodlust : " + Globals.eTBloodlust.ToString();
+            agility.text = "Agility : " + Globals.eTAgility.ToString();
         }
-        else if (Globals.e2Stats)
+        /*else if (Globals.e2Stats)
         {
 
         }
         else if (Globals.e3Stats)
         {
 
-        }
+        }*/
     }
 }

@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float velocity;
     [SerializeField] private GameObject enemyAttack;
+    [SerializeField] private GameObject Player;
+    private Animator animPlayer;
+    private Animator animEnemy;
     private Rigidbody2D rigidbody2D;
     private Vector2 velocityVector;
     private bool attack;
@@ -18,16 +21,18 @@ public class Enemy : MonoBehaviour
     private void OnMouseOver()
     {
         Globals.p1Stats = false;
-        Globals.e1Stats = true;
+        Globals.eTStats = true;
     }
     private void OnMouseExit()
     {
         Globals.p1Stats = true;
-        Globals.e1Stats = false;
+        Globals.eTStats = false;
     }
     // Start is called before the first frame update
     void Start()
     {
+        animPlayer = Player.GetComponent<Animator>();
+        animEnemy = GetComponent<Animator>();
         txtLifeEnemy = GameObject.Find("HUD/Texts Interaction/txtLifeEnemy").GetComponent<Text>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         velocityVector.x = velocity;
@@ -42,17 +47,17 @@ public class Enemy : MonoBehaviour
     {
         if (moveDuringEarthquake < 7)
         {
-            if (transform.position.x == 6)
+            if (transform.position.x == 5.6f)
             {
                 rigidbody2D.velocity = velocityVector;
             }
-            else if (transform.position.x >= 6.5f)
+            else if (transform.position.x >= 6.1f)
             {
                 velocityVector.x = -velocity;
                 rigidbody2D.velocity = velocityVector;
                 moveDuringEarthquake++;
             }
-            else if (transform.position.x <= 5.5f)
+            else if (transform.position.x <= 5.1f)
             {
                 velocityVector.x = velocity;
                 rigidbody2D.velocity = velocityVector;
@@ -70,47 +75,53 @@ public class Enemy : MonoBehaviour
             Debug.Log("enemy evaded: " + posibleEnemyEvaded);
             Debug.Log("player critico: " + posibleCritic);
             //el enemigo no esquiva el ataque
-            if (posibleEnemyEvaded > 1.5 * Globals.e1Agility)
+            if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
             {//efecto de la carta con critico
                 if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                 {
                     Globals.critico = true;
-                    Globals.e1Life -= (Globals.posibleDamage * 1.5f);
+                    Globals.eTLife -= (Globals.posibleDamage * 1.5f);
                     txtLifeEnemy.text = "-" + (Globals.posibleDamage * 1.5f);
                     txtLifeEnemy.color = new Color(1f, 0f, 0f);
                     txtLifeEnemy.gameObject.SetActive(true);
                 }
                 else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
                 {
-                    Globals.e1Life -= Globals.posibleDamage;
+                    Globals.eTLife -= Globals.posibleDamage;
                     txtLifeEnemy.text = "-" + Globals.posibleDamage;
                     txtLifeEnemy.color = new Color(1f, 0f, 0f);
                     txtLifeEnemy.gameObject.SetActive(true);
                 }
             }
             //el enemigo esquiva el ataque
-            else if (posibleEnemyEvaded <= 1.5 * Globals.e1Agility)
+            else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
             {
-                Globals.e1Evade = true;
+                Globals.eTEvade = true;
             }
             moveDuringEarthquake++;
         }
     }
 
+    private void ControllerEnemyAttack()
+    {
+        animEnemy.SetBool("attack", false);
+        GameObject newAttack = Instantiate(enemyAttack, new Vector3(transform.position.x - 1.5f, transform.position.y + 0.75f,
+                transform.position.z), Quaternion.identity, this.transform);
+        attack = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Globals.e1CanAttack && attack && Globals.menuResult == false)
+        if (Globals.eTCanAttack && attack && Globals.menuResult == false)
         {
-            GameObject newAttack = Instantiate(enemyAttack, new Vector3(transform.position.x - 1.5f, transform.position.y,
-                    transform.position.z), Quaternion.identity, this.transform);
-            attack = false;
+            animEnemy.SetBool("attack", true);
         }
         if (transform.childCount == 0)
         {
             attack = true;
         }
-        if (Globals.cEartquake)
+        if (Globals.cEartquake && animPlayer.GetBool("spell") == false)
         {
             moveEarthquake();
         }
@@ -121,10 +132,10 @@ public class Enemy : MonoBehaviour
             {
                 moveDuringEarthquake = 0;
                 //new turn?
-                if (Globals.e1Initiative > Globals.p1Initiative)
+                if (Globals.eTInitiative > Globals.p1Initiative)
                     Globals.newTurn = true;
                 //Globals.p1CanAttack = false;
-                Globals.e1CanAttack = true;
+                Globals.eTCanAttack = true;
             }
         }
     }

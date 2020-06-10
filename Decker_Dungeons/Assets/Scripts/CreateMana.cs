@@ -7,6 +7,10 @@ public class CreateMana : MonoBehaviour
     [SerializeField] private GameObject mana;
     [SerializeField] private GameObject life;
 
+    private void Awake()
+    {
+        Globals.p1Mana = 3;
+    }
     // Start is called before the first frame update
     void Start()
     {

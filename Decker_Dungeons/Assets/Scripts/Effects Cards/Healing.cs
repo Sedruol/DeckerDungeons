@@ -30,10 +30,10 @@ public class Healing : MonoBehaviour
                 txtLifePlayer.color = new Color(0f, 1f, 7f / 255f);
                 txtLifePlayer.gameObject.SetActive(true);
                 //new turn?
-                if (Globals.e1Initiative > Globals.p1Initiative)
+                if (Globals.eTInitiative > Globals.p1Initiative)
                     Globals.newTurn = true;
                 //Globals.p1CanAttack = false;
-                Globals.e1CanAttack = true;
+                Globals.eTCanAttack = true;
                 Destroy(gameObject);
             }
         }

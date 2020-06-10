@@ -410,7 +410,6 @@ MonoBehaviour:
   txtTitle: {fileID: 899013863}
   btnBack: {fileID: 1852911488}
   btnSave: {fileID: 1527828242}
-  btnStart: {fileID: 643630158}
   btnOptions: {fileID: 1662253320}
   optionsMenu: {fileID: 522490835}
   cards: {fileID: 767447595}
@@ -840,7 +839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &643630158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,7 +1019,7 @@ MonoBehaviour:
   card5: {fileID: 11400000, guid: 9cac9238c29ad4f4cab61657be230994, type: 2}
   card6: {fileID: 11400000, guid: 283714584ed152344bfd5f51eb4d69ce, type: 2}
   card7: {fileID: 11400000, guid: cbc44a06566d8ee48a857d0ae6ab9904, type: 2}
-  card8: {fileID: 11400000, guid: 9cac9238c29ad4f4cab61657be230994, type: 2}
+  card8: {fileID: 11400000, guid: 283714584ed152344bfd5f51eb4d69ce, type: 2}
   card9: {fileID: 11400000, guid: cbc44a06566d8ee48a857d0ae6ab9904, type: 2}
   card10: {fileID: 11400000, guid: 5e4a9eba6e1d8c0458df4f088263a84f, type: 2}
   card11: {fileID: 11400000, guid: fc6ff097a05dc854d8e8bfe5db2f29e3, type: 2}
@@ -1719,7 +1718,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -250}
+  m_AnchoredPosition: {x: 275, y: -250}
   m_SizeDelta: {x: 240, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527828242
@@ -2332,7 +2331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -325, y: -250}
+  m_AnchoredPosition: {x: -275, y: -250}
   m_SizeDelta: {x: 240, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1852911488

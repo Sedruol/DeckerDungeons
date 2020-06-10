@@ -54,7 +54,8 @@ public class MainMenu : MonoBehaviour
     }
     public void NewAdventure()
     {
-        SceneManager.LoadScene("Select Cards");
+        Globals.p1Life = Globals.p1MaxLife;
+        SceneManager.LoadScene("Exploration");
     }
     public void Options()
     {

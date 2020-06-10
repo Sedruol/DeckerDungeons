@@ -21,25 +21,50 @@ public class Globals
     public static int p1Initiative = 10;
     public static bool evade = false;
     public static bool critico = false;
-
+    
     public static bool p2Stats = false;
     public static bool p3Stats = false;
 
     [Header("Enemy 1")]
-    public static float e1MaxLife = 100f;
-    public static bool e1Stats = false;
+    public static float e1MaxLife = 30f;
+    //public static bool e1Stats = false;
     public static float e1Life; //script: life bar-> function: start
-    public static bool e1CanAttack = false;
-    public static float e1Strength = 10f;
+    //public static bool e1CanAttack = false;
+    public static float e1Strength = 5f;
     public static float e1Intelligence = 0f;
-    public static float e1Bloodlust = 10f;
+    public static float e1Bloodlust = 5f;
     public static int e1Initiative = 5;
-    public static float e1Agility = 10f;//script: player -> OnTriggerEnter2D
-    public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
-    public static bool e1Critico = false;
+    public static float e1Agility = 5f;//script: player -> OnTriggerEnter2D
+    //public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
+    //public static bool e1Critico = false;
 
-    public static bool e2Stats = false;
+    [Header("Enemy 2")]
+    public static float e2MaxLife = 100f;
+    //public static bool e1Stats = false;
+    public static float e2Life; //script: life bar-> function: start
+    //public static bool e1CanAttack = false;
+    public static float e2Strength = 10f;
+    public static float e2Intelligence = 0f;
+    public static float e2Bloodlust = 10f;
+    public static int e2Initiative = 5;
+    public static float e2Agility = 10f;//script: player -> OnTriggerEnter2D
+    //public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
+    //public static bool e1Critico = false;
+
     public static bool e3Stats = false;
+
+    [Header("Enemy temporal")]//agarra los valores del enemigo del nivel
+    public static float eTMaxLife;
+    public static bool eTStats = false;
+    public static float eTLife; //script: life bar-> function: start
+    public static bool eTCanAttack = false;
+    public static float eTStrength;
+    public static float eTIntelligence;
+    public static float eTBloodlust;
+    public static int eTInitiative;
+    public static float eTAgility;//script: player -> OnTriggerEnter2D
+    public static bool eTEvade = false;//script: player -> OnTriggerEnter2D
+    public static bool eTCritico = false;
 
     [Header("Cards Effects")]
     public static int posibleDamage;
@@ -68,4 +93,11 @@ public class Globals
     public static int cont = 2;
     public static bool saveDeck = false;
     public static string lastRoom = " ";
+    public static bool firstLevel = true;
+    public static bool selectYourDeck = false;
 }
+/*public class CardMark
+{
+    public static string name;
+    public static bool selected;
+}*/

@@ -10,7 +10,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Text txtTitle;
     [SerializeField] private Button btnBack;
     [SerializeField] private Button btnSave;
-    [SerializeField] private Button btnStart;
+    //[SerializeField] private Button btnStart;
     [SerializeField] private Button btnOptions;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject cards;
@@ -24,6 +24,15 @@ public class HUDController : MonoBehaviour
     private bool canFigth;
     private bool visibleText;
     private float timeVisibleText;
+
+    private void Awake()
+    {
+        for (int i = 0; i < Globals.decklist.Count; i++)
+        {
+            Globals.decklist.Remove(Globals.decklist[i]);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,71 +46,107 @@ public class HUDController : MonoBehaviour
         btnBackOptions.onClick.AddListener(() => Options());
         btnMusic.onClick.AddListener(() => DesactivateMusic());
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
-        btnStart.onClick.AddListener(() => StartGame());
+        //btnStart.onClick.AddListener(() => StartGame());
         canFigth = false;
         timeVisibleText = 0f;
         visibleText = true;
     }
     public void Back()
     {
-        for (int i = 0; i < Globals.decklist.Count; i++)
+        if (canFigth)
         {
-            Globals.decklist.Remove(Globals.decklist[i]);
+            if (Globals.saveDeck)
+            {
+                Globals.saveDeck = false;
+                Globals.firstLevel = false;
+                SceneManager.LoadScene(Globals.lastRoom);
+            }
+            else if (!Globals.saveDeck)
+            {
+                timeVisibleText = 0f;
+                visibleText = true;
+                txtTitle.text = "Please, save the changes in your deck";
+            }
         }
-        /*if (!Globals.saveDeck)
+        else if (!canFigth)
         {
-            timeVisibleText = 0f;
-            visibleText = true;
-            txtTitle.text = "Please, save the changes in your deck before go to the main menu";
+            if (Globals.saveDeck)
+            {
+                timeVisibleText = 0f;
+                visibleText = true;
+                txtTitle.text = "You can't figth with this deck";
+            }
+            else
+            {
+                timeVisibleText = 0f;
+                visibleText = true;
+                txtTitle.text = "Please, save the changes in your deck";
+            }
         }
-        else
-        {*/
-        SceneManager.LoadScene("Main Menu");
-        //}
     }
     public void Save()
     {
         int cantCards = 0;
+        bool change = true;
+        bool remove = true;
         for (int i = 0; i < cards.transform.childCount; i++)
         {
             if (cards.transform.GetChild(i).GetComponent<ScaleCard>().selected)
                 cantCards++;
         }
-        for (int i = 0; i < Globals.decklist.Count; i++)
+        Debug.Log("contador" + Globals.decklist.Count);
+        while (change)
         {
-            Globals.decklist.Remove(Globals.decklist[i]);
-        }
-        //Debug.Log(cantCards);
-        if (cantCards >= 6 && cantCards <= 10)
-        {
-            for (int i = 0; i < cards.transform.childCount; i++)
-            {
-                if (cards.transform.GetChild(i).GetComponent<ScaleCard>().selected)
-                    Globals.decklist.Add(Globals.PosibleDeckList[i]);
+            if (Globals.decklist.Count == 0) remove = false;
+            if (remove) {
+                for (int i = 0; i < Globals.decklist.Count; i++)
+                {
+                    Debug.Log("cartita:" + i);
+                    Globals.decklist.Remove(Globals.decklist[i]);
+                    Debug.Log("new cont" + Globals.decklist.Count);
+                }
+                //remove = false;
+                Debug.Log("cards con remove:" + Globals.decklist.Count);
             }
-            canFigth = true;
-            timeVisibleText = 0f;
-            visibleText = true;
-            txtTitle.text = "You can fight with this deck";
-            //Debug.Log("You can fight with this deck");
+            //Debug.Log(cantCards);
+            else if (!remove){
+                if (cantCards >= 6 && cantCards <= 10)
+                {
+                    for (int i = 0; i < cards.transform.childCount; i++)
+                    {
+                        if (cards.transform.GetChild(i).GetComponent<ScaleCard>().selected)
+                            Globals.decklist.Add(Globals.PosibleDeckList[i]);
+                    }
+                    canFigth = true;
+                    timeVisibleText = 0f;
+                    visibleText = true;
+                    txtTitle.text = "You can fight with this deck";
+                    Globals.saveDeck = true;
+                    //Debug.Log("You can fight with this deck");
+                }
+                else if (cantCards < 6)
+                {
+                    canFigth = false;
+                    timeVisibleText = 0f;
+                    visibleText = true;
+                    txtTitle.text = "You need more cards in your deck to fight";
+                    Globals.saveDeck = true;
+                    //Debug.Log("You need more cards in your deck to fight");
+                }
+                else if (cantCards > 10)
+                {
+                    canFigth = false;
+                    timeVisibleText = 0f;
+                    visibleText = true;
+                    txtTitle.text = "You exceeded the maximum number of cards";
+                    Globals.saveDeck = true;
+                    //Debug.Log("You exceeded the maximum number of cards to fight");
+                }
+                change = false;
+            }
         }
-        else if (cantCards < 6)
-        {
-            canFigth = false;
-            timeVisibleText = 0f;
-            visibleText = true;
-            txtTitle.text = "You need more cards in your deck to fight";
-            //Debug.Log("You need more cards in your deck to fight");
-        }
-        else if (cantCards > 10)
-        {
-            canFigth = false;
-            timeVisibleText = 0f;
-            visibleText = true;
-            txtTitle.text = "You exceeded the maximum number of cards to fight";
-            //Debug.Log("You exceeded the maximum number of cards to fight");
-        }
-        Globals.saveDeck = true;
+        Debug.Log("cards:" + Globals.decklist.Count);
+        //Globals.saveDeck = true;
     }
     public void Options()
     {
@@ -119,7 +164,7 @@ public class HUDController : MonoBehaviour
     {
         slider.value = tempVolume;
     }
-    public void StartGame()
+    /*public void StartGame()
     {
         if (canFigth)
         {
@@ -151,7 +196,7 @@ public class HUDController : MonoBehaviour
             }
             //Debug.Log("You can't figth with this deck");
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()

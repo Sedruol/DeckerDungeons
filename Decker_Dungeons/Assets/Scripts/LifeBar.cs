@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LifeBar : MonoBehaviour
 {
@@ -9,11 +10,38 @@ public class LifeBar : MonoBehaviour
     public Image lifeBar;//empieza -216 pos x | 48 width
     public Image Board;//100 de vida = 500 width, empieza -216 pos x | 68 width
     //empieza con 10 de vida = 48 width y -216 pos x, aumenta 2 width = 1 pos x, aumenta en 48 de width y 24 de pos 
+    [SerializeField] private GameObject Portal;
+    [SerializeField] private GameObject Enemy;
+    [SerializeField] private GameObject Cards;
+    [SerializeField] private GameObject Hit;
     private float maxLife;
     private void Awake()
     {
-        Globals.p1Life = Globals.p1MaxLife;//max life in globals
-        Globals.e1Life = Globals.e1MaxLife;
+        Enemy.SetActive(true);
+        Cards.SetActive(true);
+        Hit.SetActive(true);
+        Portal.SetActive(false);
+        //Globals.p1Life = Globals.p1MaxLife;//max life in globals, changue to main menu
+        if (SceneManager.GetActiveScene().name == "Level 1")
+        {
+            Globals.eTLife = Globals.e1MaxLife;
+            Globals.eTMaxLife = Globals.eTLife;
+            Globals.eTStrength = Globals.e1Strength;
+            Globals.eTIntelligence = Globals.e1Intelligence;
+            Globals.eTBloodlust = Globals.e1Bloodlust;
+            Globals.eTInitiative = Globals.e1Initiative;
+            Globals.eTAgility = Globals.e1Agility;
+        }
+        else if (SceneManager.GetActiveScene().name == "Level 2")
+        {
+            Globals.eTLife = Globals.e2MaxLife;
+            Globals.eTMaxLife = Globals.eTLife;
+            Globals.eTStrength = Globals.e2Strength;
+            Globals.eTIntelligence = Globals.e2Intelligence;
+            Globals.eTBloodlust = Globals.e2Bloodlust;
+            Globals.eTInitiative = Globals.e2Initiative;
+            Globals.eTAgility = Globals.e2Agility;
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -34,17 +62,17 @@ public class LifeBar : MonoBehaviour
         }
         else if (gameObject.name == "Enemy Life")
         {
-            if (Globals.e1Life > 10f)
+            if (Globals.eTLife > 10f)
             {
-                fullLifeBar.rectTransform.sizeDelta = new Vector2(48 + 4.8f * (Globals.e1Life - 10), fullLifeBar.rectTransform.sizeDelta.y);
-                fullLifeBar.rectTransform.localPosition = new Vector2(216f - 2.4f * (Globals.e1Life - 10),
+                fullLifeBar.rectTransform.sizeDelta = new Vector2(48 + 4.8f * (Globals.eTLife - 10), fullLifeBar.rectTransform.sizeDelta.y);
+                fullLifeBar.rectTransform.localPosition = new Vector2(216f - 2.4f * (Globals.eTLife - 10),
                     fullLifeBar.rectTransform.localPosition.y);
-                lifeBar.rectTransform.sizeDelta = new Vector2(48 + 4.8f * (Globals.e1Life - 10), lifeBar.rectTransform.sizeDelta.y);
-                lifeBar.rectTransform.localPosition = new Vector2(216f - 2.4f * (Globals.e1Life - 10), lifeBar.rectTransform.localPosition.y);
-                Board.rectTransform.sizeDelta = new Vector2(68 + 4.8f * (Globals.e1Life - 10), Board.rectTransform.sizeDelta.y);
-                Board.rectTransform.localPosition = new Vector2(216f - 2.4f * (Globals.e1Life - 10), Board.rectTransform.localPosition.y);
+                lifeBar.rectTransform.sizeDelta = new Vector2(48 + 4.8f * (Globals.eTLife - 10), lifeBar.rectTransform.sizeDelta.y);
+                lifeBar.rectTransform.localPosition = new Vector2(216f - 2.4f * (Globals.eTLife - 10), lifeBar.rectTransform.localPosition.y);
+                Board.rectTransform.sizeDelta = new Vector2(68 + 4.8f * (Globals.eTLife - 10), Board.rectTransform.sizeDelta.y);
+                Board.rectTransform.localPosition = new Vector2(216f - 2.4f * (Globals.eTLife - 10), Board.rectTransform.localPosition.y);
             }
-            maxLife = Globals.e1Life;
+            maxLife = Globals.eTLife;
         }
     }
 
@@ -76,16 +104,27 @@ public class LifeBar : MonoBehaviour
         }
         else if (gameObject.name == "Enemy Life")
         {
-            if (Globals.e1Life > maxLife)
-                Globals.e1Life = maxLife;
-            else if (Globals.e1Life <= 0f)
+            if (Globals.eTLife > maxLife)
+                Globals.eTLife = maxLife;
+            else if (Globals.eTLife <= 0f)
             {
                 Globals.p1Win = true;
                 Globals.p1CanAttack = true;
-                Globals.e1CanAttack = false;
-                Globals.menuResult = true;
+                Globals.eTCanAttack = false;
+                if (SceneManager.GetActiveScene().name == "Level 1")
+                {
+                    //eliminar enemigo y habilitar puerta
+                    Enemy.SetActive(false);
+                    Cards.SetActive(false);
+                    Hit.SetActive(false);
+                    Portal.SetActive(true);
+                }
+                else if (SceneManager.GetActiveScene().name == "Level 2")
+                {
+                    Globals.menuResult = true;
+                }
             }
-            fullLifeBar.fillAmount = Globals.e1Life / maxLife;
+            fullLifeBar.fillAmount = Globals.eTLife / maxLife;
         }
     }
 }

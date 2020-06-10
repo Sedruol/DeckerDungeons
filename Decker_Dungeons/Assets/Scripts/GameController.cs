@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] private GameObject menuResult;
     [SerializeField] private GameObject menuOptions;
+    [SerializeField] private GameObject Cards;
     [SerializeField] private Slider slider;
     [SerializeField] private Text txtTitle;
     [SerializeField] private Text txtLifePlayer;
@@ -30,6 +31,8 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         startDuel = true;
+        btnHit.gameObject.SetActive(true);
+        Cards.SetActive(true);
     }
     void Start()
     {
@@ -50,19 +53,19 @@ public class GameController : MonoBehaviour
         if (startDuel)
         {
             startDuel = false;
-            if (Globals.p1Initiative >= Globals.e1Initiative)
+            if (Globals.p1Initiative >= Globals.eTInitiative)
             {
                 txtTitle.text = "You start the fight";
                 txtTitle.gameObject.SetActive(true);
                 Globals.p1CanAttack = true;
-                Globals.e1CanAttack = false;
+                Globals.eTCanAttack = false;
             }
-            else if(Globals.p1Initiative < Globals.e1Initiative)
+            else if(Globals.p1Initiative < Globals.eTInitiative)
             {
                 txtTitle.text = "Enemy start the fight";
                 txtTitle.gameObject.SetActive(true);
                 Globals.p1CanAttack = false;
-                Globals.e1CanAttack = true;
+                Globals.eTCanAttack = true;
             }
         }
     }
@@ -84,13 +87,13 @@ public class GameController : MonoBehaviour
         {
             Globals.p1BasicAttack = true;
             Globals.p1CanAttack = false;
-            Debug.Log(Globals.e1Life);
+            Debug.Log(Globals.eTLife);
         }
         else if (!Globals.p1CanAttack)
         {
-            if (Globals.e1CanAttack)
+            if (Globals.eTCanAttack)
                 txtTitle.text = "You can attack, it's enemy's turn";
-            else if(!Globals.e1CanAttack)
+            else if(!Globals.eTCanAttack)
                 txtTitle.text = "You only can attack one time during your turn";
             txtTitle.gameObject.SetActive(true);
             //Debug.Log("You can attack, it's enemy's turn");
@@ -105,6 +108,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Globals.menuResult)
+        {
+            menuResult.SetActive(false);
+        }
         if (Globals.menuResult)
         {
             Globals.p1Mana = temp;

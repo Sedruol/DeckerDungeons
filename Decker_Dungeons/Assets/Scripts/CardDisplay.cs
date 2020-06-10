@@ -12,6 +12,7 @@ public class CardDisplay : MonoBehaviour
     public Text manaText;
     public GameObject manaGroup;
 
+    [SerializeField] private GameObject Player;
     [SerializeField] private Text txtEnemy;
     [SerializeField] private Text txtTitle;
     private Card card;
@@ -21,6 +22,7 @@ public class CardDisplay : MonoBehaviour
     private float scaleX;
     private float scaleY;
     private BoxCollider2D boxCollider2D;
+    private Animator anim;
 
     private int posibleCritic;
     private int posibleEnemyEvaded;
@@ -41,6 +43,7 @@ public class CardDisplay : MonoBehaviour
         manaText.text = card.manaCost.ToString();
 
         boxCollider2D = GetComponent<BoxCollider2D>();
+        anim = Player.GetComponent<Animator>();
 
         Globals.p1CantMana = Globals.p1Mana;
         posX = transform.position.x;
@@ -90,20 +93,20 @@ public class CardDisplay : MonoBehaviour
                         {
                             Globals.p1CantMana = Globals.p1Mana;
                             //el enemigo no esquiva el ataque
-                            if (posibleEnemyEvaded > 1.5 * Globals.e1Agility)
+                            if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
                             {
                                 if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                                 {
                                     txtEnemy.text = "Critic!!!";
                                     txtEnemy.gameObject.SetActive(true);
                                     //efecto de la carta
-                                    Globals.e1Life -= (card.dmg * 1.5f);
+                                    Globals.eTLife -= (card.dmg * 1.5f);
                                 }
                                 else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
-                                    Globals.e1Life -= card.dmg; //efecto de la carta
+                                    Globals.eTLife -= card.dmg; //efecto de la carta
                             }
                             //el enemigo esquiva el ataque
-                            else if (posibleEnemyEvaded <= 1.5 * Globals.e1Agility)
+                            else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
                             {
                                 txtEnemy.text = "Evaded!!!";
                                 txtEnemy.gameObject.SetActive(true);
@@ -117,6 +120,7 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < card.manaCost) Globals.p1NoMana = true;
                         else
                         {
+                            anim.SetBool("spell", true);
                             Globals.p1CantMana = Globals.p1Mana;
                             Globals.cFrostNova = true;
                             Globals.posibleDamage = card.dmg;
@@ -135,6 +139,7 @@ public class CardDisplay : MonoBehaviour
                             Globals.posibleDamage = card.heal;
                             //Globals.p1MaxLife += 20;
                             Globals.p1ManaPosX -= (1 * card.manaCost);//1 de pos * 3 (cantidad de mana perdido)
+                            anim.SetBool("spell", true);
                             //Debug.Log(Globals.p1ManaPosX);
                         }
                         break;
@@ -142,6 +147,7 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < card.manaCost) Globals.p1NoMana = true;
                         else
                         {
+                            anim.SetBool("spell", true);
                             Globals.p1CantMana = Globals.p1Mana;
                             Globals.cEartquake = true;
                             Globals.posibleDamage = card.dmg;
@@ -154,6 +160,7 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < card.manaCost) Globals.p1NoMana = true;
                         else
                         {
+                            anim.SetBool("spell", true);
                             Globals.p1CantMana = Globals.p1Mana;
                             Globals.cFireBall = true;
                             card.dmg = Random.Range(14, 21);
@@ -167,6 +174,7 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < card.manaCost) Globals.p1NoMana = true;
                         else
                         {
+                            anim.SetBool("spell", true);
                             Globals.p1CantMana = Globals.p1Mana;
                             Globals.cFireNova = true;
                             card.dmg = Random.Range(12, 18);
@@ -180,6 +188,7 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < card.manaCost) Globals.p1NoMana = true;
                         else
                         {
+                            anim.SetBool("spell", true);
                             Globals.p1CantMana = Globals.p1Mana;
                             Globals.cIceJaveling = true;
                             Globals.p1Mana -= card.manaCost;
@@ -194,20 +203,20 @@ public class CardDisplay : MonoBehaviour
                         {
                             Globals.p1CantMana = Globals.p1Mana;
                             //el enemigo no esquiva el ataque
-                            if (posibleEnemyEvaded > 1.5 * Globals.e1Agility)
+                            if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
                             {//efecto de la carta con critico
                                 if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                                 {
                                     txtEnemy.text = "Critic!!!";
                                     txtEnemy.gameObject.SetActive(true);
                                     //efecto de la carta
-                                    Globals.e1Life -= (card.dmg * 1.5f);
+                                    Globals.eTLife -= (card.dmg * 1.5f);
                                 }//efecto normal de la carta
                                 else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
-                                    Globals.e1Life -= card.dmg; //efecto de la carta
+                                    Globals.eTLife -= card.dmg; //efecto de la carta
                             }
                             //el enemigo esquiva el ataque
-                            else if (posibleEnemyEvaded <= 1.5 * Globals.e1Agility)
+                            else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
                             {
                                 txtEnemy.text = "Evaded!!!";
                                 txtEnemy.gameObject.SetActive(true);
@@ -223,20 +232,20 @@ public class CardDisplay : MonoBehaviour
                         {
                             Globals.p1CantMana = Globals.p1Mana;
                             //el enemigo no esquiva el ataque
-                            if (posibleEnemyEvaded > 1.5 * Globals.e1Agility)
+                            if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
                             {//efecto de la carta con critico
                                 if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                                 {
                                     txtEnemy.text = "Critic!!!";
                                     txtEnemy.gameObject.SetActive(true);
                                     //efecto de la carta
-                                    Globals.e1Life -= (card.dmg * 1.5f);
+                                    Globals.eTLife -= (card.dmg * 1.5f);
                                 }//efecto normal de la carta
                                 else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
-                                    Globals.e1Life -= card.dmg; //efecto de la carta
+                                    Globals.eTLife -= card.dmg; //efecto de la carta
                             }
                             //el enemigo esquiva el ataque
-                            else if (posibleEnemyEvaded <= 1.5 * Globals.e1Agility)
+                            else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
                             {
                                 txtEnemy.text = "Evaded!!!";
                                 txtEnemy.gameObject.SetActive(true);
@@ -250,6 +259,7 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < card.manaCost) Globals.p1NoMana = true;
                         else
                         {
+                            anim.SetBool("spell", true);
                             Globals.p1CantMana = Globals.p1Mana;
                             Globals.cNetArrow = true;
                             Globals.posibleDamage = card.dmg;
@@ -262,6 +272,7 @@ public class CardDisplay : MonoBehaviour
                         if (Globals.p1Mana < card.manaCost) Globals.p1NoMana = true;
                         else
                         {
+                            anim.SetBool("spell", true);
                             Globals.p1CantMana = Globals.p1Mana;
                             Globals.cShockingTouch = true;
                             Globals.p1Mana -= card.manaCost;
@@ -277,20 +288,20 @@ public class CardDisplay : MonoBehaviour
                         {
                             Globals.p1CantMana = Globals.p1Mana;
                             //el enemigo no esquiva el ataque
-                            if (posibleEnemyEvaded > 1.5 * Globals.e1Agility)
+                            if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
                             {//efecto de la carta con critico
                                 if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                                 {
                                     txtEnemy.text = "Critic!!!";
                                     txtEnemy.gameObject.SetActive(true);
                                     //efecto de la carta
-                                    Globals.e1Life -= (card.dmg * 1.5f);
+                                    Globals.eTLife -= (card.dmg * 1.5f);
                                 }//efecto normal de la carta
                                 else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
-                                    Globals.e1Life -= card.dmg; //efecto de la carta
+                                    Globals.eTLife -= card.dmg; //efecto de la carta
                             }
                             //el enemigo esquiva el ataque
-                            else if (posibleEnemyEvaded <= 1.5 * Globals.e1Agility)
+                            else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
                             {
                                 txtEnemy.text = "Evaded!!!";
                                 txtEnemy.gameObject.SetActive(true);
@@ -306,20 +317,20 @@ public class CardDisplay : MonoBehaviour
                         {
                             Globals.p1CantMana = Globals.p1Mana;
                             //el enemigo no esquiva el ataque
-                            if (posibleEnemyEvaded > 1.5 * Globals.e1Agility)
+                            if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
                             {//efecto de la carta con critico
                                 if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                                 {
                                     txtEnemy.text = "Critic!!!";
                                     txtEnemy.gameObject.SetActive(true);
                                     //efecto de la carta
-                                    Globals.e1Life -= (card.dmg * 1.5f);
+                                    Globals.eTLife -= (card.dmg * 1.5f);
                                 }//efecto normal de la carta
                                 else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
-                                    Globals.e1Life -= card.dmg; //efecto de la carta
+                                    Globals.eTLife -= card.dmg; //efecto de la carta
                             }
                             //el enemigo esquiva el ataque
-                            else if (posibleEnemyEvaded <= 1.5 * Globals.e1Agility)
+                            else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
                             {
                                 txtEnemy.text = "Evaded!!!";
                                 txtEnemy.gameObject.SetActive(true);
@@ -338,9 +349,9 @@ public class CardDisplay : MonoBehaviour
     {
         if (Globals.p1CanAttack == false)
         {
-            if (Globals.e1CanAttack)
+            if (Globals.eTCanAttack)
                 txtTitle.text = "You can attack, it's enemy's turn";
-            else if(!Globals.e1CanAttack)
+            else if(!Globals.eTCanAttack)
                 txtTitle.text = "You only can attack one time during your turn";
             txtTitle.gameObject.SetActive(true);
             //Debug.Log("you can attack, it's enemy's turn");
@@ -360,7 +371,7 @@ public class CardDisplay : MonoBehaviour
             changeCard = true;
             this.gameObject.SetActive(false);
             Globals.p1CanAttack = false;
-            //Globals.e1CanAttack = true;
+            //Globals.eTCanAttack = true;
         }
     }
     private void Update()

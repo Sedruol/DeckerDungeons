@@ -10,10 +10,11 @@ public class Player : MonoBehaviour
     [SerializeField] private Text txtEnemy;
     [SerializeField] private Text txtPlayer;
     [SerializeField] private Text txtLifeEnemy;
+    private Animator anim;
     private Vector2 velocityVector;
     private Vector3 pos;
     private int enemyLayer;
-    private bool moveAttack;
+    public bool moveAttack;
     private int posibleCritic;
     private int posibleEnemyEvade;
     private float timeVisibleCritic;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         velocityVector.x = velocity;
         enemyLayer = LayerMask.NameToLayer("Enemy");
         pos = gameObject.transform.position;
@@ -40,6 +42,7 @@ public class Player : MonoBehaviour
     {
         if (Globals.p1BasicAttack)
         {
+            anim.SetBool("move", true);
             velocityVector.x = velocity;
             rigidbody2D.velocity = velocityVector;
             Globals.p1BasicAttack = false;
@@ -47,18 +50,19 @@ public class Player : MonoBehaviour
         }
         if (!Globals.p1BasicAttack && !moveAttack && pos.x > gameObject.transform.position.x)
         {
+            anim.SetBool("move", false);
             rigidbody2D.velocity = new Vector2(0f, 0f);
             gameObject.transform.position = new Vector3(pos.x, gameObject.transform.position.y, gameObject.transform.position.z);
-            Globals.e1CanAttack = true;
-            if (Globals.e1Initiative > Globals.p1Initiative)
+            Globals.eTCanAttack = true;
+            if (Globals.eTInitiative > Globals.p1Initiative)
                 Globals.newTurn = true;
         }
-        if (Globals.e1Critico)
+        if (Globals.eTCritico)
         {
             txtPlayer.text = "Critic!!!";
             txtPlayer.color = new Color(1f, 0f, 0f);
             txtPlayer.gameObject.SetActive(true);
-            Globals.e1Critico = false;
+            Globals.eTCritico = false;
         }
         if (txtEnemy.IsActive())// && visibleCritic)
         {
@@ -90,6 +94,60 @@ public class Player : MonoBehaviour
             }
         }
     }
+    private void ControllerAttack()
+    {
+        anim.SetBool("attack", false);
+        bool mov = true;
+        while (mov)
+        {
+            if (anim.GetBool("attack") == false)
+            {
+                if (pos.x < transform.position.x)
+                {
+                    velocityVector.x = -velocity;
+                    rigidbody2D.velocity = velocityVector;
+                    moveAttack = false;
+                    //probabilidad de que el enemigo evada
+                    posibleEnemyEvade = Random.Range(0, 100);
+                    Debug.Log("enemigo evade: " + posibleEnemyEvade);
+                    if (posibleEnemyEvade > 1.5 * Globals.eTAgility)
+                    {
+                        //probabilidad de lanzar critico
+                        posibleCritic = Random.Range(0, 100);
+                        Debug.Log("player critico: " + posibleCritic);
+                        if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
+                        {
+                            txtEnemy.text = "Critic!!!";
+                            txtEnemy.color = new Color(1f, 0f, 0f);
+                            txtEnemy.gameObject.SetActive(true);
+                            Globals.eTLife -= ((3 + Globals.p1Strength * strMultiplier) * 1.5f);
+                            txtLifeEnemy.text = "-" + ((3 + Globals.p1Strength * strMultiplier) * 1.5f);
+                            txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                            txtLifeEnemy.gameObject.SetActive(true);
+                        }
+                        else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
+                        {
+                            Globals.eTLife -= (3 + Globals.p1Strength * strMultiplier);
+                            txtLifeEnemy.text = "-" + (3 + Globals.p1Strength * strMultiplier);
+                            txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                            txtLifeEnemy.gameObject.SetActive(true);
+                        }
+                    }
+                    else if (posibleEnemyEvade <= 3.5 * Globals.eTAgility)
+                    {
+                        txtEnemy.text = "Evaded!!!";
+                        txtEnemy.color = new Color(1f, 196f / 255f, 0f);
+                        txtEnemy.gameObject.SetActive(true);
+                    }
+                    mov = false;
+                }
+            }
+        }
+    }
+    private void ControllerSpell()
+    {
+        anim.SetBool("spell", false);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -99,7 +157,10 @@ public class Player : MonoBehaviour
                 Globals.p1BasicAttack = false;
                 if (moveAttack)
                 {
-                    if (pos.x < transform.position.x)
+                    velocityVector.x = 0f;
+                    rigidbody2D.velocity = velocityVector;
+                    anim.SetBool("attack", true);
+                    /* if (pos.x < transform.position.x)
                     {
                         velocityVector.x = -velocity;
                         rigidbody2D.velocity = velocityVector;
@@ -107,7 +168,7 @@ public class Player : MonoBehaviour
                         //probabilidad de que el enemigo evada
                         posibleEnemyEvade = Random.Range(0, 100);
                         Debug.Log("enemigo evade: " + posibleEnemyEvade);
-                        if (posibleEnemyEvade > 1.5 * Globals.e1Agility)
+                        if (posibleEnemyEvade > 1.5 * Globals.eTAgility)
                         {
                             //probabilidad de lanzar critico
                             posibleCritic = Random.Range(0, 100);
@@ -117,26 +178,26 @@ public class Player : MonoBehaviour
                                 txtEnemy.text = "Critic!!!";
                                 txtEnemy.color = new Color(1f, 0f, 0f);
                                 txtEnemy.gameObject.SetActive(true);
-                                Globals.e1Life -= ((3 + Globals.p1Strength * strMultiplier) * 1.5f);
+                                Globals.eTLife -= ((3 + Globals.p1Strength * strMultiplier) * 1.5f);
                                 txtLifeEnemy.text = "-" + ((3 + Globals.p1Strength * strMultiplier) * 1.5f);
                                 txtLifeEnemy.color = new Color(1f, 0f, 0f);
                                 txtLifeEnemy.gameObject.SetActive(true);
                             }
                             else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
                             {
-                                Globals.e1Life -= (3 + Globals.p1Strength * strMultiplier);
+                                Globals.eTLife -= (3 + Globals.p1Strength * strMultiplier);
                                 txtLifeEnemy.text = "-" + (3 + Globals.p1Strength * strMultiplier);
                                 txtLifeEnemy.color = new Color(1f, 0f, 0f);
                                 txtLifeEnemy.gameObject.SetActive(true);
                             }
                         }
-                        else if (posibleEnemyEvade <= 3.5 * Globals.e1Agility)
+                        else if (posibleEnemyEvade <= 3.5 * Globals.eTAgility)
                         {
                             txtEnemy.text = "Evaded!!!";
                             txtEnemy.color = new Color(1f, 196f / 255f, 0f);
                             txtEnemy.gameObject.SetActive(true);
                         }
-                    }
+                    }*/
                 }
             }
         }

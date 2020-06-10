@@ -42,36 +42,36 @@ public class FrostNovaAttack : MonoBehaviour
                 Debug.Log("enemy evaded: " + posibleEnemyEvaded);
                 Debug.Log("player critico: " + posibleCritic);
                 //el enemigo no esquiva el ataque
-                if (posibleEnemyEvaded > 1.5 * Globals.e1Agility)
+                if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
                 {//efecto de la carta con critico
                     if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                     {
                         Globals.critico = true;
-                        Globals.e1Life -= (Globals.posibleDamage * 1.5f);
+                        Globals.eTLife -= (Globals.posibleDamage * 1.5f);
                         txtLifeEnemy.text = "-" + Globals.posibleDamage * 1.5f;
                         txtLifeEnemy.color = new Color(1f, 0f, 0f);
                         txtLifeEnemy.gameObject.SetActive(true);
                     }
                     else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
                     {
-                        Globals.e1Life -= Globals.posibleDamage;
+                        Globals.eTLife -= Globals.posibleDamage;
                         txtLifeEnemy.text = "-" + Globals.posibleDamage;
                         txtLifeEnemy.color = new Color(1f, 0f, 0f);
                         txtLifeEnemy.gameObject.SetActive(true);
                     }
                     if (Globals.posibleInit > 0)
-                        Globals.e1Initiative -= Globals.posibleInit;
+                        Globals.eTInitiative -= Globals.posibleInit;
                 }
                 //el enemigo esquiva el ataque
-                else if (posibleEnemyEvaded <= 1.5 * Globals.e1Agility)
+                else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
                 {
-                    Globals.e1Evade = true;
+                    Globals.eTEvade = true;
                 }
                 //new turn?
-                if (Globals.e1Initiative > Globals.p1Initiative)
+                if (Globals.eTInitiative > Globals.p1Initiative)
                     Globals.newTurn = true;
                 //Globals.p1CanAttack = false;
-                Globals.e1CanAttack = true;
+                Globals.eTCanAttack = true;
                 Destroy(gameObject);
             }
         }

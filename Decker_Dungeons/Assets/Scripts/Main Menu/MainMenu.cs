@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private bool vOptions;
-    private bool vCredits;
     private AudioSource audioSource;
     public GameObject optionsMenu;
     public GameObject creditsMenu;
@@ -18,29 +16,31 @@ public class MainMenu : MonoBehaviour
     public Button btnCredits;
     public Button btnBack;
     [Header("Menus")]
-    public Button btnBackOptions;
     public Button btnMusic;
     public Button btnNoMusic;
-    public Button btnBackCredits;
 
     private float tempVolume;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        vOptions = false;
-        vCredits = false;
-        optionsMenu.SetActive(vOptions);
-        creditsMenu.SetActive(vCredits);
+        Globals.e1Died = false;
+        Globals.e2Died = false;
         audioSource = GetComponent<AudioSource>();
         slider.value = Globals.volume;
+    }
+    void Start()
+    {
+        optionsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
         btnNewAdventure.onClick.AddListener(()=> NewAdventure());
         btnOptions.onClick.AddListener(()=> Options());
-        btnBackOptions.onClick.AddListener(() => Options());
         btnCredits.onClick.AddListener(()=> Credits());
-        btnBackCredits.onClick.AddListener(() => Credits());
         btnBack.onClick.AddListener(() => Back());
         btnMusic.onClick.AddListener(() => DesactivateMusic());
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
+        ////
+        Globals.volume = slider.value;
+        audioSource.volume = Globals.volume;
     }
     public void DesactivateMusic()
     {
@@ -59,32 +59,34 @@ public class MainMenu : MonoBehaviour
     }
     public void Options()
     {
-        vOptions = !vOptions;
-        optionsMenu.SetActive(vOptions);
+        optionsMenu.SetActive(true);
     }
     public void Credits()
     {
-        vCredits = !vCredits;
-        creditsMenu.SetActive(vCredits);
+        creditsMenu.SetActive(true);
     }
     public void Back()
     {
-        SceneManager.LoadScene("Splash Screen");
+        //SceneManager.LoadScene("Splash Screen");
+        Application.Quit();
     }
     // Update is called once per frame
     void Update()
     {
-        Globals.volume = slider.value;
-        audioSource.volume = Globals.volume;
-        if (audioSource.volume > 0f && audioSource.volume <= 1f)
+        if (Globals.changeVolume)
         {
-            btnMusic.gameObject.SetActive(true);
-            btnNoMusic.gameObject.SetActive(false);
-        }
-        else if (audioSource.volume == 0f)
-        {
-            btnMusic.gameObject.SetActive(false);
-            btnNoMusic.gameObject.SetActive(true);
+            Globals.volume = slider.value;
+            audioSource.volume = Globals.volume;
+            if (audioSource.volume > 0f && audioSource.volume <= 1f)
+            {
+                btnMusic.gameObject.SetActive(true);
+                btnNoMusic.gameObject.SetActive(false);
+            }
+            else if (audioSource.volume == 0f)
+            {
+                btnMusic.gameObject.SetActive(false);
+                btnNoMusic.gameObject.SetActive(true);
+            }
         }
     }
 }

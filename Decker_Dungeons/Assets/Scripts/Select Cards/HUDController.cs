@@ -15,11 +15,9 @@ public class HUDController : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject cards;
     [Header("Menus")]
-    [SerializeField] private Button btnBackOptions;
     [SerializeField] private Button btnMusic;
     [SerializeField] private Button btnNoMusic;
     [SerializeField] private Slider slider;
-    private bool vOptions;
     private float tempVolume;
     private bool canFigth;
     private bool visibleText;
@@ -31,25 +29,26 @@ public class HUDController : MonoBehaviour
         {
             Globals.decklist.Remove(Globals.decklist[i]);
         }
+        audioSource = GetComponent<AudioSource>();
+        slider.value = Globals.volume;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        vOptions = false;
-        optionsMenu.SetActive(vOptions);
-        audioSource = GetComponent<AudioSource>();
-        slider.value = Globals.volume;
+        optionsMenu.SetActive(false);
         btnBack.onClick.AddListener(() => Back());
         btnSave.onClick.AddListener(() => Save());
         btnOptions.onClick.AddListener(() => Options());
-        btnBackOptions.onClick.AddListener(() => Options());
         btnMusic.onClick.AddListener(() => DesactivateMusic());
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
         //btnStart.onClick.AddListener(() => StartGame());
         canFigth = false;
         timeVisibleText = 0f;
         visibleText = true;
+        ///////
+        Globals.volume = slider.value;
+        audioSource.volume = Globals.volume;
     }
     public void Back()
     {
@@ -94,7 +93,7 @@ public class HUDController : MonoBehaviour
             if (cards.transform.GetChild(i).GetComponent<ScaleCard>().selected)
                 cantCards++;
         }
-        Debug.Log("contador" + Globals.decklist.Count);
+        //Debug.Log("contador" + Globals.decklist.Count);
         while (change)
         {
             if (Globals.decklist.Count == 0) remove = false;
@@ -145,14 +144,13 @@ public class HUDController : MonoBehaviour
                 change = false;
             }
         }
-        Debug.Log("cards:" + Globals.decklist.Count);
+        //Debug.Log("cards:" + Globals.decklist.Count);
         //Globals.saveDeck = true;
     }
     public void Options()
     {
-        vOptions = !vOptions;
-        optionsMenu.SetActive(vOptions);
-        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        Globals.pauseActive = true;
+        optionsMenu.SetActive(true);
     }
     public void DesactivateMusic()
     {
@@ -202,17 +200,21 @@ public class HUDController : MonoBehaviour
     void Update()
     {
         txtTitle.gameObject.SetActive(visibleText);
-        Globals.volume = slider.value;
-        audioSource.volume = Globals.volume;
-        if (audioSource.volume > 0f && audioSource.volume <= 1f)
+
+        if (Globals.changeVolume)
         {
-            btnMusic.gameObject.SetActive(true);
-            btnNoMusic.gameObject.SetActive(false);
-        }
-        else if (audioSource.volume == 0f)
-        {
-            btnMusic.gameObject.SetActive(false);
-            btnNoMusic.gameObject.SetActive(true);
+            Globals.volume = slider.value;
+            audioSource.volume = Globals.volume;
+            if (audioSource.volume > 0f && audioSource.volume <= 1f)
+            {
+                btnMusic.gameObject.SetActive(true);
+                btnNoMusic.gameObject.SetActive(false);
+            }
+            else if (audioSource.volume == 0f)
+            {
+                btnMusic.gameObject.SetActive(false);
+                btnNoMusic.gameObject.SetActive(true);
+            }
         }
         if (visibleText)
         {

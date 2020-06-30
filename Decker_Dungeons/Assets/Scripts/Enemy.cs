@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -18,16 +19,6 @@ public class Enemy : MonoBehaviour
     private int posibleEnemyEvaded;
     private float miniPause;
     private Text txtLifeEnemy;
-    private void OnMouseOver()
-    {
-        Globals.p1Stats = false;
-        Globals.eTStats = true;
-    }
-    private void OnMouseExit()
-    {
-        Globals.p1Stats = true;
-        Globals.eTStats = false;
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -74,8 +65,7 @@ public class Enemy : MonoBehaviour
             posibleEnemyEvaded = Random.Range(0, 100);
             Debug.Log("enemy evaded: " + posibleEnemyEvaded);
             Debug.Log("player critico: " + posibleCritic);
-            //el enemigo no esquiva el ataque
-            if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
+            if (SceneManager.GetActiveScene().name != "Level 3")
             {//efecto de la carta con critico
                 if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                 {
@@ -93,10 +83,32 @@ public class Enemy : MonoBehaviour
                     txtLifeEnemy.gameObject.SetActive(true);
                 }
             }
-            //el enemigo esquiva el ataque
-            else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
+            else
             {
-                Globals.eTEvade = true;
+                //el enemigo no esquiva el ataque
+                if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
+                {//efecto de la carta con critico
+                    if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
+                    {
+                        Globals.critico = true;
+                        Globals.eTLife -= (Globals.posibleDamage * 1.5f);
+                        txtLifeEnemy.text = "-" + (Globals.posibleDamage * 1.5f);
+                        txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                        txtLifeEnemy.gameObject.SetActive(true);
+                    }
+                    else if (posibleCritic > 2.5 * Globals.p1Bloodlust)
+                    {
+                        Globals.eTLife -= Globals.posibleDamage;
+                        txtLifeEnemy.text = "-" + Globals.posibleDamage;
+                        txtLifeEnemy.color = new Color(1f, 0f, 0f);
+                        txtLifeEnemy.gameObject.SetActive(true);
+                    }
+                }
+                //el enemigo esquiva el ataque
+                else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
+                {
+                    Globals.eTEvade = true;
+                }
             }
             moveDuringEarthquake++;
         }
@@ -109,7 +121,16 @@ public class Enemy : MonoBehaviour
                 transform.position.z), Quaternion.identity, this.transform);
         attack = false;
     }
-
+    private void ControllerMukAttack()
+    {
+        GameObject newAttack = Instantiate(enemyAttack, new Vector3(transform.position.x - 1.5f, transform.position.y + 0.75f,
+                transform.position.z), Quaternion.identity, this.transform);
+        attack = false;
+    }
+    private void EndMukAttack()
+    {
+        animEnemy.SetBool("attack", false);
+    }
     // Update is called once per frame
     void Update()
     {

@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     [Header("Buttons")]
     [SerializeField] private Button btnHit;
+    [SerializeField] private Button btnMenu;
     [SerializeField] private Button btnOptions;
-    [SerializeField] private Button btnBackOptions;
+    [SerializeField] private Button btnHelp;
     [SerializeField] private Button btnMusic;
     [SerializeField] private Button btnNoMusic;
     [Header("GameObjects")]
     [SerializeField] private GameObject menuResult;
     [SerializeField] private GameObject menuOptions;
+    [SerializeField] private GameObject menuHelp;
     [SerializeField] private GameObject Cards;
     [SerializeField] private Slider slider;
     [SerializeField] private Text txtTitle;
@@ -21,7 +24,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private Text txtLifeEnemy;
     private float tempVolume;
     private int temp;
-    private bool vOptions;
     private AudioSource audioSource;
     private float timeVisibleTitle;
     private float timeVisibleLifeEnemy;
@@ -33,20 +35,21 @@ public class GameController : MonoBehaviour
         startDuel = true;
         btnHit.gameObject.SetActive(true);
         Cards.SetActive(true);
+        audioSource = GetComponent<AudioSource>();
+        slider.value = Globals.volume;
     }
     void Start()
     {
         temp = Globals.p1Mana;
-        vOptions = false;
-        audioSource = GetComponent<AudioSource>();
-        slider.value = Globals.volume;
         btnHit.onClick.AddListener(() => OnHit());
+        btnMenu.onClick.AddListener(() => GoMenu());
         btnOptions.onClick.AddListener(() => GoOptions());
-        btnBackOptions.onClick.AddListener(() => GoOptions());
+        btnHelp.onClick.AddListener(() => GoHelp());
         btnMusic.onClick.AddListener(() => DesactivateMusic());
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
         menuResult.SetActive(false);
-        menuOptions.SetActive(vOptions);
+        menuOptions.SetActive(false);
+        menuHelp.SetActive(false);
         timeVisibleTitle = 0f;
         timeVisibleLifeEnemy = 0f;
         timeVisibleLifePlayer = 0f;
@@ -68,6 +71,9 @@ public class GameController : MonoBehaviour
                 Globals.eTCanAttack = true;
             }
         }
+        ////
+        Globals.volume = slider.value;
+        audioSource.volume = Globals.volume;
     }
 
     public void DesactivateMusic()
@@ -99,11 +105,19 @@ public class GameController : MonoBehaviour
             //Debug.Log("You can attack, it's enemy's turn");
         }
     }
+    public void GoMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
     public void GoOptions()
     {
-        vOptions = !vOptions;
-        menuOptions.SetActive(vOptions);
-        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        Globals.pauseActive = true;
+        menuOptions.SetActive(true);
+    }
+    public void GoHelp()
+    {
+        Globals.pauseActive = true;
+        menuHelp.SetActive(true);
     }
     // Update is called once per frame
     void Update()
@@ -116,19 +130,21 @@ public class GameController : MonoBehaviour
         {
             Globals.p1Mana = temp;
             menuResult.SetActive(true);
-            Time.timeScale = 0f;
         }
-        Globals.volume = slider.value;
-        audioSource.volume = Globals.volume;
-        if (audioSource.volume > 0f && audioSource.volume <= 1f)
+        if (Globals.changeVolume)
         {
-            btnMusic.gameObject.SetActive(true);
-            btnNoMusic.gameObject.SetActive(false);
-        }
-        else if (audioSource.volume == 0f)
-        {
-            btnMusic.gameObject.SetActive(false);
-            btnNoMusic.gameObject.SetActive(true);
+            Globals.volume = slider.value;
+            audioSource.volume = Globals.volume;
+            if (audioSource.volume > 0f && audioSource.volume <= 1f)
+            {
+                btnMusic.gameObject.SetActive(true);
+                btnNoMusic.gameObject.SetActive(false);
+            }
+            else if (audioSource.volume == 0f)
+            {
+                btnMusic.gameObject.SetActive(false);
+                btnNoMusic.gameObject.SetActive(true);
+            }
         }
         if (txtTitle.IsActive())
         {

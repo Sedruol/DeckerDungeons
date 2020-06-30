@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class DoorPortal : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    //[SerializeField] private float speed;
     [SerializeField] private GameObject player;
+    [SerializeField] private float velocity;
+    private Vector2 velocityVector;
+    private Rigidbody2D rigidbody2D;
     private Animator anim;
     private int nextLevel; //que tipo de sala sera la siguiente
     private int roomSelected; //cual de las posibles salas del tipo seleccionado sera escogida
@@ -16,16 +19,18 @@ public class DoorPortal : MonoBehaviour
 
     private void Awake()
     {
+        rigidbody2D = player.GetComponent<Rigidbody2D>();
+        velocityVector.x = velocity;
         anim = player.GetComponent<Animator>();
         roomName = SceneManager.GetActiveScene().name;
         nextLevel = Random.Range(0, 2); //0 o 1
-        Debug.Log("funca");
-        if (roomName == "Exploration")
-            actualRoom = 2;
+        //Debug.Log("funca");
+        /*if (roomName == "Exploration")
+            actualRoom = 1;
         else if (roomName == "Level 1")
-            actualRoom = 3;
+            actualRoom = 2;
         else if (roomName == "Level 2")
-            actualRoom = 4;
+            actualRoom = 3;*/
         /*if (actualRoom == 0 || actualRoom == 1)
             nextLevel = 1;
         else if (actualRoom == 2 || actualRoom == 3)
@@ -35,77 +40,98 @@ public class DoorPortal : MonoBehaviour
     {
         canMove = false;
         //0: sala sin enemigos
-        if (nextLevel == 0)
+        /*if (nextLevel == 0)
         {
-            //0: sala con curacion, 1: sala con mercader, 2: sala vacia, 
-            roomSelected = Random.Range(2, 3);//solo sala vacia(temporal)
+            //0: sala con curacion, 1: sala vacia
+            roomSelected = Random.Range(1, 2);//solo sala vacia(temporal)
             while (roomSelected == actualRoom)//si es igual, debe ser otra de las posibles del mismo tipo
-                roomSelected = Random.Range(3, 5);//temporal, solo mandara a las de enemigos
+                roomSelected = Random.Range(2, 4);//temporal, solo mandara a las de enemigos
         }
         //1: sala con enemigo
         else if (nextLevel == 1)
         {
-            //3: enemy lvl1, 4: enemy lvl2
-            roomSelected = Random.Range(3, 5); //3 o 4
+            //2: enemy lvl1, 3: enemy lvl2
+            roomSelected = Random.Range(2, 4); //3 o 4
             while (roomSelected == actualRoom)
-                roomSelected = Random.Range(3, 5);
-        }
+                roomSelected = Random.Range(2, 4);
+        }*/
     }
     private void OnMouseDown()
     {
-        if (Globals.firstLevel)
+        if (!Globals.pauseActive)
         {
-            Globals.selectYourDeck = true;
-            //Debug.Log("select your deck first");
-        }
-        else if (!Globals.firstLevel)
-        {
-            canMove = true;
+            if (Globals.firstLevel)
+            {
+                Globals.selectYourDeck = true;
+                //Debug.Log("select your deck first");
+            }
+            else if (!Globals.firstLevel)
+            {
+                canMove = true;
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         canMove = false;
         anim.SetBool("move", false);
-        nextLevel = Random.Range(0, 2);
+        nextLevel = Random.Range(0, 2);//0: sala pacifica, 1: sala de pelea
+        Debug.Log(nextLevel);
         if (roomName == "Exploration")
-            actualRoom = 2;
+            actualRoom = 1;
         else if (roomName == "Level 1")
-            actualRoom = 3;
+            actualRoom = 2;
         else if (roomName == "Level 2")
-            actualRoom = 4;
+            actualRoom = 3;
+        if (Globals.p1Life <= Globals.p1MaxLife / 2)
+        {
+            Debug.Log("sala de fuente para que te cures");
+        }
+        //0: sala pacifica
         if (nextLevel == 0)
         {
-            //0: sala vacia, 1: sala con curacion, 2: sala con mercader
-            roomSelected = Random.Range(2, 3);//solo sala vacia(temporal)
-            while (roomSelected == actualRoom)//si es igual, debe ser otra de las posibles del mismo tipo
-                roomSelected = Random.Range(3, 5);//temporal, solo mandara a las de enemigos
+            if (actualRoom == 1 /*|| roomSelected = 0*/)
+            {
+                //2: enemy lvl1, 3: enemy lvl2
+                if (!Globals.e1Died)//si el enemigo 1 esta vivo, enfrentalo
+                    roomSelected = 2;
+                else if (Globals.e1Died && !Globals.e2Died)//si el enemigo 1 esta muerto y el 2 esta vivo, enfrenta a este ultimo
+                    roomSelected = 3;
+                //roomSelected = Random.Range(2, 4);//si estas en una sala pacifica, la siguiente debe ser de batalla
+            }
+            //0: sala con curacion, 1: sala vacia
+            else
+                roomSelected = Random.Range(1, 2);//solo sala vacia(temporal), deberia ser (0,2)
         }
-        //1: sala con enemigo
+        //1: sala de batalla
         else if (nextLevel == 1)
         {
-            //3: enemy lvl1, 4: enemy lvl2
-            roomSelected = Random.Range(3, 5); //3 o 4
+            //2: enemy lvl1, 3: enemy lvl2
+            if (!Globals.e1Died)//si el enemigo 1 esta vivo, enfrentalo
+                roomSelected = 2;
+            else if (Globals.e1Died && !Globals.e2Died)//si el enemigo 1 esta muerto y el 2 esta vivo, enfrenta a este ultimo
+                roomSelected = 3;
+            /*roomSelected = Random.Range(2, 4); //3 o 4
             while (roomSelected == actualRoom)
-                roomSelected = Random.Range(2, 5);
-            Debug.Log("holi");
+                roomSelected = Random.Range(1, 4);
+            Debug.Log("holi");*/
         }
         if (collision.gameObject.layer == 12)
         {
-            Debug.Log(roomSelected);
-            if (roomSelected == 2)
+            //Debug.Log(roomSelected);
+            if (roomSelected == 1)
             {
-                Debug.Log(roomSelected);
+                //Debug.Log(roomSelected);
                 SceneManager.LoadScene("Exploration");
+            }
+            else if (roomSelected == 2)
+            {
+                //Debug.Log(roomSelected);
+                SceneManager.LoadScene("Level 1");
             }
             else if (roomSelected == 3)
             {
-                Debug.Log(roomSelected);
-                SceneManager.LoadScene("Level 1");
-            }
-            else if (roomSelected == 4)
-            {
-                Debug.Log(roomSelected);
+                //Debug.Log(roomSelected);
                 SceneManager.LoadScene("Level 2");
             }
         }
@@ -120,9 +146,14 @@ public class DoorPortal : MonoBehaviour
         if (canMove)
         {
             anim.SetBool("move", true);
-            float step = speed * Time.deltaTime;
-            player.transform.position = Vector2.MoveTowards(new Vector2(player.transform.position.x, player.transform.position.y),
-                new Vector2(transform.position.x, transform.position.y), step);
+            //Debug.Log(speed);
+            /*player.transform.position = Vector2.MoveTowards(new Vector2(player.transform.position.x, player.transform.position.y),
+                new Vector2(transform.position.x, transform.position.y), speed);*/
+
+            rigidbody2D.velocity = velocityVector;
+            /*player.transform.position = Vector3.MoveTowards(player.transform.position, transform.position, speed);
+            Debug.Log(player.transform.position);
+            Debug.Log(transform.position);*/
         }
     }
 }

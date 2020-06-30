@@ -19,13 +19,13 @@ public class MenuResult : MonoBehaviour
         btnExit.onClick.AddListener(() => Exit());
         if (Globals.p1Win)
         {
-            txtResult.text = "YOU WIN";
-            txtInfo.text = "Thanks  for  complete  this  prototype,  you  can  go  to  the  main menu  to  play  again";
+            txtResult.text = "You Win";
+            txtInfo.text = "Thanks for complete this prototype, you can go to the main menu to play again";
         }
         else if (!Globals.p1Win)
         {
-            txtResult.text = "YOU LOSE";
-            txtInfo.text = "Your  journey  ends  here,  try  with  a  different  deck";
+            txtResult.text = "You Lose";
+            txtInfo.text = "Your journey ends here, try with a different deck";
         }
     }
     public void ChangeDeck()

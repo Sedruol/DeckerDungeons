@@ -12,6 +12,7 @@ public class CardDisplay : MonoBehaviour
     public Text manaText;
     public GameObject manaGroup;
 
+    [SerializeField] private Image mask;
     [SerializeField] private GameObject Player;
     [SerializeField] private Text txtEnemy;
     [SerializeField] private Text txtTitle;
@@ -31,6 +32,7 @@ public class CardDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mask.gameObject.SetActive(false);
         if (gameObject.name == "Card 1")
             card = Globals.decklist[0];
         else if (gameObject.name == "Card 2")
@@ -61,7 +63,7 @@ public class CardDisplay : MonoBehaviour
     private void OnMouseEnter()
     {
         transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-        transform.position = new Vector3(posX, posY + 0.75f, 0f);
+        transform.position = new Vector3(posX, posY + 1.5f, 0f);
     }
     private void OnMouseExit()
     {
@@ -386,6 +388,10 @@ public class CardDisplay : MonoBehaviour
             Globals.p1CantMana--;
             //Debug.Log(Globals.p1CantMana);
         }
+        if (card.manaCost <= Globals.p1Mana)
+            mask.gameObject.SetActive(true);
+        else if (card.manaCost > Globals.p1Mana)
+            mask.gameObject.SetActive(false);
         if (changeCard)
         {
             changeCard = false;

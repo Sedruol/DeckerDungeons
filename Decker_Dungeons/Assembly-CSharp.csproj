@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\CardDisplay.cs" />
     <Compile Include="Assets\Scripts\CardScaler.cs" />
     <Compile Include="Assets\Scripts\ChangeStats.cs" />
+    <Compile Include="Assets\Scripts\CharacterLife.cs" />
     <Compile Include="Assets\Scripts\CreateMana.cs" />
     <Compile Include="Assets\Scripts\CreatePosibleDeck.cs" />
     <Compile Include="Assets\Scripts\Deck.cs" />
@@ -83,11 +84,16 @@
     <Compile Include="Assets\Scripts\LifeBar.cs" />
     <Compile Include="Assets\Scripts\Main Menu\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Main Menu\Navigation.cs" />
+    <Compile Include="Assets\Scripts\MenuAnimation\CreditsMenuAnimation.cs" />
+    <Compile Include="Assets\Scripts\MenuAnimation\HelpMenuAnimation.cs" />
+    <Compile Include="Assets\Scripts\MenuAnimation\OptionsMenuAnimation.cs" />
+    <Compile Include="Assets\Scripts\MenuAnimation\ResultMenuAnimation.cs" />
     <Compile Include="Assets\Scripts\MenuResult.cs" />
     <Compile Include="Assets\Scripts\MoveEnemyAttack.cs" />
     <Compile Include="Assets\Scripts\MoveMana.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Select Cards\CardsSelected.cs" />
     <Compile Include="Assets\Scripts\Select Cards\HUDController.cs" />
     <Compile Include="Assets\Scripts\Select Cards\ScaleCard.cs" />
     <Compile Include="Assets\Scripts\Splash Screen\TouchEffect.cs" />

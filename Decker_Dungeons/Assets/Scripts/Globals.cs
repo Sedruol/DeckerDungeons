@@ -4,7 +4,6 @@ public class Globals
 {
     public static float volume = 1f;
     [Header("Player 1 - Knight")]
-    public static bool p1Stats = true;
     public static float p1Life; //script: life bar-> function: awake
     public static int p1Mana = 3;
     public static int p1CantMana;
@@ -21,12 +20,9 @@ public class Globals
     public static int p1Initiative = 10;
     public static bool evade = false;
     public static bool critico = false;
-    
-    public static bool p2Stats = false;
-    public static bool p3Stats = false;
 
     [Header("Enemy 1")]
-    public static float e1MaxLife = 30f;
+    public static float e1MaxLife = 100f;
     //public static bool e1Stats = false;
     public static float e1Life; //script: life bar-> function: start
     //public static bool e1CanAttack = false;
@@ -37,9 +33,10 @@ public class Globals
     public static float e1Agility = 5f;//script: player -> OnTriggerEnter2D
     //public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
     //public static bool e1Critico = false;
+    public static bool e1Died = false;
 
     [Header("Enemy 2")]
-    public static float e2MaxLife = 100f;
+    public static float e2MaxLife = 75f;
     //public static bool e1Stats = false;
     public static float e2Life; //script: life bar-> function: start
     //public static bool e1CanAttack = false;
@@ -50,12 +47,10 @@ public class Globals
     public static float e2Agility = 10f;//script: player -> OnTriggerEnter2D
     //public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
     //public static bool e1Critico = false;
-
-    public static bool e3Stats = false;
+    public static bool e2Died = false;
 
     [Header("Enemy temporal")]//agarra los valores del enemigo del nivel
     public static float eTMaxLife;
-    public static bool eTStats = false;
     public static float eTLife; //script: life bar-> function: start
     public static bool eTCanAttack = false;
     public static float eTStrength;
@@ -95,6 +90,9 @@ public class Globals
     public static string lastRoom = " ";
     public static bool firstLevel = true;
     public static bool selectYourDeck = false;
+    public static bool changeVolume = false;
+    public static bool pauseActive = false;
+    public static bool changeStats = false;
 }
 /*public class CardMark
 {

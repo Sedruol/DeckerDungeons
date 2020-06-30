@@ -11,6 +11,9 @@ public class ScaleCard : MonoBehaviour
     [SerializeField] private Image artworkImage;
     [SerializeField] private Text manaText;
 
+    private GameObject cards;
+    private int cant;
+    private Text txtCantCards;
     public bool selected;
 
     [Header("POS AND SCALE")]
@@ -30,6 +33,9 @@ public class ScaleCard : MonoBehaviour
     }
     void Start()
     {
+        cant = 0;
+        cards = GameObject.Find("Cards");
+        txtCantCards = GameObject.Find("HUD/Paper/txtCantCards").GetComponent<Text>();
         artWorkMask.color = new Color(90, 90, 90);
         boxCollider2D = GetComponent<BoxCollider2D>();
         posX = transform.position.x;
@@ -38,27 +44,55 @@ public class ScaleCard : MonoBehaviour
         scaleY = transform.localScale.y;
         selected = false;
     }
+    public void Contador()
+    {
+        int temp = 0;
+        for (int i = 0; i < cards.transform.childCount; i++)
+        {
+            if (cards.transform.GetChild(i).GetComponent<ScaleCard>().selected)
+            {
+                temp++;
+            }
+        }
+        if (temp > cant || temp < cant)
+        {
+            cant = temp;
+            txtCantCards.text = "" + cant;
+            if (cant >= 6 && cant <= 10)
+                txtCantCards.color = new Color(42/255f, 164f/255f, 0f);
+            else
+                txtCantCards.color = new Color(1f, 0f, 0f);
+        }
+        //Debug.Log(cant);
+    }
     private void OnMouseEnter()
     {
-        transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+        if (!Globals.pauseActive)
+            transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
     }
     private void OnMouseExit()
     {
-        transform.localScale = new Vector3(scaleX, scaleY, 1f);
+        if (!Globals.pauseActive)
+            transform.localScale = new Vector3(scaleX, scaleY, 1f);
     }
     private void OnMouseDown()
     {
-        selected = !selected;
-        Globals.saveDeck = false;
+        if (!Globals.pauseActive)
+        {
+            selected = !selected;
+            Globals.saveDeck = false;
+            Contador();
+        }
     }
     private void OnMouseUp()
     {
-        if (selected)
+        if (!Globals.pauseActive)
         {
-            gameObject.transform.GetChild(4).gameObject.SetActive(selected);
+            if (selected)
+                gameObject.transform.GetChild(4).gameObject.SetActive(selected);
+            else if (!selected)
+                gameObject.transform.GetChild(4).gameObject.SetActive(selected);
         }
-        else if (!selected)
-            gameObject.transform.GetChild(4).gameObject.SetActive(selected);
     }
 
     // Update is called once per frame

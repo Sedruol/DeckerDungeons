@@ -9,23 +9,23 @@ public class ExplorationController : MonoBehaviour
     [SerializeField] private GameObject menuOptions;
     [SerializeField] private Slider slider;
     [SerializeField] private Text txtTitle;
+    [SerializeField] private Button markDeck;
     [SerializeField] private GameObject arrowDeck;
     [SerializeField] private GameObject arrowDoor;
     [SerializeField] private GameObject door;
     [Header("Buttons")]
     [SerializeField] private Button btnDeck;
     [SerializeField] private Button btnOptions;
-    [SerializeField] private Button btnBackOptions;
     [SerializeField] private Button btnMusic;
     [SerializeField] private Button btnNoMusic;
     private float tempVolume;
-    private bool vOptions;
     private AudioSource audioSource;
     private float vTitle;
     private SpriteRenderer srA1;
     private SpriteRenderer srA2;
+    private SpriteRenderer srA3;
     //fade-parpadeo
-    IEnumerator fade(SpriteRenderer sr)
+    IEnumerator fade(GameObject g)
     {
         //cambio el layer a invulnerable, el cual no tiene iteracción con los enemigos
         //gameObject.layer = 10;
@@ -33,9 +33,9 @@ public class ExplorationController : MonoBehaviour
         //{
         while (Globals.firstLevel || !Globals.firstLevel)
         {
-            sr.enabled = false;
+            g.SetActive(false);
             yield return new WaitForSeconds(0.5f);
-            sr.enabled = true;
+            g.SetActive(true);
             yield return new WaitForSeconds(0.5f);
         }
             //i--;
@@ -45,37 +45,40 @@ public class ExplorationController : MonoBehaviour
     }
     private void Awake()
     {
-        srA1 = arrowDeck.GetComponent<SpriteRenderer>();
+        /*srA1 = arrowDeck.GetComponent<SpriteRenderer>();
         srA2 = arrowDoor.GetComponent<SpriteRenderer>();
+        srA3 = markDeck.gameObject.GetComponent<SpriteRenderer>();*/
         //sr = arrowDeck.GetComponent<SpriteRenderer>();
         if (Globals.firstLevel)
         {
             arrowDeck.gameObject.SetActive(true);
-            StartCoroutine(fade(srA1));
+            markDeck.gameObject.SetActive(true);
+            StartCoroutine(fade(arrowDeck));
+            StartCoroutine(fade(markDeck.gameObject));
         }
         else if (!Globals.firstLevel)
         {
             arrowDoor.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + 2.75f,
                 door.transform.position.z);
             arrowDoor.gameObject.SetActive(true);
-            StartCoroutine(fade(srA2));
+            StartCoroutine(fade(arrowDoor));
             arrowDeck.gameObject.SetActive(false);
         }
+        audioSource = GetComponent<AudioSource>();
+        slider.value = Globals.volume;
     }
-
     // Start is called before the first frame update
     void Start()
     {
-        vOptions = false;
         vTitle = 0f;
-        audioSource = GetComponent<AudioSource>();
-        slider.value = Globals.volume;
         btnOptions.onClick.AddListener(() => GoOptions());
-        btnBackOptions.onClick.AddListener(() => GoOptions());
         btnMusic.onClick.AddListener(() => DesactivateMusic());
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
         btnDeck.onClick.AddListener(() => GoSelectCards());
-        menuOptions.SetActive(vOptions);
+        menuOptions.SetActive(false);
+        ////
+        Globals.volume = slider.value;
+        audioSource.volume = Globals.volume;
     }
 
     public void GoSelectCards()
@@ -97,25 +100,27 @@ public class ExplorationController : MonoBehaviour
 
     public void GoOptions()
     {
-        vOptions = !vOptions;
-        menuOptions.SetActive(vOptions);
-        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        Globals.pauseActive = true;
+        menuOptions.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Globals.volume = slider.value;
-        audioSource.volume = Globals.volume;
-        if (audioSource.volume > 0f && audioSource.volume <= 1f)
+        if (Globals.changeVolume)
         {
-            btnMusic.gameObject.SetActive(true);
-            btnNoMusic.gameObject.SetActive(false);
-        }
-        else if (audioSource.volume == 0f)
-        {
-            btnMusic.gameObject.SetActive(false);
-            btnNoMusic.gameObject.SetActive(true);
+            Globals.volume = slider.value;
+            audioSource.volume = Globals.volume;
+            if (audioSource.volume > 0f && audioSource.volume <= 1f)
+            {
+                btnMusic.gameObject.SetActive(true);
+                btnNoMusic.gameObject.SetActive(false);
+            }
+            else if (audioSource.volume == 0f)
+            {
+                btnMusic.gameObject.SetActive(false);
+                btnNoMusic.gameObject.SetActive(true);
+            }
         }
         if (Globals.selectYourDeck)
         {

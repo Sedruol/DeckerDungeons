@@ -21,14 +21,17 @@ public class Healing : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
-            alpha--;
+            alpha -= 4;
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, alpha/255f);
-            if (alpha == 0)
+            if (alpha == 252)
             {
                 Globals.p1Life += Globals.posibleDamage;
                 txtLifePlayer.text = "+" + Globals.posibleDamage;
                 txtLifePlayer.color = new Color(0f, 1f, 7f / 255f);
                 txtLifePlayer.gameObject.SetActive(true);
+            }
+            if (alpha == 0)
+            {
                 //new turn?
                 if (Globals.eTInitiative > Globals.p1Initiative)
                     Globals.newTurn = true;

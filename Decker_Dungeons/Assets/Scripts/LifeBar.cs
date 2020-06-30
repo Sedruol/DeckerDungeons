@@ -118,9 +118,11 @@ public class LifeBar : MonoBehaviour
                     Cards.SetActive(false);
                     Hit.SetActive(false);
                     Portal.SetActive(true);
+                    Globals.e1Died = true;
                 }
                 else if (SceneManager.GetActiveScene().name == "Level 2")
                 {
+                    Globals.e2Died = true;
                     Globals.menuResult = true;
                 }
             }

@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     {
         if (Globals.p1BasicAttack)
         {
-            anim.SetBool("move", true);
+            anim.SetBool("dash", true);
             velocityVector.x = velocity;
             rigidbody2D.velocity = velocityVector;
             Globals.p1BasicAttack = false;
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         }
         if (!Globals.p1BasicAttack && !moveAttack && pos.x > gameObject.transform.position.x)
         {
-            anim.SetBool("move", false);
+            anim.SetBool("dash", false);
             rigidbody2D.velocity = new Vector2(0f, 0f);
             gameObject.transform.position = new Vector3(pos.x, gameObject.transform.position.y, gameObject.transform.position.z);
             Globals.eTCanAttack = true;
@@ -147,7 +147,16 @@ public class Player : MonoBehaviour
     private void ControllerSpell()
     {
         anim.SetBool("spell", false);
+        Debug.Log("2");
     }
+    /*private void StartSpell()
+    {
+        anim.transform.position = new Vector3(anim.transform.position.x, 0.12f, anim.transform.position.z);
+    }
+    private void StartIdle()
+    {
+        anim.transform.position = new Vector3(anim.transform.position.x, -0.36f, anim.transform.position.z);
+    }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")

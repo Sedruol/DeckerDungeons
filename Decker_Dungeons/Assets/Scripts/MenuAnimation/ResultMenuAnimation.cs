@@ -35,6 +35,7 @@ public class ResultMenuAnimation : MonoBehaviour
     }
     public void Exit()
     {
+        Globals.pauseActive = false;
         Application.Quit();
     }
     private void OpenResultMenu()
@@ -57,11 +58,5 @@ public class ResultMenuAnimation : MonoBehaviour
         Globals.p1Life = Globals.p1MaxLife;
         Globals.eTLife = Globals.eTMaxLife;
         SceneManager.LoadScene("Main Menu");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

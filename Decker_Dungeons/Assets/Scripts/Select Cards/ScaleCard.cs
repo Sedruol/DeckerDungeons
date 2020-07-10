@@ -29,7 +29,10 @@ public class ScaleCard : MonoBehaviour
         nameText.text = name;
         descriptionText.text = description;
         artworkImage.sprite = art;
-        manaText.text = manaCant.ToString();
+        if (manaCant == 0)
+            manaText.text = "X";
+        else
+            manaText.text = manaCant.ToString();
     }
     void Start()
     {

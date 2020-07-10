@@ -7,13 +7,13 @@ public class FrostNovaAttack : MonoBehaviour
 {
     private float values;
     private float newColorG;
-    private SpriteRenderer sr;
+    //private SpriteRenderer sr;
     private int posibleCritic;
     private int posibleEnemyEvaded;
     private Text txtLifeEnemy;
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        //sr = GetComponent<SpriteRenderer>();
     }
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class FrostNovaAttack : MonoBehaviour
             newColorG--;
             transform.localScale = new Vector3(values, values, values);
             transform.rotation = Quaternion.Euler(0f, 0f, values * 180);
-            sr.color = new Color(sr.color.r, newColorG / 255f, sr.color.b);
+            //sr.color = new Color(sr.color.r, newColorG / 255f, sr.color.b);
             if (transform.localScale.x >= 2)
             {
                 posibleCritic = Random.Range(0, 100);
@@ -42,7 +42,7 @@ public class FrostNovaAttack : MonoBehaviour
                 Debug.Log("enemy evaded: " + posibleEnemyEvaded);
                 Debug.Log("player critico: " + posibleCritic);
                 //el enemigo no esquiva el ataque
-                if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
+                if (posibleEnemyEvaded > 1 + (Globals.eTAgility / 0.8f))
                 {//efecto de la carta con critico
                     if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                     {
@@ -59,11 +59,13 @@ public class FrostNovaAttack : MonoBehaviour
                         txtLifeEnemy.color = new Color(1f, 0f, 0f);
                         txtLifeEnemy.gameObject.SetActive(true);
                     }
+                    Globals.eTAgility -= 6;
+                    Globals.changeStats = true;
                     if (Globals.posibleInit > 0)
                         Globals.eTInitiative -= Globals.posibleInit;
                 }
                 //el enemigo esquiva el ataque
-                else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
+                else if (posibleEnemyEvaded <= 1 + (Globals.eTAgility / 0.8f))
                 {
                     Globals.eTEvade = true;
                 }

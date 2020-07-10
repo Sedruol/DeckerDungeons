@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: EnergyBlast
   m_EditorClassIdentifier: 
   name: Energy Blast
-  description: (4-6 DMG)
+  description: You consume all your mana (7DMG * Mana)
   artWork: {fileID: 988015382411737819, guid: aebaec1845022a340a9b19c20025f9e8, type: 3}
-  manaCost: 3
-  dmg: 4
+  manaCost: 0
+  dmg: 7
   heal: 0
   init: 0

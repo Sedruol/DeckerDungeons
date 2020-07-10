@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Text txtEnemy;
     [SerializeField] private Text txtPlayer;
     [SerializeField] private Text txtLifeEnemy;
+    [SerializeField] private AudioClip audioHit;
+    [SerializeField] private AudioSource FxSoundController;
     private Animator anim;
     private Vector2 velocityVector;
     private Vector3 pos;
@@ -40,6 +42,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Globals.pauseActive)
+            anim.speed = 0;
+        else if (!Globals.pauseActive)
+            anim.speed = 1;
         if (Globals.p1BasicAttack)
         {
             anim.SetBool("dash", true);
@@ -110,7 +116,7 @@ public class Player : MonoBehaviour
                     //probabilidad de que el enemigo evada
                     posibleEnemyEvade = Random.Range(0, 100);
                     Debug.Log("enemigo evade: " + posibleEnemyEvade);
-                    if (posibleEnemyEvade > 1.5 * Globals.eTAgility)
+                    if (posibleEnemyEvade > (1 + Globals.eTAgility/0.8f))
                     {
                         //probabilidad de lanzar critico
                         posibleCritic = Random.Range(0, 100);
@@ -133,7 +139,7 @@ public class Player : MonoBehaviour
                             txtLifeEnemy.gameObject.SetActive(true);
                         }
                     }
-                    else if (posibleEnemyEvade <= 3.5 * Globals.eTAgility)
+                    else if (posibleEnemyEvade <= (1 + Globals.eTAgility / 0.8f))
                     {
                         txtEnemy.text = "Evaded!!!";
                         txtEnemy.color = new Color(1f, 196f / 255f, 0f);
@@ -147,7 +153,11 @@ public class Player : MonoBehaviour
     private void ControllerSpell()
     {
         anim.SetBool("spell", false);
-        Debug.Log("2");
+        //Debug.Log("2");
+    }
+    private void ControllerSpellInY()
+    {
+        anim.SetBool("spellY", false);
     }
     /*private void StartSpell()
     {
@@ -169,6 +179,8 @@ public class Player : MonoBehaviour
                     velocityVector.x = 0f;
                     rigidbody2D.velocity = velocityVector;
                     anim.SetBool("attack", true);
+                    FxSoundController.clip = audioHit;
+                    FxSoundController.Play();
                     /* if (pos.x < transform.position.x)
                     {
                         velocityVector.x = -velocity;

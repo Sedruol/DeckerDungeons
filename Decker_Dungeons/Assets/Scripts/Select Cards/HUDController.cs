@@ -17,8 +17,12 @@ public class HUDController : MonoBehaviour
     [Header("Menus")]
     [SerializeField] private Button btnMusic;
     [SerializeField] private Button btnNoMusic;
+    [SerializeField] private Button btnFx;
+    [SerializeField] private Button btnNoFx;
     [SerializeField] private Slider slider;
+    [SerializeField] private Slider sliderFx;
     private float tempVolume;
+    private float tempFxVolume;
     private bool canFigth;
     private bool visibleText;
     private float timeVisibleText;
@@ -31,6 +35,7 @@ public class HUDController : MonoBehaviour
         }
         audioSource = GetComponent<AudioSource>();
         slider.value = Globals.volume;
+        sliderFx.value = Globals.fxVolume;
     }
 
     // Start is called before the first frame update
@@ -42,6 +47,8 @@ public class HUDController : MonoBehaviour
         btnOptions.onClick.AddListener(() => Options());
         btnMusic.onClick.AddListener(() => DesactivateMusic());
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
+        btnFx.onClick.AddListener(() => DesactivateFx());
+        btnNoFx.onClick.AddListener(() => ActivateFx());
         //btnStart.onClick.AddListener(() => StartGame());
         canFigth = false;
         timeVisibleText = 0f;
@@ -49,6 +56,7 @@ public class HUDController : MonoBehaviour
         ///////
         Globals.volume = slider.value;
         audioSource.volume = Globals.volume;
+        Globals.fxVolume = sliderFx.value;
     }
     public void Back()
     {
@@ -58,7 +66,10 @@ public class HUDController : MonoBehaviour
             {
                 Globals.saveDeck = false;
                 Globals.firstLevel = false;
-                SceneManager.LoadScene(Globals.lastRoom);
+                if(Globals.canHeal)
+                    SceneManager.LoadScene("Healing Room");
+                else if (!Globals.canHeal)
+                    SceneManager.LoadScene("Exploration");
             }
             else if (!Globals.saveDeck)
             {
@@ -162,6 +173,18 @@ public class HUDController : MonoBehaviour
     {
         slider.value = tempVolume;
     }
+
+    public void DesactivateFx()
+    {
+        tempFxVolume = sliderFx.value;
+        sliderFx.value = 0;
+    }
+
+    public void ActivateFx()
+    {
+        sliderFx.value = tempFxVolume;
+    }
+
     /*public void StartGame()
     {
         if (canFigth)
@@ -205,6 +228,7 @@ public class HUDController : MonoBehaviour
         {
             Globals.volume = slider.value;
             audioSource.volume = Globals.volume;
+            Globals.fxVolume = sliderFx.value;
             if (audioSource.volume > 0f && audioSource.volume <= 1f)
             {
                 btnMusic.gameObject.SetActive(true);
@@ -214,6 +238,16 @@ public class HUDController : MonoBehaviour
             {
                 btnMusic.gameObject.SetActive(false);
                 btnNoMusic.gameObject.SetActive(true);
+            }
+            if (sliderFx.value > 0f && sliderFx.value <= 1f)
+            {
+                btnFx.gameObject.SetActive(true);
+                btnNoFx.gameObject.SetActive(false);
+            }
+            else if (sliderFx.value == 0f)
+            {
+                btnFx.gameObject.SetActive(false);
+                btnNoFx.gameObject.SetActive(true);
             }
         }
         if (visibleText)

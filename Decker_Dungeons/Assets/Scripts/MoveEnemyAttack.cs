@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MoveEnemyAttack : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class MoveEnemyAttack : MonoBehaviour
     private SpriteRenderer sr;
     private float baseAttack;
     private Text txtLifePlayer;
+    private string room;
     private void Awake()
     {
         typeAttack = Random.Range(0, 2);
@@ -24,6 +26,7 @@ public class MoveEnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        room = SceneManager.GetActiveScene().name;
         txtLifePlayer = GameObject.Find("HUD/Texts Interaction/txtLifePlayer").GetComponent<Text>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -38,10 +41,21 @@ public class MoveEnemyAttack : MonoBehaviour
         {
             baseAttack = 4f;
             transform.localScale = new Vector3(-0.6f, 0.6f, 0.6f);
+            if (room == "Level 1")
+                sr.color = new Color(0f, 255f, 0f);
+            if (room == "Level 2")
+                sr.color = new Color(190f, 0f, 255f);
+            if (room == "Level 3")
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+            if (room == "Level 4")
+                sr.color = new Color(0f, 255f, 8f);
         }
         else if (typeAttack == 1)
         {
             sr.color = new Color(255f, 0f, 0f);
+            transform.localScale = new Vector3(-1.3f, 1.3f, 1.3f);
+            if (room == "Level 1" || room == "Level 2")
+                transform.localScale = new Vector3(-1f, 1f, 1f);
             baseAttack = 8;
         }
         //Debug.Log(typeAttack);
@@ -52,7 +66,7 @@ public class MoveEnemyAttack : MonoBehaviour
         {
             if (collision.gameObject.layer == knightLayer)
             {
-                if (posibleEvade <= 1.5 * Globals.p1Agility)
+                if (posibleEvade <= 1 + (Globals.eTAgility / 0.8f))
                     Globals.evade = true;
                 if (!Globals.evade)
                 {

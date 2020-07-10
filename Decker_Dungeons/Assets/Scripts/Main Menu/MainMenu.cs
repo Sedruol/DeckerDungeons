@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject creditsMenu;
     public Slider slider;
+    [SerializeField] private Slider sliderFx;
     [Header("Main Menu")]
     public Button btnNewAdventure;
     public Button btnOptions;
@@ -18,15 +19,21 @@ public class MainMenu : MonoBehaviour
     [Header("Menus")]
     public Button btnMusic;
     public Button btnNoMusic;
+    [SerializeField] private Button btnFx;
+    [SerializeField] private Button btnNoFx;
 
     private float tempVolume;
+    private float tempFxVolume;
     // Start is called before the first frame update
     private void Awake()
     {
         Globals.e1Died = false;
         Globals.e2Died = false;
+        Globals.e3Died = false;
+        Globals.e4Died = false;
         audioSource = GetComponent<AudioSource>();
         slider.value = Globals.volume;
+        sliderFx.value = Globals.fxVolume;
     }
     void Start()
     {
@@ -38,9 +45,12 @@ public class MainMenu : MonoBehaviour
         btnBack.onClick.AddListener(() => Back());
         btnMusic.onClick.AddListener(() => DesactivateMusic());
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
+        btnFx.onClick.AddListener(() => DesactivateFx());
+        btnNoFx.onClick.AddListener(() => ActivateFx());
         ////
         Globals.volume = slider.value;
         audioSource.volume = Globals.volume;
+        Globals.fxVolume = sliderFx.value;
     }
     public void DesactivateMusic()
     {
@@ -52,6 +62,18 @@ public class MainMenu : MonoBehaviour
     {
         slider.value = tempVolume;
     }
+
+    public void DesactivateFx()
+    {
+        tempFxVolume = sliderFx.value;
+        sliderFx.value = 0;
+    }
+
+    public void ActivateFx()
+    {
+        sliderFx.value = tempFxVolume;
+    }
+
     public void NewAdventure()
     {
         Globals.p1Life = Globals.p1MaxLife;
@@ -77,6 +99,7 @@ public class MainMenu : MonoBehaviour
         {
             Globals.volume = slider.value;
             audioSource.volume = Globals.volume;
+            Globals.fxVolume = sliderFx.value;
             if (audioSource.volume > 0f && audioSource.volume <= 1f)
             {
                 btnMusic.gameObject.SetActive(true);
@@ -86,6 +109,16 @@ public class MainMenu : MonoBehaviour
             {
                 btnMusic.gameObject.SetActive(false);
                 btnNoMusic.gameObject.SetActive(true);
+            }
+            if (sliderFx.value > 0f && sliderFx.value <= 1f)
+            {
+                btnFx.gameObject.SetActive(true);
+                btnNoFx.gameObject.SetActive(false);
+            }
+            else if (sliderFx.value == 0f)
+            {
+                btnFx.gameObject.SetActive(false);
+                btnNoFx.gameObject.SetActive(true);
             }
         }
     }

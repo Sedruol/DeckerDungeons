@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1399304674196054121}
   - component: {fileID: 6888220006009502923}
+  - component: {fileID: 6416564542952328087}
   m_Layer: 10
   m_Name: Frost Nova Cast
   m_TagString: Player
@@ -67,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2101017479
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9ff228c0280183149a47fa57d27ae55b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -81,3 +82,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6416564542952328087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240183432953415455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c81eebccce8eb459d903d019cddd06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

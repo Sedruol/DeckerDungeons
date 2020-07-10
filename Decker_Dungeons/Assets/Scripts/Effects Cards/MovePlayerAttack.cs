@@ -34,7 +34,7 @@ public class MovePlayerAttack : MonoBehaviour
                 Debug.Log("enemy evaded: " + posibleEnemyEvaded);
                 Debug.Log("player critico: " + posibleCritic);
                 //el enemigo no esquiva el ataque
-                if (posibleEnemyEvaded > 1.5 * Globals.eTAgility)
+                if (posibleEnemyEvaded > 1 + (Globals.eTAgility / 0.8f))
                 {//efecto de la carta con critico
                     if (posibleCritic <= 2.5 * Globals.p1Bloodlust)
                     {
@@ -51,11 +51,16 @@ public class MovePlayerAttack : MonoBehaviour
                         txtLifeEnemy.color = new Color(1f, 0f, 0f);
                         txtLifeEnemy.gameObject.SetActive(true);
                     }
+                    if (gameObject.name == "Frost Spear Cast(Clone)")
+                    {
+                        Globals.eTAgility -= 2;
+                        Globals.changeStats = true;
+                    }
                     if (Globals.posibleInit > 0)
                         Globals.eTInitiative -= Globals.posibleInit;
                 }
                 //el enemigo esquiva el ataque
-                else if (posibleEnemyEvaded <= 1.5 * Globals.eTAgility)
+                else if (posibleEnemyEvaded <= 1 + (Globals.eTAgility / 0.8f))
                 {
                     Globals.eTEvade = true;
                 }

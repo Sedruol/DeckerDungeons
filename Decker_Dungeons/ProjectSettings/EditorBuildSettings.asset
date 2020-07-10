@@ -18,9 +18,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Select Cards.unity
     guid: c421d70d4021470469134e83192abe78
   - enabled: 1
-    path: Assets/Scenes/Level 2.unity
-    guid: 9076f8c08fda0874ea172b6fc472df16
-  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 212f7fbf465f1a3498599ecc6f7844dc
+  - enabled: 1
+    path: Assets/Scenes/Healing Room.unity
+    guid: cdb839d4f9be7e34392a5dab2f397b05
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 11f6fe61c4ec4ab4b9289ee234d57641
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: c27311ab599de374ea5aea5bc1a024c6
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: 2b828084c775989409e4eb391d4593c3
   m_configObjects: {}

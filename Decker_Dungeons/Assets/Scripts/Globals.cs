@@ -3,6 +3,8 @@ using UnityEngine;
 public class Globals
 {
     public static float volume = 1f;
+    public static float fxVolume = 1f;
+
     [Header("Player 1 - Knight")]
     public static float p1Life; //script: life bar-> function: awake
     public static int p1Mana = 3;
@@ -11,18 +13,20 @@ public class Globals
     public static float p1ManaPosX; //script: create mana-> function: awake
     public static float p1ManaPosY = 2.5f;
     public static bool p1CanAttack = true;
+    public static float p1TimeToUseCard = 0f;//quitar si no funca
+    public static bool p1CanUseCard = false;//quitar si no funca
     public static bool p1BasicAttack = false;
     public static float p1Strength = 15f;
     public static float p1Intelligence = 5f;
     public static float p1Bloodlust = 10f;
-    public static float p1Agility = 10f;
+    public static float p1Agility = 11f;
     public static float p1MaxLife = 75f;
     public static int p1Initiative = 10;
     public static bool evade = false;
     public static bool critico = false;
 
     [Header("Enemy 1")]
-    public static float e1MaxLife = 100f;
+    public static float e1MaxLife = 55f;
     //public static bool e1Stats = false;
     public static float e1Life; //script: life bar-> function: start
     //public static bool e1CanAttack = false;
@@ -30,13 +34,13 @@ public class Globals
     public static float e1Intelligence = 0f;
     public static float e1Bloodlust = 5f;
     public static int e1Initiative = 5;
-    public static float e1Agility = 5f;//script: player -> OnTriggerEnter2D
+    public static float e1Agility = 6f;//script: player -> OnTriggerEnter2D
     //public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
     //public static bool e1Critico = false;
     public static bool e1Died = false;
 
     [Header("Enemy 2")]
-    public static float e2MaxLife = 75f;
+    public static float e2MaxLife = 70f;
     //public static bool e1Stats = false;
     public static float e2Life; //script: life bar-> function: start
     //public static bool e1CanAttack = false;
@@ -44,10 +48,38 @@ public class Globals
     public static float e2Intelligence = 0f;
     public static float e2Bloodlust = 10f;
     public static int e2Initiative = 5;
-    public static float e2Agility = 10f;//script: player -> OnTriggerEnter2D
+    public static float e2Agility = 9f;//script: player -> OnTriggerEnter2D
     //public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
     //public static bool e1Critico = false;
     public static bool e2Died = false;
+
+    [Header("Enemy 3")]
+    public static float e3MaxLife = 85f;
+    //public static bool e1Stats = false;
+    public static float e3Life; //script: life bar-> function: start
+    //public static bool e1CanAttack = false;
+    public static float e3Strength = 12f;
+    public static float e3Intelligence = 0f;
+    public static float e3Bloodlust = 12f;
+    public static int e3Initiative = 5;
+    public static float e3Agility = 12f;//script: player -> OnTriggerEnter2D
+    //public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
+    //public static bool e1Critico = false;
+    public static bool e3Died = false;
+
+    [Header("Boss")]
+    public static float e4MaxLife = 100f;
+    //public static bool e1Stats = false;
+    public static float e4Life; //script: life bar-> function: start
+    //public static bool e1CanAttack = false;
+    public static float e4Strength = 15f;
+    public static float e4Intelligence = 0f;
+    public static float e4Bloodlust = 15f;
+    public static int e4Initiative = 5;
+    public static float e4Agility = 15f;//script: player -> OnTriggerEnter2D
+    //public static bool e1Evade = false;//script: player -> OnTriggerEnter2D
+    //public static bool e1Critico = false;
+    public static bool e4Died = false;
 
     [Header("Enemy temporal")]//agarra los valores del enemigo del nivel
     public static float eTMaxLife;
@@ -69,6 +101,7 @@ public class Globals
     public static bool cFireBall = false;
     public static bool cNetArrow = false;
     public static bool cShockingTouch = false;
+    public static bool cEnergyBlast = false;
     public static bool cEartquake = false;
     public static bool cBlessingRestoration = false;
     public static bool cFireNova = false;
@@ -93,6 +126,8 @@ public class Globals
     public static bool changeVolume = false;
     public static bool pauseActive = false;
     public static bool changeStats = false;
+    public static bool firstFuente = true;
+    public static bool canHeal = false;
 }
 /*public class CardMark
 {

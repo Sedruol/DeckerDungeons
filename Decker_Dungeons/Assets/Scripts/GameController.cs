@@ -13,16 +13,21 @@ public class GameController : MonoBehaviour
     [SerializeField] private Button btnHelp;
     [SerializeField] private Button btnMusic;
     [SerializeField] private Button btnNoMusic;
+    [SerializeField] private Button btnFx;
+    [SerializeField] private Button btnNoFx;
     [Header("GameObjects")]
     [SerializeField] private GameObject menuResult;
     [SerializeField] private GameObject menuOptions;
     [SerializeField] private GameObject menuHelp;
     [SerializeField] private GameObject Cards;
     [SerializeField] private Slider slider;
+    [SerializeField] private Slider sliderFx;
     [SerializeField] private Text txtTitle;
     [SerializeField] private Text txtLifePlayer;
     [SerializeField] private Text txtLifeEnemy;
+    [SerializeField] private AudioSource audioFx;
     private float tempVolume;
+    private float tempFxVolume;
     private int temp;
     private AudioSource audioSource;
     private float timeVisibleTitle;
@@ -37,6 +42,7 @@ public class GameController : MonoBehaviour
         Cards.SetActive(true);
         audioSource = GetComponent<AudioSource>();
         slider.value = Globals.volume;
+        sliderFx.value = Globals.fxVolume;
     }
     void Start()
     {
@@ -47,6 +53,8 @@ public class GameController : MonoBehaviour
         btnHelp.onClick.AddListener(() => GoHelp());
         btnMusic.onClick.AddListener(() => DesactivateMusic());
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
+        btnFx.onClick.AddListener(() => DesactivateFx());
+        btnNoFx.onClick.AddListener(() => ActivateFx());
         menuResult.SetActive(false);
         menuOptions.SetActive(false);
         menuHelp.SetActive(false);
@@ -74,6 +82,8 @@ public class GameController : MonoBehaviour
         ////
         Globals.volume = slider.value;
         audioSource.volume = Globals.volume;
+        Globals.fxVolume = sliderFx.value;
+        audioFx.volume = Globals.fxVolume;
     }
 
     public void DesactivateMusic()
@@ -87,22 +97,37 @@ public class GameController : MonoBehaviour
         slider.value = tempVolume;
     }
 
+    public void DesactivateFx()
+    {
+        tempFxVolume = sliderFx.value;
+        sliderFx.value = 0;
+    }
+
+    public void ActivateFx()
+    {
+        sliderFx.value = tempFxVolume;
+    }
     public void OnHit()
     {
-        if (Globals.p1CanAttack)
+        if (!Globals.pauseActive)
         {
-            Globals.p1BasicAttack = true;
-            Globals.p1CanAttack = false;
-            Debug.Log(Globals.eTLife);
-        }
-        else if (!Globals.p1CanAttack)
-        {
-            if (Globals.eTCanAttack)
-                txtTitle.text = "You can attack, it's enemy's turn";
-            else if(!Globals.eTCanAttack)
-                txtTitle.text = "You only can attack one time during your turn";
-            txtTitle.gameObject.SetActive(true);
-            //Debug.Log("You can attack, it's enemy's turn");
+            if (Globals.p1CanAttack)
+            {
+                Globals.p1BasicAttack = true;
+                Globals.p1CanAttack = false;
+                Globals.p1CanUseCard = false;//quitar si no funca
+                Globals.p1TimeToUseCard = 0f;//quitar si no funca
+                Debug.Log(Globals.eTLife);
+            }
+            else if (!Globals.p1CanAttack)
+            {
+                if (Globals.eTCanAttack)
+                    txtTitle.text = "You can attack, it's enemy's turn";
+                else if (!Globals.eTCanAttack)
+                    txtTitle.text = "You only can attack one time during your turn";
+                txtTitle.gameObject.SetActive(true);
+                //Debug.Log("You can attack, it's enemy's turn");
+            }
         }
     }
     public void GoMenu()
@@ -122,6 +147,12 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Globals.p1CanAttack && !Globals.p1CanUseCard)//quitar si no funca
+        {//quitar si no funca
+            Globals.p1TimeToUseCard += 0.05f;//quitar si no funca
+            if (Globals.p1TimeToUseCard > 2f)//quitar si no funca
+                Globals.p1CanUseCard = true;//quitar si no funca
+        }//quitar si no funca
         if (!Globals.menuResult)
         {
             menuResult.SetActive(false);
@@ -129,12 +160,15 @@ public class GameController : MonoBehaviour
         if (Globals.menuResult)
         {
             Globals.p1Mana = temp;
+            Globals.pauseActive = true;
             menuResult.SetActive(true);
         }
         if (Globals.changeVolume)
         {
             Globals.volume = slider.value;
             audioSource.volume = Globals.volume;
+            Globals.fxVolume = sliderFx.value;
+            audioFx.volume = Globals.fxVolume;
             if (audioSource.volume > 0f && audioSource.volume <= 1f)
             {
                 btnMusic.gameObject.SetActive(true);
@@ -144,6 +178,16 @@ public class GameController : MonoBehaviour
             {
                 btnMusic.gameObject.SetActive(false);
                 btnNoMusic.gameObject.SetActive(true);
+            }
+            if (sliderFx.value > 0f && sliderFx.value <= 1f)
+            {
+                btnFx.gameObject.SetActive(true);
+                btnNoFx.gameObject.SetActive(false);
+            }
+            else if (sliderFx.value == 0f)
+            {
+                btnFx.gameObject.SetActive(false);
+                btnNoFx.gameObject.SetActive(true);
             }
         }
         if (txtTitle.IsActive())

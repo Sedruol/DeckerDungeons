@@ -23,6 +23,10 @@ public class OptionsMenuAnimation : MonoBehaviour
                 transform.GetChild(i).gameObject.SetActive(false);
             else if(transform.GetChild(i).gameObject.name == "btnNoMusic" && Globals.volume > 0)
                 transform.GetChild(i).gameObject.SetActive(false);
+            else if (transform.GetChild(i).gameObject.name == "btnFx" && Globals.fxVolume == 0)
+                transform.GetChild(i).gameObject.SetActive(false);
+            else if (transform.GetChild(i).gameObject.name == "btnNoFx" && Globals.fxVolume > 0)
+                transform.GetChild(i).gameObject.SetActive(false);
             else
                 transform.GetChild(i).gameObject.SetActive(true);
         }

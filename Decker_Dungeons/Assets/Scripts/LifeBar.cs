@@ -42,6 +42,26 @@ public class LifeBar : MonoBehaviour
             Globals.eTInitiative = Globals.e2Initiative;
             Globals.eTAgility = Globals.e2Agility;
         }
+        else if (SceneManager.GetActiveScene().name == "Level 3")
+        {
+            Globals.eTLife = Globals.e3MaxLife;
+            Globals.eTMaxLife = Globals.eTLife;
+            Globals.eTStrength = Globals.e3Strength;
+            Globals.eTIntelligence = Globals.e3Intelligence;
+            Globals.eTBloodlust = Globals.e3Bloodlust;
+            Globals.eTInitiative = Globals.e3Initiative;
+            Globals.eTAgility = Globals.e3Agility;
+        }
+        else if (SceneManager.GetActiveScene().name == "Level 4")
+        {
+            Globals.eTLife = Globals.e4MaxLife;
+            Globals.eTMaxLife = Globals.eTLife;
+            Globals.eTStrength = Globals.e4Strength;
+            Globals.eTIntelligence = Globals.e4Intelligence;
+            Globals.eTBloodlust = Globals.e4Bloodlust;
+            Globals.eTInitiative = Globals.e4Initiative;
+            Globals.eTAgility = Globals.e4Agility;
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -122,7 +142,25 @@ public class LifeBar : MonoBehaviour
                 }
                 else if (SceneManager.GetActiveScene().name == "Level 2")
                 {
+                    //eliminar enemigo y habilitar puerta
+                    Enemy.SetActive(false);
+                    Cards.SetActive(false);
+                    Hit.SetActive(false);
+                    Portal.SetActive(true);
                     Globals.e2Died = true;
+                }
+                else if (SceneManager.GetActiveScene().name == "Level 3")
+                {
+                    //eliminar enemigo y habilitar puerta
+                    Enemy.SetActive(false);
+                    Cards.SetActive(false);
+                    Hit.SetActive(false);
+                    Portal.SetActive(true);
+                    Globals.e3Died = true;
+                }
+                else if (SceneManager.GetActiveScene().name == "Level 4")
+                {
+                    Globals.e4Died = true;
                     Globals.menuResult = true;
                 }
             }

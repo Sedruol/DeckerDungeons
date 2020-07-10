@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: ColdMist
   m_EditorClassIdentifier: 
   name: Cold Mist
-  description: You conjure a helid mist (10 DMG and 15 INIT)
+  description: You conjure a helid mist (14 DMG and -6 AGI)
   artWork: {fileID: 2274553097845166390, guid: 07b327e5293425f47a86971e72d15d9b, type: 3}
   manaCost: 3
-  dmg: 10
+  dmg: 14
   heal: 0
   init: 0

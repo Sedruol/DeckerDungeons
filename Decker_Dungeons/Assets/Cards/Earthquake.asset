@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Earthquake
   m_EditorClassIdentifier: 
   name: Earthquake
-  description: You shake the ground beneath your enemies (25 DMG)
+  description: You shake the ground beneath your enemies (40 DMG)
   artWork: {fileID: 2103503982290428479, guid: 2b747d42d49d73046b45cc11671bfb76, type: 3}
   manaCost: 5
-  dmg: 25
+  dmg: 40
   heal: 0
+  init: 0

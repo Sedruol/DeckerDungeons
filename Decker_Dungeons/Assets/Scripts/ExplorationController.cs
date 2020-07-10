@@ -8,6 +8,7 @@ public class ExplorationController : MonoBehaviour
 {
     [SerializeField] private GameObject menuOptions;
     [SerializeField] private Slider slider;
+    [SerializeField] private Slider sliderFx;
     [SerializeField] private Text txtTitle;
     [SerializeField] private Button markDeck;
     [SerializeField] private GameObject arrowDeck;
@@ -18,7 +19,10 @@ public class ExplorationController : MonoBehaviour
     [SerializeField] private Button btnOptions;
     [SerializeField] private Button btnMusic;
     [SerializeField] private Button btnNoMusic;
+    [SerializeField] private Button btnFx;
+    [SerializeField] private Button btnNoFx;
     private float tempVolume;
+    private float tempFxVolume;
     private AudioSource audioSource;
     private float vTitle;
     private SpriteRenderer srA1;
@@ -58,7 +62,7 @@ public class ExplorationController : MonoBehaviour
         }
         else if (!Globals.firstLevel)
         {
-            arrowDoor.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + 2.75f,
+            arrowDoor.transform.position = new Vector3(door.transform.position.x + 0.1f, door.transform.position.y + 2.75f,
                 door.transform.position.z);
             arrowDoor.gameObject.SetActive(true);
             StartCoroutine(fade(arrowDoor));
@@ -66,6 +70,7 @@ public class ExplorationController : MonoBehaviour
         }
         audioSource = GetComponent<AudioSource>();
         slider.value = Globals.volume;
+        sliderFx.value = Globals.fxVolume;
     }
     // Start is called before the first frame update
     void Start()
@@ -75,10 +80,13 @@ public class ExplorationController : MonoBehaviour
         btnMusic.onClick.AddListener(() => DesactivateMusic());
         btnNoMusic.onClick.AddListener(() => ActivateMusic());
         btnDeck.onClick.AddListener(() => GoSelectCards());
+        btnFx.onClick.AddListener(() => DesactivateFx());
+        btnNoFx.onClick.AddListener(() => ActivateFx());
         menuOptions.SetActive(false);
         ////
         Globals.volume = slider.value;
         audioSource.volume = Globals.volume;
+        Globals.fxVolume = sliderFx.value;
     }
 
     public void GoSelectCards()
@@ -98,6 +106,17 @@ public class ExplorationController : MonoBehaviour
         slider.value = tempVolume;
     }
 
+    public void DesactivateFx()
+    {
+        tempFxVolume = sliderFx.value;
+        sliderFx.value = 0;
+    }
+
+    public void ActivateFx()
+    {
+        sliderFx.value = tempFxVolume;
+    }
+
     public void GoOptions()
     {
         Globals.pauseActive = true;
@@ -111,6 +130,7 @@ public class ExplorationController : MonoBehaviour
         {
             Globals.volume = slider.value;
             audioSource.volume = Globals.volume;
+            Globals.fxVolume = sliderFx.value;
             if (audioSource.volume > 0f && audioSource.volume <= 1f)
             {
                 btnMusic.gameObject.SetActive(true);
@@ -120,6 +140,16 @@ public class ExplorationController : MonoBehaviour
             {
                 btnMusic.gameObject.SetActive(false);
                 btnNoMusic.gameObject.SetActive(true);
+            }
+            if (sliderFx.value > 0f && sliderFx.value <= 1f)
+            {
+                btnFx.gameObject.SetActive(true);
+                btnNoFx.gameObject.SetActive(false);
+            }
+            else if (sliderFx.value == 0f)
+            {
+                btnFx.gameObject.SetActive(false);
+                btnNoFx.gameObject.SetActive(true);
             }
         }
         if (Globals.selectYourDeck)
